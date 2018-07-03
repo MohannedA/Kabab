@@ -13,6 +13,10 @@
 		04B470F120EA593100FAE9F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B470F020EA593100FAE9F6 /* Assets.xcassets */; };
 		04B470F420EA593100FAE9F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B470F220EA593100FAE9F6 /* LaunchScreen.storyboard */; };
 		04B470FD20EB57C000FAE9F6 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B470FC20EB57C000FAE9F6 /* Repository.swift */; };
+		04B4710220EB5C3400FAE9F6 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4710120EB5C3400FAE9F6 /* LocalDataSource.swift */; };
+		04B4710520EB603200FAE9F6 /* Visitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4710420EB603200FAE9F6 /* Visitor.swift */; };
+		04B4710820EB660800FAE9F6 /* VisitorsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4710720EB660800FAE9F6 /* VisitorsDatabase.swift */; };
+		92E680DE72D2BE922CC14B14 /* Pods_Kabab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C954FBF8E62CAA9387425C /* Pods_Kabab.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,12 @@
 		04B470F320EA593100FAE9F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04B470F520EA593100FAE9F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04B470FC20EB57C000FAE9F6 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		04B4710120EB5C3400FAE9F6 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
+		04B4710420EB603200FAE9F6 /* Visitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visitor.swift; sourceTree = "<group>"; };
+		04B4710720EB660800FAE9F6 /* VisitorsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorsDatabase.swift; sourceTree = "<group>"; };
+		771E24DE2A276198A64D2849 /* Pods-Kabab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kabab.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kabab/Pods-Kabab.release.xcconfig"; sourceTree = "<group>"; };
+		85C954FBF8E62CAA9387425C /* Pods_Kabab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kabab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC60015B8A3A06C9BABE5A7A /* Pods-Kabab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kabab.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kabab/Pods-Kabab.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92E680DE72D2BE922CC14B14 /* Pods_Kabab.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +53,8 @@
 			children = (
 				04B470E820EA593000FAE9F6 /* Kabab */,
 				04B470E720EA593000FAE9F6 /* Products */,
+				ED90256247B9BF3D08E0291D /* Pods */,
+				8D468CAC7A2D15A4B3F64008 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +69,7 @@
 		04B470E820EA593000FAE9F6 /* Kabab */ = {
 			isa = PBXGroup;
 			children = (
+				04B4710320EB601C00FAE9F6 /* Models */,
 				04B470FE20EB594D00FAE9F6 /* Repository */,
 				04B470E920EA593000FAE9F6 /* AppDelegate.swift */,
 				04B470EB20EA593000FAE9F6 /* ViewController.swift */,
@@ -80,6 +94,8 @@
 		04B470FF20EB5A3900FAE9F6 /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				04B4710620EB65A500FAE9F6 /* LocalDatabases */,
+				04B4710120EB5C3400FAE9F6 /* LocalDataSource.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -91,6 +107,39 @@
 			path = Remote;
 			sourceTree = "<group>";
 		};
+		04B4710320EB601C00FAE9F6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				04B4710420EB603200FAE9F6 /* Visitor.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		04B4710620EB65A500FAE9F6 /* LocalDatabases */ = {
+			isa = PBXGroup;
+			children = (
+				04B4710720EB660800FAE9F6 /* VisitorsDatabase.swift */,
+			);
+			name = LocalDatabases;
+			sourceTree = "<group>";
+		};
+		8D468CAC7A2D15A4B3F64008 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				85C954FBF8E62CAA9387425C /* Pods_Kabab.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED90256247B9BF3D08E0291D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BC60015B8A3A06C9BABE5A7A /* Pods-Kabab.debug.xcconfig */,
+				771E24DE2A276198A64D2849 /* Pods-Kabab.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -98,9 +147,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04B470F820EA593100FAE9F6 /* Build configuration list for PBXNativeTarget "Kabab" */;
 			buildPhases = (
+				ABBD13D3A59A2C41101CAC8E /* [CP] Check Pods Manifest.lock */,
 				04B470E220EA593000FAE9F6 /* Sources */,
 				04B470E320EA593000FAE9F6 /* Frameworks */,
 				04B470E420EA593000FAE9F6 /* Resources */,
+				EB5FD4F3C24ACC730571E7DF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -157,13 +208,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		ABBD13D3A59A2C41101CAC8E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kabab-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB5FD4F3C24ACC730571E7DF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Kabab/Pods-Kabab-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kabab/Pods-Kabab-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		04B470E220EA593000FAE9F6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				04B470EC20EA593000FAE9F6 /* ViewController.swift in Sources */,
+				04B4710520EB603200FAE9F6 /* Visitor.swift in Sources */,
 				04B470EA20EA593000FAE9F6 /* AppDelegate.swift in Sources */,
+				04B4710820EB660800FAE9F6 /* VisitorsDatabase.swift in Sources */,
+				04B4710220EB5C3400FAE9F6 /* LocalDataSource.swift in Sources */,
 				04B470FD20EB57C000FAE9F6 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +401,7 @@
 		};
 		04B470F920EA593100FAE9F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC60015B8A3A06C9BABE5A7A /* Pods-Kabab.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -323,6 +419,7 @@
 		};
 		04B470FA20EA593100FAE9F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 771E24DE2A276198A64D2849 /* Pods-Kabab.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

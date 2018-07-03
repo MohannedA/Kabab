@@ -13,14 +13,6 @@ protocol Repository {
     
     func getAll() -> [T]
     
-    func getByName(name: String) -> T
-    
-    func insert(item: T)
-    
-    func update(item: T)
-    
-    func clean()
-    
-    func deleteByName(name: String)
+    func getByPhoneNumber(phoneNumber: String) -> T
     
 }
