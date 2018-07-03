@@ -9,15 +9,24 @@
 import Foundation
 import RealmSwift
 
-class LocalDataSource: Repository {
-    private let realm: Realm = try! Realm()
+class LocalCRUD: Repository {
+    init() {}
     
-    func getAll() -> [Visitor] {
+    //MARK: Var
+    private let realm: Realm = try! Realm()
+    static var shered = LocalCRUD()
+    
+    
+    func getAll(completion: (Bool) -> ()) -> [Visitor] {
         return realm.objects(VisitorsDatabase.self).map {$0.entry}
     }
     
-    func getByPhoneNumber(phoneNumber: String) -> Visitor {
+    func getByPhoneNumber(phoneNumber: String, completion: (Bool) -> ()) -> Visitor {
         return (realm.objects(VisitorsDatabase.self).filter("title = %@", phoneNumber).last?.entry)!
+    }
+    
+    func insert(item: Visitor, completion: (Bool) -> ()) {
+        self.realm.add(VisitorsDatabase(visitor: item))
     }
     
     typealias T = Visitor

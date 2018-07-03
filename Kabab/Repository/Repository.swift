@@ -11,8 +11,9 @@ import Foundation
 protocol Repository {
     associatedtype T
     
-    func getAll() -> [T]
+    func getAll(completion: (Bool) -> ()) -> [T]
     
-    func getByPhoneNumber(phoneNumber: String) -> T
+    func getByPhoneNumber(phoneNumber: String, completion: (Bool) -> ()) -> T
     
+    func insert(item: T, completion: (Bool) -> ())
 }

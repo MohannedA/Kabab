@@ -13,7 +13,7 @@
 		04B470F120EA593100FAE9F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B470F020EA593100FAE9F6 /* Assets.xcassets */; };
 		04B470F420EA593100FAE9F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B470F220EA593100FAE9F6 /* LaunchScreen.storyboard */; };
 		04B470FD20EB57C000FAE9F6 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B470FC20EB57C000FAE9F6 /* Repository.swift */; };
-		04B4710220EB5C3400FAE9F6 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4710120EB5C3400FAE9F6 /* LocalDataSource.swift */; };
+		04B4710220EB5C3400FAE9F6 /* LocalCRUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4710120EB5C3400FAE9F6 /* LocalCRUD.swift */; };
 		04B4710520EB603200FAE9F6 /* Visitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4710420EB603200FAE9F6 /* Visitor.swift */; };
 		04B4710820EB660800FAE9F6 /* VisitorsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4710720EB660800FAE9F6 /* VisitorsDatabase.swift */; };
 		92E680DE72D2BE922CC14B14 /* Pods_Kabab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C954FBF8E62CAA9387425C /* Pods_Kabab.framework */; };
@@ -28,7 +28,7 @@
 		04B470F320EA593100FAE9F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04B470F520EA593100FAE9F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04B470FC20EB57C000FAE9F6 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		04B4710120EB5C3400FAE9F6 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
+		04B4710120EB5C3400FAE9F6 /* LocalCRUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCRUD.swift; sourceTree = "<group>"; };
 		04B4710420EB603200FAE9F6 /* Visitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visitor.swift; sourceTree = "<group>"; };
 		04B4710720EB660800FAE9F6 /* VisitorsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorsDatabase.swift; sourceTree = "<group>"; };
 		771E24DE2A276198A64D2849 /* Pods-Kabab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kabab.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kabab/Pods-Kabab.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				04B4710620EB65A500FAE9F6 /* LocalDatabases */,
-				04B4710120EB5C3400FAE9F6 /* LocalDataSource.swift */,
+				04B4710120EB5C3400FAE9F6 /* LocalCRUD.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -258,7 +258,7 @@
 				04B4710520EB603200FAE9F6 /* Visitor.swift in Sources */,
 				04B470EA20EA593000FAE9F6 /* AppDelegate.swift in Sources */,
 				04B4710820EB660800FAE9F6 /* VisitorsDatabase.swift in Sources */,
-				04B4710220EB5C3400FAE9F6 /* LocalDataSource.swift in Sources */,
+				04B4710220EB5C3400FAE9F6 /* LocalCRUD.swift in Sources */,
 				04B470FD20EB57C000FAE9F6 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
