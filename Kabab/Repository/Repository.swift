@@ -13,7 +13,9 @@ protocol Repository {
     
     func getAll() -> [T]
     
-    func getByPhoneNumber(phoneNumber: String) -> T
+    func getByPhoneNumber(phoneNumber: String) -> T?
+    
+    func getByIDNumber(IDNumber: String) -> T?
     
     func insert(item: T)
 }

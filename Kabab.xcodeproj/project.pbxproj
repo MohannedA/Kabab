@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		043E825520ECAA8C00BB9021 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E825420ECAA8C00BB9021 /* MockData.swift */; };
+		043E825820ECE6AC00BB9021 /* SMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E825720ECE6AC00BB9021 /* SMSViewController.swift */; };
 		04B470EA20EA593000FAE9F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B470E920EA593000FAE9F6 /* AppDelegate.swift */; };
 		04B470EC20EA593000FAE9F6 /* IDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B470EB20EA593000FAE9F6 /* IDViewController.swift */; };
 		04B470EF20EA593000FAE9F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B470ED20EA593000FAE9F6 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		043E825420ECAA8C00BB9021 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		043E825720ECE6AC00BB9021 /* SMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSViewController.swift; sourceTree = "<group>"; };
 		04B470E620EA593000FAE9F6 /* Kabab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kabab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B470E920EA593000FAE9F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04B470EB20EA593000FAE9F6 /* IDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		043E825620ECD67500BB9021 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				043E825420ECAA8C00BB9021 /* MockData.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		04B470DD20EA593000FAE9F6 = {
 			isa = PBXGroup;
 			children = (
@@ -73,7 +83,8 @@
 		04B470E820EA593000FAE9F6 /* Kabab */ = {
 			isa = PBXGroup;
 			children = (
-				04B4710920EBB7A100FAE9F6 /* Views */,
+				043E825620ECD67500BB9021 /* Helpers */,
+				04B4710920EBB7A100FAE9F6 /* View Controllers */,
 				04B4710320EB601C00FAE9F6 /* Models */,
 				04B470FE20EB594D00FAE9F6 /* Repository */,
 				04B470E920EA593000FAE9F6 /* AppDelegate.swift */,
@@ -81,7 +92,6 @@
 				04B470F020EA593100FAE9F6 /* Assets.xcassets */,
 				04B470F220EA593100FAE9F6 /* LaunchScreen.storyboard */,
 				04B470F520EA593100FAE9F6 /* Info.plist */,
-				043E825420ECAA8C00BB9021 /* MockData.swift */,
 			);
 			path = Kabab;
 			sourceTree = "<group>";
@@ -128,13 +138,14 @@
 			name = LocalDatabases;
 			sourceTree = "<group>";
 		};
-		04B4710920EBB7A100FAE9F6 /* Views */ = {
+		04B4710920EBB7A100FAE9F6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				04B470EB20EA593000FAE9F6 /* IDViewController.swift */,
 				04B4710A20EBB7F600FAE9F6 /* PhoneNumberViewController.swift */,
+				043E825720ECE6AC00BB9021 /* SMSViewController.swift */,
 			);
-			path = Views;
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		8D468CAC7A2D15A4B3F64008 /* Frameworks */ = {
@@ -248,13 +259,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Kabab/Pods-Kabab-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -273,6 +290,7 @@
 				04B470EA20EA593000FAE9F6 /* AppDelegate.swift in Sources */,
 				04B4710820EB660800FAE9F6 /* VisitorsDatabase.swift in Sources */,
 				04B4710B20EBB7F600FAE9F6 /* PhoneNumberViewController.swift in Sources */,
+				043E825820ECE6AC00BB9021 /* SMSViewController.swift in Sources */,
 				04B4710220EB5C3400FAE9F6 /* LocalCRUD.swift in Sources */,
 				043E825520ECAA8C00BB9021 /* MockData.swift in Sources */,
 				04B470FD20EB57C000FAE9F6 /* Repository.swift in Sources */,

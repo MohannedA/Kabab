@@ -11,6 +11,6 @@ import Foundation
 enum MockData: String {
     case phoneNumber01 = "0512345678"
     case phoneNumber02 = "0587654321"
-    case ID01 = "123456789"
-    case ID02 = "987654321"
+    case IDNumber01 = "123456789"
+    case IDNumber02 = "987654321"
 }

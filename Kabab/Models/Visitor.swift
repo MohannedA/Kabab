@@ -11,11 +11,11 @@ import Foundation
 class Visitor: NSObject {
     //MARK: Var.
     var phoneNumber: String
-    var ID: String
+    var IDNumber: String
     
-    init(phoneNumber: String, ID: String) {
+    init(phoneNumber: String, IDNumber: String) {
         self.phoneNumber = phoneNumber
-        self.ID = ID
+        self.IDNumber = IDNumber
     }
     
 }

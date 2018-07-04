@@ -10,16 +10,16 @@ import RealmSwift
 
 class VisitorsDatabase: Object {
     @objc dynamic var phoneNumber: String = ""
-    @objc dynamic var ID: String = ""
+    @objc dynamic var IDNumber: String = ""
     
     convenience init(visitor: Visitor) {
         self.init()
         phoneNumber = visitor.phoneNumber
-        ID = visitor.ID
+        IDNumber = visitor.IDNumber
     }
     
     var entry: Visitor {
-        return Visitor(phoneNumber: phoneNumber, ID: ID)
+        return Visitor(phoneNumber: phoneNumber, IDNumber: IDNumber)
     }
     
 }

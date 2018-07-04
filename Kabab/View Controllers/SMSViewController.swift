@@ -1,29 +1,20 @@
 //
-//  PhoneNumberViewController.swift
+//  SMSViewController.swift
 //  Kabab
 //
-//  Created by mac on 19/10/1439 AH.
+//  Created by mac on 20/10/1439 AH.
 //  Copyright © 1439 mac. All rights reserved.
 //
 
 import UIKit
 
-class PhoneNumberViewController: UIViewController {
-    
-    //MARK: Properties
-    @IBOutlet weak var IDButton: UIButton!
-    
-    
+class SMSViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
     }
-    
-    //MARK: Actions
-    @IBAction func goBackToID(_ sender: UIButton) {
-        // Go back to ID view controller.
-        dismiss(animated: true, completion: nil)
-    }
-    
     
 
     /*

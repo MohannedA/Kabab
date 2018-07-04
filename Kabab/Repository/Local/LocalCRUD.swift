@@ -10,10 +10,13 @@ import Foundation
 import RealmSwift
 
 class LocalCRUD: Repository {
+    
     init() {}
+    typealias T = Visitor
     
     //MARK: Var
     private let realm: Realm = try! Realm()
+    // Singleton Instance
     static var shered = LocalCRUD()
     
     
@@ -21,8 +24,12 @@ class LocalCRUD: Repository {
         return realm.objects(VisitorsDatabase.self).map {$0.entry}
     }
     
-    func getByPhoneNumber(phoneNumber: String) -> Visitor {
-        return (realm.objects(VisitorsDatabase.self).filter("title = %@", phoneNumber).last?.entry)!
+    func getByPhoneNumber(phoneNumber: String) -> Visitor? {
+        return realm.objects(VisitorsDatabase.self).filter("phoneNumber = '" + String(phoneNumber) + "'").first?.entry
+    }
+    
+    func getByIDNumber(IDNumber: String) -> Visitor? {
+        return realm.objects(VisitorsDatabase.self).filter("IDNumber = '" + String(IDNumber) + "'").first?.entry
     }
     
     func insert(item: Visitor) {
@@ -30,8 +37,5 @@ class LocalCRUD: Repository {
             realm.add(VisitorsDatabase(visitor: item))
         }
     }
-    
-    typealias T = Visitor
-    
     
 }
