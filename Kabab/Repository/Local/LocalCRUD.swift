@@ -17,15 +17,15 @@ class LocalCRUD: Repository {
     static var shered = LocalCRUD()
     
     
-    func getAll(completion: (Bool) -> ()) -> [Visitor] {
+    func getAll() -> [Visitor] {
         return realm.objects(VisitorsDatabase.self).map {$0.entry}
     }
     
-    func getByPhoneNumber(phoneNumber: String, completion: (Bool) -> ()) -> Visitor {
+    func getByPhoneNumber(phoneNumber: String) -> Visitor {
         return (realm.objects(VisitorsDatabase.self).filter("title = %@", phoneNumber).last?.entry)!
     }
     
-    func insert(item: Visitor, completion: (Bool) -> ()) {
+    func insert(item: Visitor) {
         self.realm.add(VisitorsDatabase(visitor: item))
     }
     
