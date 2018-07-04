@@ -9,19 +9,37 @@
 import UIKit
 
 class IDViewController: UIViewController {
+    
+    //MARK: Properties
+    @IBOutlet weak var IDTextField: UITextField!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Insert Mock Data.
+        LocalCRUD.shered.insert(item: Visitor(phoneNumber: MockData.phoneNumber01.rawValue, ID: MockData.ID01.rawValue))
+        LocalCRUD.shered.insert(item: Visitor(phoneNumber: MockData.phoneNumber02.rawValue, ID: MockData.ID02.rawValue))
     }
     
     //MARK: Actions
     @IBAction func moveToPhoneNumberVC(_ sender: UIButton) {
-        let newViewController = storyboard?.instantiateViewController(withIdentifier: "PhoneNumberViewControllerID") as! PhoneNumberViewController
-        present(newViewController, animated: true, completion: nil)
+        // Var.
+        let textFormIDTextField: String = IDTextField.text!
+        let isValidID: Bool = checkIsIDValid(ID: textFormIDTextField)
+        
+        // Check if ID is valid or not.
+        if isValidID { // Go to phone number view controller.
+            let PhoneNumberViewController = storyboard?.instantiateViewController(withIdentifier: "PhoneNumberViewControllerID") as! PhoneNumberViewController
+            present(PhoneNumberViewController, animated: true, completion: nil)
+        } else { // Nofify the user that invalid ID was entered.
+            print("invalid ID")
+        }
     }
     
-    
+    //MARK: Private Methods
+    private func checkIsIDValid(ID: String) -> Bool {
+        return false
+    }
 
 
 }

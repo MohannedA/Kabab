@@ -20,6 +20,7 @@ class PhoneNumberViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func goBackToID(_ sender: UIButton) {
+        // Go back to ID view controller.
         dismiss(animated: true, completion: nil)
     }
     

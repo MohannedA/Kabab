@@ -26,7 +26,9 @@ class LocalCRUD: Repository {
     }
     
     func insert(item: Visitor) {
-        self.realm.add(VisitorsDatabase(visitor: item))
+        try! realm.write {
+            realm.add(VisitorsDatabase(visitor: item))
+        }
     }
     
     typealias T = Visitor

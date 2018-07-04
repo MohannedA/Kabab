@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum MockData {
+enum MockData: String {
     case phoneNumber01 = "0512345678"
     case phoneNumber02 = "0587654321"
     case ID01 = "123456789"
