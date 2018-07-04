@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="IDViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,6 +37,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PKI-wo-Gk9">
                                 <rect key="frame" x="156" y="368" width="62" height="30"/>
                                 <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="moveToPhoneNumberVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n5C-bb-daV"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered By" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYX-0Y-uJQ">
                                 <rect key="frame" x="97" y="604" width="91" height="21"/>
@@ -64,8 +67,10 @@
                             <constraint firstItem="tAe-zs-pCH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="67" id="EmH-8r-ETd"/>
                             <constraint firstItem="BTJ-H3-KVv" firstAttribute="top" secondItem="WYX-0Y-uJQ" secondAttribute="bottom" constant="18" id="IBh-FM-aA0"/>
                             <constraint firstItem="BTJ-H3-KVv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="L0D-vV-vah"/>
+                            <constraint firstItem="JE5-MR-WH6" firstAttribute="top" secondItem="PKI-wo-Gk9" secondAttribute="bottom" constant="195" id="N8I-QA-L6V"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JE5-MR-WH6" secondAttribute="trailing" constant="95" id="S5G-s3-4Zg"/>
                             <constraint firstItem="LmI-23-CkN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="44.5" id="Sou-ZM-1ZY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PKI-wo-Gk9" secondAttribute="trailing" constant="157" id="VUb-Zk-XzO"/>
                             <constraint firstItem="WYX-0Y-uJQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="97" id="W3L-A5-E2D"/>
                             <constraint firstItem="PKI-wo-Gk9" firstAttribute="centerX" secondItem="Oba-z8-0DQ" secondAttribute="centerX" id="X53-LH-RPP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tAe-zs-pCH" secondAttribute="trailing" constant="67" id="foQ-kw-Lek"/>
@@ -75,19 +80,86 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BTJ-H3-KVv" secondAttribute="bottom" constant="13" id="kyt-jV-AYO"/>
                             <constraint firstItem="tAe-zs-pCH" firstAttribute="centerX" secondItem="LmI-23-CkN" secondAttribute="centerX" id="ovG-9e-hdP"/>
                             <constraint firstItem="tAe-zs-pCH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="105" id="rg2-kw-W6s"/>
+                            <constraint firstItem="PKI-wo-Gk9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="156" id="tLh-nv-OBo"/>
                             <constraint firstItem="PKI-wo-Gk9" firstAttribute="top" secondItem="Oba-z8-0DQ" secondAttribute="bottom" constant="8" symbolic="YES" id="tnr-S4-M7g"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Oba-z8-0DQ" secondAttribute="trailing" constant="16" id="vnX-T3-l1k"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BTJ-H3-KVv" secondAttribute="trailing" constant="11" id="vvp-0F-agQ"/>
                             <constraint firstItem="Oba-z8-0DQ" firstAttribute="top" secondItem="LmI-23-CkN" secondAttribute="bottom" constant="8" symbolic="YES" id="xU6-Ce-H4S"/>
                             <constraint firstItem="LmI-23-CkN" firstAttribute="top" secondItem="tAe-zs-pCH" secondAttribute="bottom" constant="48" id="xpA-0l-Hgf"/>
-                            <constraint firstAttribute="bottom" secondItem="PKI-wo-Gk9" secondAttribute="bottom" constant="269" id="z14-55-2Of"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="137" y="134"/>
+        </scene>
+        <!--Phone Number View Controller-->
+        <scene sceneID="jHi-Gn-cQF">
+            <objects>
+                <viewController storyboardIdentifier="PhoneNumberViewControllerID" id="l4X-uX-Jbo" customClass="PhoneNumberViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tmU-yl-b4z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HIR-eu-yov">
+                                <rect key="frame" x="67" y="125" width="241" height="128"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your phone number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8y-Hi-Z2H">
+                                <rect key="frame" x="45" y="301" width="285" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter ID " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yZK-6I-pJq">
+                                <rect key="frame" x="16" y="330" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCn-yt-U2B">
+                                <rect key="frame" x="166" y="368" width="42" height="30"/>
+                                <state key="normal" title="Log In"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ESe-er-N9a">
+                                <rect key="frame" x="16" y="20" width="33" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="&lt; ID"/>
+                                <connections>
+                                    <action selector="goBackToID:" destination="l4X-uX-Jbo" eventType="touchUpInside" id="ju3-IX-V1n"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ESe-er-N9a" firstAttribute="top" secondItem="eTE-Ba-m17" secondAttribute="top" id="6V3-nR-wV3"/>
+                            <constraint firstItem="HIR-eu-yov" firstAttribute="leading" secondItem="eTE-Ba-m17" secondAttribute="leading" constant="67" id="DaK-YJ-dB6"/>
+                            <constraint firstItem="u8y-Hi-Z2H" firstAttribute="top" secondItem="ESe-er-N9a" secondAttribute="bottom" constant="247" id="HGu-L7-Wc5"/>
+                            <constraint firstItem="eTE-Ba-m17" firstAttribute="trailing" secondItem="ESe-er-N9a" secondAttribute="trailing" constant="326" id="Jg9-q5-7Uv"/>
+                            <constraint firstItem="eTE-Ba-m17" firstAttribute="trailing" secondItem="HIR-eu-yov" secondAttribute="trailing" constant="67" id="Q1H-dR-Sa5"/>
+                            <constraint firstItem="qCn-yt-U2B" firstAttribute="centerX" secondItem="yZK-6I-pJq" secondAttribute="centerX" id="Qca-4j-qzE"/>
+                            <constraint firstItem="yZK-6I-pJq" firstAttribute="leading" secondItem="eTE-Ba-m17" secondAttribute="leading" constant="16" id="U1z-ri-ELr"/>
+                            <constraint firstItem="eTE-Ba-m17" firstAttribute="trailing" secondItem="u8y-Hi-Z2H" secondAttribute="trailing" constant="45.5" id="VYO-BD-4hY"/>
+                            <constraint firstItem="ESe-er-N9a" firstAttribute="leading" secondItem="eTE-Ba-m17" secondAttribute="leading" constant="16" id="at2-DC-Yw0"/>
+                            <constraint firstItem="HIR-eu-yov" firstAttribute="centerX" secondItem="u8y-Hi-Z2H" secondAttribute="centerX" id="cgR-AO-DCY"/>
+                            <constraint firstItem="yZK-6I-pJq" firstAttribute="top" secondItem="u8y-Hi-Z2H" secondAttribute="bottom" constant="8" symbolic="YES" id="hmM-wd-l55"/>
+                            <constraint firstItem="u8y-Hi-Z2H" firstAttribute="leading" secondItem="eTE-Ba-m17" secondAttribute="leading" constant="44.5" id="ob7-TP-N6U"/>
+                            <constraint firstItem="HIR-eu-yov" firstAttribute="top" secondItem="eTE-Ba-m17" secondAttribute="top" constant="105" id="v2M-wk-jSm"/>
+                            <constraint firstItem="qCn-yt-U2B" firstAttribute="top" secondItem="yZK-6I-pJq" secondAttribute="bottom" constant="8" symbolic="YES" id="vD9-wD-QT1"/>
+                            <constraint firstItem="eTE-Ba-m17" firstAttribute="trailing" secondItem="yZK-6I-pJq" secondAttribute="trailing" constant="16" id="vtu-mE-zfq"/>
+                            <constraint firstAttribute="bottom" secondItem="qCn-yt-U2B" secondAttribute="bottom" constant="269" id="wCw-b2-a6D"/>
+                            <constraint firstItem="u8y-Hi-Z2H" firstAttribute="top" secondItem="HIR-eu-yov" secondAttribute="bottom" constant="48" id="zr7-Zr-R3Z"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eTE-Ba-m17"/>
+                    </view>
+                    <connections>
+                        <outlet property="IDButton" destination="ESe-er-N9a" id="S7H-7r-2lw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tpf-H7-NSC" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="871" y="134"/>
         </scene>
     </scenes>
 </document>
