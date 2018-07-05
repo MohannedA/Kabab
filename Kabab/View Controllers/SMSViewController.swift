@@ -24,15 +24,11 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         SMSTextField03.delegate = self
         SMSTextField04.delegate = self
         
-        /*SMSTextField01.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
-        SMSTextField02.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
-        SMSTextField03.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
-        SMSTextField04.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)*/
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // Start the view by making the first text field, first responder.
         SMSTextField01.becomeFirstResponder()
     }
     
@@ -41,31 +37,8 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    
-    //MARK: Private Methods
-    /*@objc func textFieldDidChange(textField: UITextField) {
-        let text = textField.text
-
-        if text?.utf16.count == 1 { // If the number of characters = 1
-            switch textField {
-            case SMSTextField01:
-                SMSTextField02.becomeFirstResponder()
-            case SMSTextField02:
-                SMSTextField03.becomeFirstResponder()
-            case SMSTextField03:
-                SMSTextField04.becomeFirstResponder()
-            case SMSTextField04:
-                SMSTextField04.resignFirstResponder()
-            default:
-                break
-            }
-        } else { // If the number of characters != 1
-            print("There are more than or less than one character in the text field.")
-        }
-    }*/
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if ((textField.text?.count)! < 1) && (string.count > 0) {
+        if ((textField.text?.count)! < 1) && (string.count > 0) { // If the responder goes forward.
             switch textField {
             case SMSTextField01:
                 SMSTextField02.becomeFirstResponder()
@@ -78,9 +51,10 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
             default:
                 break
             }
+            // Enter the string in the text field.
             textField.text = string
             return false
-        } else if ((textField.text?.count)! >= 1) && (string.count == 0) {
+        } else if ((textField.text?.count)! >= 1) && (string.count == 0) { // If the responder goes backword(delete).
             switch textField {
             case SMSTextField02:
                 SMSTextField01.becomeFirstResponder()
@@ -93,9 +67,11 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
             default:
                 break
             }
+            // Empty the string in the text field.
             textField.text = ""
             return false
-        } else if (textField.text?.count)! >= 1 {
+        } else if (textField.text?.count)! >= 1 { // If more than one number are written.
+            // Make the text field contains only one number.
             textField.text = string
             return false
         }
