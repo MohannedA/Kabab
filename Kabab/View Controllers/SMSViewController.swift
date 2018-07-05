@@ -9,7 +9,7 @@
 import UIKit
 
 class SMSViewController: UIViewController, UITextFieldDelegate {
-    //MARK: ...
+    //MARK: Properties
     @IBOutlet weak var SMSTextField01: UITextField!
     @IBOutlet weak var SMSTextField02: UITextField!
     @IBOutlet weak var SMSTextField03: UITextField!
@@ -24,13 +24,17 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         SMSTextField03.delegate = self
         SMSTextField04.delegate = self
         
+        // Notify if the keyboard changes its status.
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
+    // Make problem with moving the view with the keyboard.
+    /*override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Start the view by making the first text field, first responder.
-        SMSTextField01.becomeFirstResponder()
-    }
+        //SMSTextField01.becomeFirstResponder()
+    }*/
     
     //MARK: Actions
     @IBAction func goBackToPhoneNumber(_ sender: UIButton) {
@@ -76,6 +80,23 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
             return false
         }
         return true
+    }
+    
+    //MARK: Private Methods
+     @objc private func keyboardUp(nofication: NSNotification) {
+        //?????
+        if let _ = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
+            let value: CGFloat = (225.0 * view.bounds.height)/736.0
+            view.frame.origin.y = 0
+            view.frame.origin.y -= value
+        }
+    }
+    
+    @objc private func keyboardDown(nofication: NSNotification) {
+        //?????
+        if let _ = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
+            view.frame.origin.y = 0
+        }
     }
     
 
