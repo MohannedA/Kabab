@@ -15,7 +15,6 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var SMSTextField03: UITextField!
     @IBOutlet weak var SMSTextField04: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set up the SMS text fields.
@@ -29,7 +28,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
     }
-    // Make problem with moving the view with the keyboard.
+    // Report problem with moving the view with the keyboard.
     /*override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Start the view by making the first text field, first responder.
@@ -84,7 +83,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Private Methods
      @objc private func keyboardUp(nofication: NSNotification) {
-        //?????
+        // If ...
         if let _ = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
             let value: CGFloat = (225.0 * view.bounds.height)/736.0
             view.frame.origin.y = 0
@@ -93,7 +92,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc private func keyboardDown(nofication: NSNotification) {
-        //?????
+        // If ...
         if let _ = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
             view.frame.origin.y = 0
         }
