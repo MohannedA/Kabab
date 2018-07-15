@@ -27,7 +27,17 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        // TODO change back button text from "back" to be "Phone Number"
+        /*
+        //self.navigationController?.navigationBar.backItem?.title = "Anything Else"
+        let backItem = UIBarButtonItem()
+        backItem.title = "rrr"
+        self.navigationController?.navigationBar.backItem?.backBarButtonItem = backItem
+        //navigationItem.backBarButtonItem = backItem
+        */
+        
     }
+    
     // Report problem with moving the view with the keyboard.
     /*override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -97,16 +107,5 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
             view.frame.origin.y = 0
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

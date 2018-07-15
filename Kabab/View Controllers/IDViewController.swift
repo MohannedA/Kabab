@@ -17,9 +17,15 @@ class IDViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Insert Mock Data.
+        // Insert Mock Ip data.
         LocalCRUD.shered.insert(item: Visitor(phoneNumber: MockData.phoneNumber01.rawValue, IDNumber: MockData.IDNumber01.rawValue))
-        LocalCRUD.shered.insert(item: Visitor(phoneNumber: MockData.phoneNumber02.rawValue, IDNumber: MockData.IDNumber02.rawValue))
+        LocalCRUD.shered.insert(item: Visitor(phoneNumber: MockData.phoneNumber03.rawValue, IDNumber: MockData.IDNumber03.rawValue))
+        
+        // Make the navigation view controller translucent.
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
     }
     
     //MARK: Actions
@@ -31,7 +37,7 @@ class IDViewController: UIViewController {
         // Check if ID is valid or not.
         if isValidIDNumber { // Go to phone number view controller.
             let PNViewController = storyboard?.instantiateViewController(withIdentifier: "PhoneNumberViewControllerID") as! PhoneNumberViewController
-            present(PNViewController, animated: true, completion: nil)
+            navigationController?.pushViewController(PNViewController, animated: true)
         } else { // Nofify the user that invalid ID was entered.
             let errorTitle = "Error"
             let errorSubtitle = "Invalid ID numebr"

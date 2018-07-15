@@ -1,7 +1,7 @@
 //
 //  ChecksTableViewViewController.swift
 //  Kabab
-//
+//  Tutorial link: https://medium.com/swift-programming/swift-enums-and-uitableview-sections-1806b74b8138
 //  Created by mac on 21/10/1439 AH.
 //  Copyright © 1439 mac. All rights reserved.
 //
@@ -45,6 +45,7 @@ class ChecksTableViewViewController: UIViewController {
     
     // Data variable to track our sorted data.
     var data = [TableSection: [[String: String]]]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
