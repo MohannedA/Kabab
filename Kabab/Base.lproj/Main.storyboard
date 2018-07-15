@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fXK-Pc-nl3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qno-kw-xVL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tAe-zs-pCH">
-                                <rect key="frame" x="67" y="169" width="241" height="84"/>
+                                <rect key="frame" x="67" y="125" width="241" height="128"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your national ID number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LmI-23-CkN">
@@ -84,7 +84,7 @@
                             <constraint firstItem="PKI-wo-Gk9" firstAttribute="top" secondItem="Oba-z8-0DQ" secondAttribute="bottom" constant="8" symbolic="YES" id="tnr-S4-M7g"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Oba-z8-0DQ" secondAttribute="trailing" constant="16" id="vnX-T3-l1k"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BTJ-H3-KVv" secondAttribute="trailing" constant="11" id="vvp-0F-agQ"/>
-                            <constraint firstItem="tAe-zs-pCH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="105" id="wbd-66-A49"/>
+                            <constraint firstItem="tAe-zs-pCH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="61" id="wbd-66-A49"/>
                             <constraint firstItem="Oba-z8-0DQ" firstAttribute="top" secondItem="LmI-23-CkN" secondAttribute="bottom" constant="8" symbolic="YES" id="xU6-Ce-H4S"/>
                             <constraint firstItem="LmI-23-CkN" firstAttribute="top" secondItem="tAe-zs-pCH" secondAttribute="bottom" constant="48" id="xpA-0l-Hgf"/>
                         </constraints>
@@ -270,28 +270,30 @@
                                 <rect key="frame" x="0.0" y="614" width="375" height="53"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can resend the code in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywi-Xu-eqn">
-                                        <rect key="frame" x="60" y="16" width="208" height="21"/>
+                                        <rect key="frame" x="44" y="11" width="208" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7b-TW-XGA">
-                                        <rect key="frame" x="269" y="16" width="46" height="21"/>
-                                        <state key="normal" title="Button">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7b-TW-XGA">
+                                        <rect key="frame" x="260" y="12" width="55" height="28"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Resend">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onClickResend:" destination="qno-kw-xVL" eventType="touchUpInside" id="5VG-y1-uc1"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="K7b-TW-XGA" secondAttribute="trailing" constant="60" id="2Lf-H3-0D6"/>
-                                    <constraint firstItem="Ywi-Xu-eqn" firstAttribute="leading" secondItem="Gvn-RI-hFy" secondAttribute="leading" constant="60" id="Bfy-CD-amV"/>
-                                    <constraint firstItem="K7b-TW-XGA" firstAttribute="top" secondItem="Gvn-RI-hFy" secondAttribute="top" constant="16" id="EUM-nd-Cgl"/>
-                                    <constraint firstItem="K7b-TW-XGA" firstAttribute="leading" secondItem="Ywi-Xu-eqn" secondAttribute="trailing" constant="1" id="I6I-IO-Mvk"/>
-                                    <constraint firstAttribute="bottom" secondItem="K7b-TW-XGA" secondAttribute="bottom" constant="16" id="MSo-fS-SDt"/>
-                                    <constraint firstItem="Ywi-Xu-eqn" firstAttribute="top" secondItem="Gvn-RI-hFy" secondAttribute="top" constant="16" id="Og6-bF-QIB"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ywi-Xu-eqn" secondAttribute="bottom" constant="16" id="cyi-GO-CVW"/>
-                                    <constraint firstItem="K7b-TW-XGA" firstAttribute="leading" secondItem="Ywi-Xu-eqn" secondAttribute="trailing" constant="1" id="mcd-so-iXW"/>
+                                    <constraint firstItem="Ywi-Xu-eqn" firstAttribute="top" secondItem="Gvn-RI-hFy" secondAttribute="top" constant="11" id="7gy-ys-84A"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ywi-Xu-eqn" secondAttribute="bottom" constant="12" id="DY6-Vm-m2K"/>
+                                    <constraint firstItem="K7b-TW-XGA" firstAttribute="leading" secondItem="Ywi-Xu-eqn" secondAttribute="trailing" constant="8" id="SqV-bB-ump"/>
+                                    <constraint firstItem="Ywi-Xu-eqn" firstAttribute="leading" secondItem="Gvn-RI-hFy" secondAttribute="leading" constant="44" id="dly-Eh-GqO"/>
+                                    <constraint firstAttribute="bottom" secondItem="K7b-TW-XGA" secondAttribute="bottom" constant="13" id="lvF-ty-bVd"/>
+                                    <constraint firstItem="K7b-TW-XGA" firstAttribute="top" secondItem="Gvn-RI-hFy" secondAttribute="top" constant="12" id="xAc-aE-00v"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -320,6 +322,7 @@
                         <outlet property="SMSTextField02" destination="IZb-hy-0Md" id="4dq-RI-vbf"/>
                         <outlet property="SMSTextField03" destination="Pad-oX-eFx" id="aFP-Ta-mNL"/>
                         <outlet property="SMSTextField04" destination="H30-dj-zq0" id="DcN-Sq-F1m"/>
+                        <outlet property="resendButton" destination="K7b-TW-XGA" id="mus-HK-lma"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aW3-Fh-k7o" userLabel="First Responder" sceneMemberID="firstResponder"/>

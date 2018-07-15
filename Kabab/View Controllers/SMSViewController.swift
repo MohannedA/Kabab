@@ -9,11 +9,18 @@
 import UIKit
 
 class SMSViewController: UIViewController, UITextFieldDelegate {
-    //MARK: Properties
+    //MARK: ~ Properties
     @IBOutlet weak var SMSTextField01: UITextField!
     @IBOutlet weak var SMSTextField02: UITextField!
     @IBOutlet weak var SMSTextField03: UITextField!
     @IBOutlet weak var SMSTextField04: UITextField!
+    @IBOutlet weak var resendButton: UIButton!
+    
+    // MARK: ~ Variables
+    var timer = Timer()
+    var isTimerFinished = false
+    var totalTime = 15.0 // In seconds.
+    var timeRemaining = 0.0 // In seconds.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +34,16 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        // TODO change back button text from "back" to be "Phone Number"
-        /*
-        //self.navigationController?.navigationBar.backItem?.title = "Anything Else"
-        let backItem = UIBarButtonItem()
-        backItem.title = "rrr"
-        self.navigationController?.navigationBar.backItem?.backBarButtonItem = backItem
-        //navigationItem.backBarButtonItem = backItem
-        */
+        // TODO Change back button text from "back" to be "Phone Number"
+        // TODO Make the resend button fit the text.
         
+        /*
+        // Make the resend button fit the text.
+        resendButton.titleLabel?.numberOfLines = 0
+        resendButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        resendButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+         */
+
     }
     
     // Report problem with moving the view with the keyboard.
@@ -45,11 +53,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         //SMSTextField01.becomeFirstResponder()
     }*/
     
-    //MARK: Actions
-    @IBAction func goBackToPhoneNumber(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
+    // MARK: ~ TextField Delegate
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if ((textField.text?.count)! < 1) && (string.count > 0) { // If the responder goes forward.
             switch textField {
@@ -91,20 +95,45 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    //MARK: Private Methods
+    // MARK: ~ Actions
+    @IBAction func onClickResend(_ sender: UIButton) {
+        playTimer()
+    }
+    
+    
+    //MARK: ~ Private Methods
      @objc private func keyboardUp(nofication: NSNotification) {
-        // If ...
+        // If casting is valid.
         if let _ = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
-            let value: CGFloat = (225.0 * view.bounds.height)/736.0
+            let value: CGFloat = (225.0 * view.bounds.height)/736.0 // Note: Linear method is followed.
             view.frame.origin.y = 0
             view.frame.origin.y -= value
         }
     }
     
     @objc private func keyboardDown(nofication: NSNotification) {
-        // If ...
+        // If casting is valid.
         if let _ = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
             view.frame.origin.y = 0
+        }
+    }
+    
+    private func playTimer() {
+        resendButton.isEnabled = false
+        timeRemaining = totalTime
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerRunning), userInfo: nil, repeats: true)
+    }
+    
+    @objc func timerRunning() {
+        timeRemaining -= 1
+        let minutesLeft = Int(timeRemaining) / 60 % 60
+        let secondsLeft = Int(timeRemaining) % 60
+        resendButton.setTitle("\(minutesLeft) : \(secondsLeft)", for: .normal)
+        if timeRemaining == 0 {
+            timer.invalidate()
+            isTimerFinished = true
+            resendButton.setTitle("Resend", for: .normal)
+            resendButton.isEnabled = true
         }
     }
 
