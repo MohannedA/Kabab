@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kabab/View Controllers/SMSViewController.swift"
-            timestampString = "553354906.598853"
+            timestampString = "553355516.372353"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "SMSViewController"
             landmarkType = "3">
          </BreakpointContent>

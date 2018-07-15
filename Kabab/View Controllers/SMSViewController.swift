@@ -15,6 +15,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var SMSTextField03: UITextField!
     @IBOutlet weak var SMSTextField04: UITextField!
     @IBOutlet weak var resendButton: UIButton!
+    @IBOutlet weak var resendText: UILabel!
     
     // MARK: ~ Variables
     var timer = Timer()
@@ -97,6 +98,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: ~ Actions
     @IBAction func onClickResend(_ sender: UIButton) {
+        // Start SMS resend timer.
         playTimer()
     }
     
@@ -119,7 +121,9 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func playTimer() {
-        resendButton.isEnabled = false
+        // Set the timer.
+        resendText.text = "You can resend the code in"
+        resendButton.isEnabled = false // Disable the button while the timer is running. 
         timeRemaining = totalTime
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerRunning), userInfo: nil, repeats: true)
     }
@@ -129,9 +133,10 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         let minutesLeft = Int(timeRemaining) / 60 % 60
         let secondsLeft = Int(timeRemaining) % 60
         resendButton.setTitle("\(minutesLeft) : \(secondsLeft)", for: .normal)
-        if timeRemaining == 0 {
+        if timeRemaining == 0 { // If the timer ended.
             timer.invalidate()
             isTimerFinished = true
+            resendText.text = "Didn't receive a code yet?"
             resendButton.setTitle("Resend", for: .normal)
             resendButton.isEnabled = true
         }
