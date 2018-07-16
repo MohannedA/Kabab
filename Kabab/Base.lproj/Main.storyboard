@@ -433,48 +433,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w6u-RB-pAl">
-                                <rect key="frame" x="0.0" y="93" width="375" height="371"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FV9-Gy-A8D">
+                                <rect key="frame" x="0.0" y="472" width="375" height="195"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMH-0x-aso">
+                                        <rect key="frame" x="16" y="69" width="343" height="30"/>
+                                        <state key="normal" title="Enter invitation code ">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onClickInvitationCode:" destination="cxs-er-hty" eventType="touchUpInside" id="HT4-qY-MJL"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doesn't have QR code?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HH5-7S-daR">
+                                        <rect key="frame" x="8" y="40" width="359" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="371" id="Iq1-9n-eHw"/>
-                                    <constraint firstAttribute="width" constant="375" id="sh6-kV-FqT"/>
+                                    <constraint firstItem="MMH-0x-aso" firstAttribute="leading" secondItem="FV9-Gy-A8D" secondAttribute="leading" constant="16" id="8GP-Sg-AcW"/>
+                                    <constraint firstAttribute="width" secondItem="FV9-Gy-A8D" secondAttribute="height" multiplier="25:13" id="YMI-ct-388"/>
+                                    <constraint firstAttribute="trailing" secondItem="MMH-0x-aso" secondAttribute="trailing" constant="16" id="c7r-Tl-78y"/>
+                                    <constraint firstItem="MMH-0x-aso" firstAttribute="top" secondItem="HH5-7S-daR" secondAttribute="bottom" constant="8" id="dKh-XT-Qfw"/>
+                                    <constraint firstAttribute="trailing" secondItem="HH5-7S-daR" secondAttribute="trailing" constant="8" id="edL-5O-VND"/>
+                                    <constraint firstAttribute="height" constant="195" id="hzq-HH-KgL"/>
+                                    <constraint firstAttribute="bottom" secondItem="MMH-0x-aso" secondAttribute="bottom" constant="96" id="pDT-ia-r9Z"/>
+                                    <constraint firstAttribute="width" constant="375" id="pJG-dT-tfe"/>
+                                    <constraint firstItem="HH5-7S-daR" firstAttribute="leading" secondItem="FV9-Gy-A8D" secondAttribute="leading" constant="8" id="ymJ-g0-sub"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="2NP-gc-cIp"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doesn't have QR code?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HH5-7S-daR">
-                                <rect key="frame" x="93" y="554" width="188" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMH-0x-aso">
-                                <rect key="frame" x="16" y="583" width="343" height="30"/>
-                                <state key="normal" title="Enter invitation code ">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="onClickInvitationCode:" destination="cxs-er-hty" eventType="touchUpInside" id="HT4-qY-MJL"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iR3-FL-fiO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="iR3-FL-fiO" secondAttribute="height" multiplier="375:82" id="LQH-yW-56B"/>
+                                    <constraint firstAttribute="height" constant="82" id="Xa5-9e-CxC"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="O3h-ka-aAv"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="w6u-RB-pAl" firstAttribute="trailing" secondItem="qWT-0U-qmB" secondAttribute="trailing" id="7l7-nX-1Ls"/>
-                            <constraint firstItem="qWT-0U-qmB" firstAttribute="bottom" secondItem="w6u-RB-pAl" secondAttribute="bottom" constant="203" id="8e7-ab-ebt"/>
-                            <constraint firstItem="qWT-0U-qmB" firstAttribute="trailing" secondItem="MMH-0x-aso" secondAttribute="trailing" constant="16" id="Bq0-cJ-dWD"/>
-                            <constraint firstItem="HH5-7S-daR" firstAttribute="leading" secondItem="qWT-0U-qmB" secondAttribute="leading" constant="93" id="Hqc-i3-gnF"/>
-                            <constraint firstItem="qWT-0U-qmB" firstAttribute="bottom" secondItem="HH5-7S-daR" secondAttribute="bottom" constant="92" id="MfO-XR-5Ks"/>
-                            <constraint firstItem="qWT-0U-qmB" firstAttribute="trailing" secondItem="HH5-7S-daR" secondAttribute="trailing" constant="94" id="W5e-Xu-y4a"/>
-                            <constraint firstItem="MMH-0x-aso" firstAttribute="leading" secondItem="qWT-0U-qmB" secondAttribute="leading" constant="16" id="ksJ-yp-ypW"/>
-                            <constraint firstItem="w6u-RB-pAl" firstAttribute="top" secondItem="qWT-0U-qmB" secondAttribute="top" constant="73" id="mna-CA-ahY"/>
-                            <constraint firstItem="MMH-0x-aso" firstAttribute="top" secondItem="HH5-7S-daR" secondAttribute="bottom" constant="8" id="o0B-l0-sJ8"/>
-                            <constraint firstItem="w6u-RB-pAl" firstAttribute="leading" secondItem="qWT-0U-qmB" secondAttribute="leading" id="oPk-Gt-tgz"/>
+                            <constraint firstAttribute="trailing" secondItem="FV9-Gy-A8D" secondAttribute="trailing" id="2re-Dq-CYX"/>
+                            <constraint firstItem="FV9-Gy-A8D" firstAttribute="bottom" secondItem="qWT-0U-qmB" secondAttribute="bottom" id="V9r-yA-Ipn"/>
+                            <constraint firstItem="FV9-Gy-A8D" firstAttribute="leading" secondItem="c7d-3p-3f1" secondAttribute="leading" id="c4H-4w-E8O"/>
+                            <constraint firstItem="iR3-FL-fiO" firstAttribute="top" secondItem="c7d-3p-3f1" secondAttribute="top" id="ssI-Hc-Kmg"/>
+                            <constraint firstItem="iR3-FL-fiO" firstAttribute="leading" secondItem="c7d-3p-3f1" secondAttribute="leading" id="y2P-Se-uPR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qWT-0U-qmB"/>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="FV9-Gy-A8D" id="0Jp-Zz-FhE"/>
                         <outlet property="invitationCodeButton" destination="MMH-0x-aso" id="Urf-ZC-732"/>
-                        <outlet property="previewView" destination="w6u-RB-pAl" id="GK6-fQ-n2E"/>
+                        <outlet property="topView" destination="iR3-FL-fiO" id="h7L-fc-W5z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="flC-Qx-JNo" userLabel="First Responder" sceneMemberID="firstResponder"/>

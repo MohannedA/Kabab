@@ -118,13 +118,22 @@ open class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     // MARK: ~ Private Methods
     private func cleanScreen(superView: UIView) {
         for view in superView.subviews {
-            view.removeFromSuperview()
+            // Check if it is square view or not.
+            if let viewWithTag = view.viewWithTag(100), view == viewWithTag {
+                view.removeFromSuperview()
+            }
+            // Check if it is square label view or not.
+            if let viewWithTag = view.viewWithTag(200), view == viewWithTag {
+                view.removeFromSuperview()
+            }
+            
         }
     }
     
     private func setSquareView(code: AVMetadataMachineReadableCodeObject, barCodeObject: AVMetadataObject) {
         // Initialize square view to highlight the QR code.
         squareView = UIView()
+        squareView.tag = 100
         previewView.addSubview(squareView)
         squareView.layer.borderWidth = 2
         squareView.frame = barCodeObject.bounds
@@ -133,6 +142,7 @@ open class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         // Set up the square label if there is.
         if squareLabel != "" {
             let label = UILabel()
+            label.tag = 200
             label.text = squareLabel
             label.textColor = squareLabelColor ?? UIColor.black
             previewView.addSubview(label)
