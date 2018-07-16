@@ -10,6 +10,7 @@
 		040F250D20FC6D9000A0247C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F250C20FC6D9000A0247C /* TabBarController.swift */; };
 		040F250F20FC6EFC00A0247C /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F250E20FC6EFC00A0247C /* ScannerViewController.swift */; };
 		040F251120FC6F1000A0247C /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F251020FC6F1000A0247C /* AccountViewController.swift */; };
+		040F251320FC889F00A0247C /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F251220FC889F00A0247C /* QRScannerViewController.swift */; };
 		043E825520ECAA8C00BB9021 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E825420ECAA8C00BB9021 /* MockData.swift */; };
 		043E825820ECE6AC00BB9021 /* SMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E825720ECE6AC00BB9021 /* SMSViewController.swift */; };
 		043E827820EE4EF400BB9021 /* ChecksTableViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E827720EE4EF400BB9021 /* ChecksTableViewViewController.swift */; };
@@ -31,6 +32,7 @@
 		040F250C20FC6D9000A0247C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		040F250E20FC6EFC00A0247C /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		040F251020FC6F1000A0247C /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		040F251220FC889F00A0247C /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		043E825420ECAA8C00BB9021 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		043E825720ECE6AC00BB9021 /* SMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSViewController.swift; sourceTree = "<group>"; };
 		043E827720EE4EF400BB9021 /* ChecksTableViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecksTableViewViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				043E825420ECAA8C00BB9021 /* MockData.swift */,
+				040F251220FC889F00A0247C /* QRScannerViewController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				040F251120FC6F1000A0247C /* AccountViewController.swift in Sources */,
 				04B470EA20EA593000FAE9F6 /* AppDelegate.swift in Sources */,
 				04F3585920FB4158003539C8 /* MainNavigationController.swift in Sources */,
+				040F251320FC889F00A0247C /* QRScannerViewController.swift in Sources */,
 				043E827820EE4EF400BB9021 /* ChecksTableViewViewController.swift in Sources */,
 				04B4710820EB660800FAE9F6 /* VisitorsDatabase.swift in Sources */,
 				04B4710B20EBB7F600FAE9F6 /* PhoneNumberViewController.swift in Sources */,
@@ -459,7 +463,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 86K78YBMR9;
 				INFOPLIST_FILE = Kabab/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -477,7 +483,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 86K78YBMR9;
 				INFOPLIST_FILE = Kabab/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
