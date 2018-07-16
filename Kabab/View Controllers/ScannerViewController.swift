@@ -10,26 +10,23 @@ import UIKit
 
 class ScannerViewController: UIViewController {
 
+    @IBOutlet weak var invitationCodeButton: UIButton!
+    @IBOutlet weak var previewView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Set up the invitation code button border.
+        invitationCodeButton.layer.borderWidth = 2
+        invitationCodeButton.layer.borderColor = UIColor.white.cgColor
+        invitationCodeButton.layer.cornerRadius = 5
+        invitationCodeButton.clipsToBounds = true
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: ~ Actions
+    @IBAction func onClickInvitationCode(_ sender: UIButton) {
     }
-    */
+    
 
 }
