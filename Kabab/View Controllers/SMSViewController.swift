@@ -1,9 +1,9 @@
 //
 //  SMSViewController.swift
 //  Kabab
-//
-//  Created by mac on 20/10/1439 AH.
-//  Copyright © 1439 mac. All rights reserved.
+//  TODO Change back button text from "back" to be "Phone Number"
+//  TODO Make the resend button fit the text.
+//  TODO Solve the problem of making keyboard active when view satrts.
 //
 
 import UIKit
@@ -18,6 +18,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var resendText: UILabel!
     
     // MARK: ~ Variables
+    // Timer variables
     var timer = Timer()
     var isTimerFinished = false
     var totalTime = 15.0 // In seconds.
@@ -34,19 +35,9 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         // Notify if the keyboard changes its status.
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-        // TODO Change back button text from "back" to be "Phone Number"
-        // TODO Make the resend button fit the text.
-        
-        /*
-        // Make the resend button fit the text.
-        resendButton.titleLabel?.numberOfLines = 0
-        resendButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        resendButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-         */
 
     }
-    
+    //TODO Solve the problem of making keyboard active when view satrts.
     // Report problem with moving the view with the keyboard.
     /*override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -104,6 +95,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
     
     
     //MARK: ~ Private Methods
+    /*To handle the view when the keyboard is up*/
      @objc private func keyboardUp(nofication: NSNotification) {
         // If casting is valid.
         if let _ = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
@@ -112,23 +104,23 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
             view.frame.origin.y -= value
         }
     }
-    
+    /*To handle the view when the keyboard is down*/
     @objc private func keyboardDown(nofication: NSNotification) {
         // If casting is valid.
         if let _ = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
             view.frame.origin.y = 0
         }
     }
-    
+    /*To start the timer*/
     private func playTimer() {
         // Set the timer.
         resendText.text = "You can resend the code in"
-        resendButton.isEnabled = false // Disable the button while the timer is running. 
+        resendButton.isEnabled = false // Disable the button while the timer is running.
         timeRemaining = totalTime
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerRunning), userInfo: nil, repeats: true)
     }
-    
-    @objc func timerRunning() {
+    /*To handle the timer while the time is running*/
+    @objc private func timerRunning() {
         timeRemaining -= 1
         let minutesLeft = Int(timeRemaining) / 60 % 60
         let secondsLeft = Int(timeRemaining) % 60
