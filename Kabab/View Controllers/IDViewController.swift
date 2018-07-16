@@ -36,7 +36,9 @@ class IDViewController: UIViewController {
         
         // Check if ID is valid or not.
         if isValidIDNumber { // Go to phone number view controller.
-            let PNViewController = storyboard?.instantiateViewController(withIdentifier: "PhoneNumberViewControllerID") as! PhoneNumberViewController
+            // Define stroyboard.
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let PNViewController = storyboard.instantiateViewController(withIdentifier: "PhoneNumberViewControllerID") as! PhoneNumberViewController
             navigationController?.pushViewController(PNViewController, animated: true)
         } else { // Nofify the user that invalid ID was entered.
             let errorTitle = "Error"

@@ -14,13 +14,13 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="IDViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IDViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="IDViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tAe-zs-pCH">
-                                <rect key="frame" x="67" y="125" width="241" height="128"/>
+                                <rect key="frame" x="67" y="81" width="241" height="172"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your national ID number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LmI-23-CkN">
@@ -104,7 +104,7 @@
         <!--Phone Number View Controller-->
         <scene sceneID="jHi-Gn-cQF">
             <objects>
-                <viewController storyboardIdentifier="PhoneNumberViewControllerID" id="l4X-uX-Jbo" customClass="PhoneNumberViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhoneNumberViewControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l4X-uX-Jbo" customClass="PhoneNumberViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tmU-yl-b4z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -164,7 +164,7 @@
         <!--View Controller-->
         <scene sceneID="vae-B3-HAM">
             <objects>
-                <viewController storyboardIdentifier="SMSViewControllerID" id="qno-kw-xVL" customClass="SMSViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SMSViewControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qno-kw-xVL" customClass="SMSViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="019-4e-DM2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -330,10 +330,10 @@
             </objects>
             <point key="canvasLocation" x="2520.8000000000002" y="133.5832083958021"/>
         </scene>
-        <!--Checks-->
+        <!--Today's Visitors-->
         <scene sceneID="pz7-vn-Esy">
             <objects>
-                <viewController storyboardIdentifier="ChecksTableViewViewController" title="Checks" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a8y-7p-gIJ" customClass="ChecksTableViewViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChecksTableViewViewController" title="Today's Visitors" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a8y-7p-gIJ" customClass="ChecksTableViewViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Q0-FP-AXg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -440,10 +440,10 @@
             </objects>
             <point key="canvasLocation" x="3262" y="134"/>
         </scene>
-        <!--Account View Controller-->
+        <!--My Account -->
         <scene sceneID="zEX-Xi-Dna">
             <objects>
-                <viewController storyboardIdentifier="AccountViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AUA-pE-6sp" customClass="AccountViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountViewController" title="My Account " useStoryboardIdentifierAsRestorationIdentifier="YES" id="AUA-pE-6sp" customClass="AccountViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Udt-Mr-p4P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -479,9 +479,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="jHi-OU-eYu"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vfj-bP-xcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

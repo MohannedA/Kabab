@@ -34,7 +34,9 @@ class PhoneNumberViewController: UIViewController {
         
         // Check if phone number is valid or not.
         if isValidPhoneNumber { // Go to phone number view controller.
-            let SMSViewController = storyboard?.instantiateViewController(withIdentifier: "SMSViewControllerID") as! SMSViewController
+            // Define stroyboard.
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let SMSViewController = storyboard.instantiateViewController(withIdentifier: "SMSViewControllerID") as! SMSViewController
             navigationController?.pushViewController(SMSViewController, animated: true)
         } else { // Nofify the user that invalid phone number was entered.
             let errorTitle = "Error"
