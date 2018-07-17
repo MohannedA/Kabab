@@ -60,6 +60,11 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
     
     // MARK: ~ Actions
     @IBAction func onClickInvitationCode(_ sender: UIButton) {
+        // Reset all invitation code view
+        // Reset invitation code view color to default.
+        invitationCodeView.contentView.backgroundColor = .white
+        emptyInvitationCodeText()
+        
         // Show invitation code view.
         invitationCodeView.animateShowFromBottom(completion: { (isCompleted) in
             // Make the invitation code first text field, first responder.
@@ -98,13 +103,21 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
             invitationCodeView.contentView.backgroundColor = .red
             // Make the first invitation code text field, the first responder.
             invitationCodeView.invitationCodeTextField01.becomeFirstResponder()
-            // Empty all invitation code text fields.
-            invitationCodeView.invitationCodeTextField01.text = ""
-            invitationCodeView.invitationCodeTextField02.text = ""
-            invitationCodeView.invitationCodeTextField03.text = ""
-            invitationCodeView.invitationCodeTextField04.text = ""
+            emptyInvitationCodeText()
             
         }
+    }
+    
+    // MARK: ~ Private Methods
+    /*To empty all the invitation code text*/
+    private func emptyInvitationCodeText() {
+        // Empty all invitation code text fields.
+        invitationCodeView.invitationCodeTextField01.text = ""
+        invitationCodeView.invitationCodeTextField02.text = ""
+        invitationCodeView.invitationCodeTextField03.text = ""
+        invitationCodeView.invitationCodeTextField04.text = ""
+        // Empty the invitation code string
+        invitationCodeView.invitationCodeString = ""
     }
     
 }
