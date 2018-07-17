@@ -18,8 +18,8 @@ class IDViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Insert Mock Ip data.
-        LocalCRUD.shered.insert(item: Visitor(phoneNumber: MockData.phoneNumber01.rawValue, IDNumber: MockData.IDNumber01.rawValue))
-        LocalCRUD.shered.insert(item: Visitor(phoneNumber: MockData.phoneNumber03.rawValue, IDNumber: MockData.IDNumber03.rawValue))
+        LocalCRUD.shered.insert(item: Visitor(phoneNumber: LogInMockData.phoneNumber01.rawValue, IDNumber: LogInMockData.IDNumber01.rawValue))
+        LocalCRUD.shered.insert(item: Visitor(phoneNumber: LogInMockData.phoneNumber03.rawValue, IDNumber: LogInMockData.IDNumber03.rawValue))
         
         // Make the navigation view controller translucent.
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)

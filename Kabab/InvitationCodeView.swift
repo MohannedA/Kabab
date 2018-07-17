@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol InvitationCodeViewDelegate: class {
+    /*To check when typing is completed*/
+    func checkInvitationCode()
+}
+
 class InvitationCodeView: UIView, UITextFieldDelegate {
     // MARK: ~ Properties
     @IBOutlet var contentView: UIView!
@@ -15,7 +20,10 @@ class InvitationCodeView: UIView, UITextFieldDelegate {
     @IBOutlet weak var invitationCodeTextField02: UITextField!
     @IBOutlet weak var invitationCodeTextField03: UITextField!
     @IBOutlet weak var invitationCodeTextField04: UITextField!
-    @IBOutlet weak var doneButton: UIButton!
+    
+    // MARK: ~ Variables
+    weak var delegate: InvitationCodeViewDelegate?
+    var invitationCodeString = ""
     
     // MARK: ~ Inits
     override init(frame: CGRect) {
@@ -31,9 +39,6 @@ class InvitationCodeView: UIView, UITextFieldDelegate {
         // Define radius for the content view.
         contentView.layer.cornerRadius = 50
         
-        // Notify if the keyboard changes its status.
-        //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,6 +63,10 @@ class InvitationCodeView: UIView, UITextFieldDelegate {
             }
             // Enter the string in the text field.
             textField.text = string
+            invitationCodeString += string
+            if invitationCodeString.count == 4 { // 4 is the number of text fields.
+                delegate?.checkInvitationCode()
+            }
             return false
         } else if ((textField.text?.count)! >= 1) && (string.count == 0) { // If the responder goes backword(delete).
             switch textField {
@@ -74,10 +83,12 @@ class InvitationCodeView: UIView, UITextFieldDelegate {
             }
             // Empty the string in the text field.
             textField.text = ""
+            invitationCodeString = ""
             return false
         } else if (textField.text?.count)! >= 1 { // If more than one number are written.
             // Make the text field contains only one number.
             textField.text = string
+            //invitationCodeString.append(string)
             return false
         }
         return true
@@ -95,23 +106,6 @@ class InvitationCodeView: UIView, UITextFieldDelegate {
         // Make the xib view size the same as this view size.
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-    }
-    
-    /*To handle the view when the keyboard is up*/
-    @objc private func keyboardUp(nofication: NSNotification) {
-        // If casting is valid.
-        if let _ = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
-            let value: CGFloat = (225.0 * contentView.bounds.height)/736.0 // Note: Linear method is followed.
-            contentView.frame.origin.y = 0
-            contentView.frame.origin.y -= value
-        }
-    }
-    /*To handle the view when the keyboard is down*/
-    @objc private func keyboardDown(nofication: NSNotification) {
-        // If casting is valid.
-        if let _ = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
-            contentView.frame.origin.y = 0
-        }
     }
     
 

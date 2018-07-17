@@ -8,8 +8,7 @@
 
 import UIKit
 
-class ScannerViewController: UIViewController, QRScannerDelegate {
-    
+class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCodeViewDelegate {
     
     // MARK: ~ Properties
     @IBOutlet weak var invitationCodeButton: UIButton!
@@ -18,10 +17,14 @@ class ScannerViewController: UIViewController, QRScannerDelegate {
     
     // MARK: ~ Variables
     var invitationCodeView = InvitationCodeView()
+    var invitationCode01 = "0000"
+    var invitationCode02 = "1111"
     
     // MARK: ~ Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Insert Mock up data.
+        
         
         // Set up the top and bottom views to have transparent background.
         bottomView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -47,8 +50,11 @@ class ScannerViewController: UIViewController, QRScannerDelegate {
         invitationCodeView = InvitationCodeView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
         view.addSubview(invitationCodeView)
         view.bringSubview(toFront: invitationCodeView)
+        // Set invitation code delegate.
+        invitationCodeView.delegate = self
+        
         // Add action when doneButton in invitation code view is pressed.
-        invitationCodeView.doneButton.addTarget(self, action: #selector(onClickDone(sender:)), for: UIControlEvents.touchUpInside)
+        //invitationCodeView.doneButton.addTarget(self, action: #selector(onClickDone(sender:)), for: UIControlEvents.touchUpInside)
         
     }
     
@@ -81,6 +87,24 @@ class ScannerViewController: UIViewController, QRScannerDelegate {
     
     func drawBoundingSquares(codeStringValue: String) -> (label: String?, labelPosition: SquareLabelPositions, labelColor: UIColor?, color: CGColor?) {
         return ("Valid", .Top, UIColor.black, UIColor.green.cgColor) 
+    }
+    
+    // MARK: ~ Invitation Code View Delegate Methods
+    func checkInvitationCode() {
+        if invitationCodeView.invitationCodeString == invitationCode01 {
+            invitationCodeView.contentView.backgroundColor = .cyan
+            invitationCodeView.animateHideToBottom(completion: nil)
+        } else {
+            invitationCodeView.contentView.backgroundColor = .red
+            // Make the first invitation code text field, the first responder.
+            invitationCodeView.invitationCodeTextField01.becomeFirstResponder()
+            // Empty all invitation code text fields.
+            invitationCodeView.invitationCodeTextField01.text = ""
+            invitationCodeView.invitationCodeTextField02.text = ""
+            invitationCodeView.invitationCodeTextField03.text = ""
+            invitationCodeView.invitationCodeTextField04.text = ""
+            
+        }
     }
     
 }
