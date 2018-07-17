@@ -44,6 +44,9 @@ class ScannerViewController: UIViewController, QRScannerDelegate {
     
     // MARK: ~ Actions
     @IBAction func onClickInvitationCode(_ sender: UIButton) {
+        let invitationCodeView = InvitationCodeView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
+        view.addSubview(invitationCodeView)
+        invitationCodeView.animateShow()
     }
     
     // MARK: ~ QRScanner Delegate Methods
@@ -59,7 +62,17 @@ class ScannerViewController: UIViewController, QRScannerDelegate {
         return ("Valid", .Top, UIColor.black, UIColor.green.cgColor) 
     }
     
-    
-    
-
+}
+// MARK: ~ Extensions
+extension UIView{
+    func animateShow(){
+        UIView.animate(withDuration: 1, animations: {
+            self.frame.origin.y -= self.bounds.height
+        }, completion: nil)
+    }
+    func animateHide(){
+        UIView.animate(withDuration: 1, animations: {
+            self.frame.origin.y += self.bounds.height
+        }, completion: nil)
+    }
 }

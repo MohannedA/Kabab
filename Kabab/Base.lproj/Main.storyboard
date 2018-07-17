@@ -480,9 +480,12 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="FV9-Gy-A8D" secondAttribute="trailing" id="2re-Dq-CYX"/>
                             <constraint firstItem="FV9-Gy-A8D" firstAttribute="bottom" secondItem="qWT-0U-qmB" secondAttribute="bottom" id="V9r-yA-Ipn"/>
+                            <constraint firstItem="iR3-FL-fiO" firstAttribute="leading" secondItem="qWT-0U-qmB" secondAttribute="leading" id="ZQ4-Qb-fU2"/>
                             <constraint firstItem="FV9-Gy-A8D" firstAttribute="leading" secondItem="c7d-3p-3f1" secondAttribute="leading" id="c4H-4w-E8O"/>
+                            <constraint firstItem="iR3-FL-fiO" firstAttribute="top" secondItem="c7d-3p-3f1" secondAttribute="top" id="pub-1D-V5a"/>
                             <constraint firstItem="iR3-FL-fiO" firstAttribute="top" secondItem="c7d-3p-3f1" secondAttribute="top" id="ssI-Hc-Kmg"/>
                             <constraint firstItem="iR3-FL-fiO" firstAttribute="leading" secondItem="c7d-3p-3f1" secondAttribute="leading" id="y2P-Se-uPR"/>
+                            <constraint firstItem="iR3-FL-fiO" firstAttribute="trailing" secondItem="qWT-0U-qmB" secondAttribute="trailing" id="zMl-P8-XrV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qWT-0U-qmB"/>
                     </view>
@@ -504,18 +507,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sTC-JT-5Dp" customClass="InvitationCodeView" customModule="Kabab" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTC-JT-5Dp" customClass="InvitationCodeView" customModule="Kabab" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="170" width="375" height="497"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.014014610089361668" green="0.74930071830749512" blue="0.98686212301254272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b97-Ld-yGe">
-                                <rect key="frame" x="163" y="85" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Test IC"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="sTC-JT-5Dp" firstAttribute="top" secondItem="Gdp-2r-19L" secondAttribute="top" constant="150" id="XLG-Y2-x0B"/>
+                            <constraint firstItem="sTC-JT-5Dp" firstAttribute="bottom" secondItem="Gdp-2r-19L" secondAttribute="bottom" id="dpi-UK-U7A"/>
+                            <constraint firstItem="sTC-JT-5Dp" firstAttribute="leading" secondItem="Gdp-2r-19L" secondAttribute="leading" id="dtG-f3-O91"/>
+                            <constraint firstItem="sTC-JT-5Dp" firstAttribute="trailing" secondItem="Gdp-2r-19L" secondAttribute="trailing" id="eko-5z-mEJ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Gdp-2r-19L"/>
                     </view>
                 </viewController>
