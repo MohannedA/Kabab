@@ -27,6 +27,12 @@ class InvitationCodeView: UIView {
         commonInit()
     }
     
+    // MARK: ~ Actions
+    @IBAction func onClickDone(_ sender: UIButton) {
+        contentView.animateHide()
+    }
+    
+    
     // MARK: ~ Private Methods
     private func commonInit() {
         // Load xib.

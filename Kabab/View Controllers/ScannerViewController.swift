@@ -16,6 +16,9 @@ class ScannerViewController: UIViewController, QRScannerDelegate {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var topView: UIView!
     
+    // MARK: ~ Variables
+    var invitationCodeView = InvitationCodeView()
+    
     // MARK: ~ Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +43,13 @@ class ScannerViewController: UIViewController, QRScannerDelegate {
         view.bringSubview(toFront: topView)
         view.bringSubview(toFront: bottomView)
         
+        invitationCodeView = InvitationCodeView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
+        view.addSubview(invitationCodeView)
+        
     }
     
     // MARK: ~ Actions
     @IBAction func onClickInvitationCode(_ sender: UIButton) {
-        let invitationCodeView = InvitationCodeView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
-        view.addSubview(invitationCodeView)
         invitationCodeView.animateShow()
     }
     
