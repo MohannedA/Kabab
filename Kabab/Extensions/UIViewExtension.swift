@@ -9,13 +9,17 @@
 import UIKit
 
 extension UIView{
-    func animateShowFromBottom(){
+    
+    // MARK: ~ Animations
+    /*To animate the displaying of view from the bottom*/
+    func animateShowFromBottom() {
         UIView.animate(withDuration: 1, animations: {
             self.frame.origin.y -= self.bounds.height
         }, completion: nil)
     }
     
-    func animateHideToBottom(){
+    /*To animate the hiding of view to the bottom*/
+    func animateHideToBottom() {
         UIView.animate(withDuration: 1, animations: {
             self.frame.origin.y += self.bounds.height
         }, completion: nil)

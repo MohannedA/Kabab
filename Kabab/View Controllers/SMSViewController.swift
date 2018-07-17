@@ -26,7 +26,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Set up the SMS text fields.
+        // Set up the SMS text fields delegates.
         SMSTextField01.delegate = self
         SMSTextField02.delegate = self
         SMSTextField03.delegate = self
@@ -45,7 +45,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         //SMSTextField01.becomeFirstResponder()
     }*/
     
-    // MARK: ~ TextField Delegate
+    // MARK: ~ TextField Delegate Methods 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if ((textField.text?.count)! < 1) && (string.count > 0) { // If the responder goes forward.
             switch textField {

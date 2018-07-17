@@ -54,6 +54,7 @@ class ScannerViewController: UIViewController, QRScannerDelegate {
     // MARK: ~ Actions
     @IBAction func onClickInvitationCode(_ sender: UIButton) {
         invitationCodeView.animateShowFromBottom()
+        invitationCodeView.invitationCodeTextField01.becomeFirstResponder()
     }
     
     @objc func onClickDone(sender: UIButton) {
