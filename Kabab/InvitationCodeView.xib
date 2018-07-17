@@ -13,11 +13,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvitationCodeView" customModule="Kabab" customModuleProvider="target">
             <connections>
-                <outlet property="InvitationCodeTextField01" destination="YE2-FH-QZg" id="Q2b-Le-8cH"/>
-                <outlet property="InvitationCodeTextField02" destination="TOM-Cr-LGi" id="JZe-P3-vdZ"/>
-                <outlet property="InvitationCodeTextField03" destination="0H3-6O-0Gw" id="Dpg-sz-FFG"/>
-                <outlet property="InvitationCodeTextField04" destination="bI9-73-hfe" id="wZa-BI-g4f"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="qEb-aj-fAg"/>
+                <outlet property="doneButton" destination="ZAc-Gp-h0s" id="WA3-c8-Goa"/>
+                <outlet property="invitationCodeTextField01" destination="YE2-FH-QZg" id="LCe-Z3-NQr"/>
+                <outlet property="invitationCodeTextField02" destination="TOM-Cr-LGi" id="dK9-AA-Y3l"/>
+                <outlet property="invitationCodeTextField03" destination="0H3-6O-0Gw" id="NTM-OW-R0G"/>
+                <outlet property="invitationCodeTextField04" destination="bI9-73-hfe" id="do1-dn-SKU"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -116,9 +117,6 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZAc-Gp-h0s">
                     <rect key="frame" x="164" y="49" width="46" height="30"/>
                     <state key="normal" title="Done"/>
-                    <connections>
-                        <action selector="onClickDone:" destination="-1" eventType="touchUpInside" id="NEA-Pz-Cp0"/>
-                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

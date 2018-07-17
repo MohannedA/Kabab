@@ -43,14 +43,21 @@ class ScannerViewController: UIViewController, QRScannerDelegate {
         view.bringSubview(toFront: topView)
         view.bringSubview(toFront: bottomView)
         
+        // Set up invitation code view.
         invitationCodeView = InvitationCodeView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
         view.addSubview(invitationCodeView)
+        // Add action when doneButton in invitation code view is pressed.
+        invitationCodeView.doneButton.addTarget(self, action: #selector(onClickDone(sender:)), for: UIControlEvents.touchUpInside)
         
     }
     
     // MARK: ~ Actions
     @IBAction func onClickInvitationCode(_ sender: UIButton) {
-        invitationCodeView.animateShow()
+        invitationCodeView.animateShowFromBottom()
+    }
+    
+    @objc func onClickDone(sender: UIButton) {
+        invitationCodeView.animateHideToBottom()
     }
     
     // MARK: ~ QRScanner Delegate Methods
@@ -66,17 +73,4 @@ class ScannerViewController: UIViewController, QRScannerDelegate {
         return ("Valid", .Top, UIColor.black, UIColor.green.cgColor) 
     }
     
-}
-// MARK: ~ Extensions
-extension UIView{
-    func animateShow(){
-        UIView.animate(withDuration: 1, animations: {
-            self.frame.origin.y -= self.bounds.height
-        }, completion: nil)
-    }
-    func animateHide(){
-        UIView.animate(withDuration: 1, animations: {
-            self.frame.origin.y += self.bounds.height
-        }, completion: nil)
-    }
 }

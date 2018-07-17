@@ -11,10 +11,11 @@ import UIKit
 class InvitationCodeView: UIView {
     // MARK: ~ Properties
     @IBOutlet var contentView: UIView!
-    @IBOutlet weak var InvitationCodeTextField01: UITextField!
-    @IBOutlet weak var InvitationCodeTextField02: UITextField!
-    @IBOutlet weak var InvitationCodeTextField03: UITextField!
-    @IBOutlet weak var InvitationCodeTextField04: UITextField!
+    @IBOutlet weak var invitationCodeTextField01: UITextField!
+    @IBOutlet weak var invitationCodeTextField02: UITextField!
+    @IBOutlet weak var invitationCodeTextField03: UITextField!
+    @IBOutlet weak var invitationCodeTextField04: UITextField!
+    @IBOutlet weak var doneButton: UIButton!
     
     // MARK: ~ Inits
     override init(frame: CGRect) {
@@ -25,11 +26,6 @@ class InvitationCodeView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
-    }
-    
-    // MARK: ~ Actions
-    @IBAction func onClickDone(_ sender: UIButton) {
-        contentView.animateHide()
     }
     
     
