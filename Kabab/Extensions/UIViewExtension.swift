@@ -12,16 +12,16 @@ extension UIView{
     
     // MARK: ~ Animations
     /*To animate the displaying of view from the bottom*/
-    func animateShowFromBottom() {
+    func animateShowFromBottom(completion: ((Bool) -> Void)?)  {
         UIView.animate(withDuration: 1, animations: {
             self.frame.origin.y -= self.bounds.height
-        }, completion: nil)
+        }, completion: completion)
     }
     
     /*To animate the hiding of view to the bottom*/
-    func animateHideToBottom() {
+    func animateHideToBottom(completion: ((Bool) -> Void)?) {
         UIView.animate(withDuration: 1, animations: {
             self.frame.origin.y += self.bounds.height
-        }, completion: nil)
+        }, completion: completion)
     }
 }

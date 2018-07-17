@@ -46,6 +46,7 @@ class ScannerViewController: UIViewController, QRScannerDelegate {
         // Set up invitation code view.
         invitationCodeView = InvitationCodeView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
         view.addSubview(invitationCodeView)
+        view.bringSubview(toFront: invitationCodeView)
         // Add action when doneButton in invitation code view is pressed.
         invitationCodeView.doneButton.addTarget(self, action: #selector(onClickDone(sender:)), for: UIControlEvents.touchUpInside)
         
@@ -53,12 +54,20 @@ class ScannerViewController: UIViewController, QRScannerDelegate {
     
     // MARK: ~ Actions
     @IBAction func onClickInvitationCode(_ sender: UIButton) {
-        invitationCodeView.animateShowFromBottom()
-        invitationCodeView.invitationCodeTextField01.becomeFirstResponder()
+        // Show invitation code view.
+        invitationCodeView.animateShowFromBottom(completion: { (isCompleted) in
+            // Make the invitation code first text field, first responder.
+            self.invitationCodeView.invitationCodeTextField01.becomeFirstResponder()
+            })
     }
     
     @objc func onClickDone(sender: UIButton) {
-        invitationCodeView.animateHideToBottom()
+        invitationCodeView.animateHideToBottom(completion: nil)
+        // Resign the invitation code text fields responders.
+        invitationCodeView.invitationCodeTextField01.resignFirstResponder()
+        invitationCodeView.invitationCodeTextField02.resignFirstResponder()
+        invitationCodeView.invitationCodeTextField03.resignFirstResponder()
+        invitationCodeView.invitationCodeTextField04.resignFirstResponder()
     }
     
     // MARK: ~ QRScanner Delegate Methods

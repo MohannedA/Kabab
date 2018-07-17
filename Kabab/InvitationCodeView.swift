@@ -30,10 +30,10 @@ class InvitationCodeView: UIView, UITextFieldDelegate {
         
         // Define radius for the content view.
         contentView.layer.cornerRadius = 50
-                
+        
         // Notify if the keyboard changes its status.
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
