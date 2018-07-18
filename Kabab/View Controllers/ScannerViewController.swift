@@ -60,6 +60,7 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
         
         // Add action when doneButton in invitation code view is pressed.
         //invitationCodeView.doneButton.addTarget(self, action: #selector(onClickDone(sender:)), for: UIControlEvents.touchUpInside)
+        print("QRCodeView >>>>>>>> \(QRCodeView.bounds.midX) \(QRCodeView.bounds.midY)")
         
     }
     
@@ -98,10 +99,30 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
     func drawBoundingSquares(codeStringValue: String) -> (label: String?, labelPosition: SquareLabelPositions, labelColor: UIColor?, color: CGColor?)? {
         return nil
     }
-    
+    // TODO Make the scanner more accurate.
     func getCodeBounds(_ codeBounds: CGRect) {
-        print(topView.bounds.maxY > topView.bounds.minY)
-        print("\(codeBounds.origin) and \(QRCodeView.bounds.origin)")
+        print("QRCodeView maxX \(codeBounds.maxX) and \(QRCodeView.bounds.maxX)")
+        print("QRCodeView maxY \(codeBounds.maxY) and \(QRCodeView.bounds.maxY)")
+        print("topView maxX \(codeBounds.maxX) and \(topView.bounds.maxX)")
+        print("topView maxY \(codeBounds.maxY) and \(topView.bounds.maxY)")
+        print("bottomView maxX \(codeBounds.maxX) and \(bottomView.bounds.maxX)")
+        print("bottomView maxY \(codeBounds.maxY) and \(bottomView.bounds.maxY)")
+        /*if codeBounds.maxY >= QRCodeView.bounds.maxY &&
+            codeBounds.maxX <= QRCodeView.bounds.maxX &&
+            codeBounds.height <= QRCodeView.bounds.height &&
+            codeBounds.width <= QRCodeView.bounds.width &&
+            codeBounds.maxY >= topView.bounds.maxY &&
+            codeBounds.maxX  <= topView.bounds.maxX &&
+            codeBounds.maxY >= bottomView.bounds.maxY &&
+            codeBounds.maxX <= bottomView.bounds.maxX {
+            i += 1
+            print("Good \(i)")
+        }*/
+        // Between 350 and 200 is the the range where the QRcode view exist. 
+        if codeBounds.maxY >= 350 && codeBounds.maxX >= 200 {
+            i += 1
+            print("Good \(i)")
+        }
     }
     
     // MARK: ~ Invitation Code View Delegate Methods
