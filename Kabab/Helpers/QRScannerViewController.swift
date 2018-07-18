@@ -12,7 +12,9 @@ protocol QRScannerDelegate: class {
     /*To set the preview view of the code scanner*/
     func setPreviewView() -> UIView
     /*To draw bounding squares*/
-    func drawBoundingSquares(codeStringValue: String) -> (label: String?, labelPosition: SquareLabelPositions, labelColor: UIColor?, color: CGColor?)
+    func drawBoundingSquares(codeStringValue: String) -> (label: String?, labelPosition: SquareLabelPositions, labelColor: UIColor?, color: CGColor?)?
+    /*To get code bounds*/
+    func getCodeBounds(_ codeBounds: CGRect)
 }
 
 // MARK: ~ SquareLabelPositions Enum
@@ -106,9 +108,11 @@ open class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                 // If the detected code is QR code.
                 if supportedCodeTypes.contains(object.type)
                 {
-                    // Use the code stringValue.
+                    // Use code stringValue.
                     delegate?.getCodeStringValue(object.stringValue!)
                     let barCodeObject = self.video.transformedMetadataObject(for: object)
+                    // Use code bounds.
+                    delegate?.getCodeBounds((barCodeObject?.bounds)!)
                     setSquareView(code: object, barCodeObject: barCodeObject!) // The code bounding square.
                 }
             }
@@ -131,14 +135,16 @@ open class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     }
     
     private func setSquareView(code: AVMetadataMachineReadableCodeObject, barCodeObject: AVMetadataObject) {
+        // Get square properties.
+        guard let (squareLabel, squareLabelPosition, squareLabelColor, squareColor) = (delegate?.drawBoundingSquares(codeStringValue: code.stringValue!)) else { // If there are no bounding square properties.
+            return
+        }
         // Initialize square view to highlight the QR code.
         squareView = UIView()
         squareView.tag = 100
         previewView.addSubview(squareView)
         squareView.layer.borderWidth = 2
         squareView.frame = barCodeObject.bounds
-        // Get square properties.
-        (squareLabel, squareLabelPosition, squareLabelColor, squareColor) = (delegate?.drawBoundingSquares(codeStringValue: code.stringValue!))!
         // Set up the square label if there is.
         if squareLabel != "" {
             let label = UILabel()

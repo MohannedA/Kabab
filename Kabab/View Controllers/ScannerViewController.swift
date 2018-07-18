@@ -10,15 +10,19 @@ import UIKit
 
 class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCodeViewDelegate {
     
+    
+    
     // MARK: ~ Properties
     @IBOutlet weak var invitationCodeButton: UIButton!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var QRCodeView: UIView!
     
     // MARK: ~ Variables
     var invitationCodeView = InvitationCodeView()
     var invitationCode01 = "0000"
     var invitationCode02 = "1111"
+    var i = 0
     
     // MARK: ~ Life Cycle
     override func viewDidLoad() {
@@ -42,9 +46,10 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
         QRScannerVC.delegate = self
         present(QRScannerVC, animated: true, completion: nil)
         
-        // Make the top and bottom view on the top of preview view.
+        // Make the top, bottom, and QRCode view on the top of preview view.
         view.bringSubview(toFront: topView)
         view.bringSubview(toFront: bottomView)
+        view.bringSubview(toFront: QRCodeView)
         
         // Set up invitation code view.
         invitationCodeView = InvitationCodeView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
@@ -83,15 +88,20 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
     
     // MARK: ~ QRScanner Delegate Methods
     func getCodeStringValue(_ codeStringValue: String) {
-        print(codeStringValue)
+        //print(codeStringValue)
     }
     
     func setPreviewView() -> UIView {
         return self.view
     }
     
-    func drawBoundingSquares(codeStringValue: String) -> (label: String?, labelPosition: SquareLabelPositions, labelColor: UIColor?, color: CGColor?) {
-        return ("Valid", .Top, UIColor.black, UIColor.green.cgColor) 
+    func drawBoundingSquares(codeStringValue: String) -> (label: String?, labelPosition: SquareLabelPositions, labelColor: UIColor?, color: CGColor?)? {
+        return nil
+    }
+    
+    func getCodeBounds(_ codeBounds: CGRect) {
+        print(topView.bounds.maxY > topView.bounds.minY)
+        print("\(codeBounds.origin) and \(QRCodeView.bounds.origin)")
     }
     
     // MARK: ~ Invitation Code View Delegate Methods

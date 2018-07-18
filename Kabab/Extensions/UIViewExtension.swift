@@ -27,7 +27,7 @@ extension UIView{
 }
 
 extension CALayer {
-    
+    /*To add border to one side in view*/
     func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
         
         let border = CALayer()
@@ -35,7 +35,6 @@ extension CALayer {
         switch edge {
         case .top:
             border.frame = CGRect(x: 0, y: 0, width: frame.width, height: thickness)
-            print("W >>>>>>>>> \(frame.width)")
         case .bottom:
             border.frame = CGRect(x: 0, y: frame.height - thickness, width: frame.width, height: thickness)
         case .left:
