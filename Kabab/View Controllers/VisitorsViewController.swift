@@ -9,7 +9,7 @@
 import UIKit
 
 let MovieData = [
-    ["title": "Jason Bourne", "cast": "Matt Damon, Alicia Vikander, Julia Stiles", "genre": "action"],
+    ["title": "Jason Bourne", "cast": "CheckedIn", "genre": "action"],
     ["title": "Suicide Squad", "cast": "Margot Robbie, Jared Leto, Will Smith", "genre": "action"],
     ["title": "Star Trek Beyond", "cast": "Chris Pine, Zachary Quinto, Zoe Saldana", "genre": "action"],
     ["title": "Deadpool", "cast": "Ryan Reynolds, Morena Baccarin, Gina Carano", "genre": "action"],
@@ -26,9 +26,11 @@ let MovieData = [
     ["title": "Miracles from Heaven", "cast": "Jennifer Garner, Kylie Rogers, Martin Henderson", "genre": "drama"],
 ]
 
-class ChecksTableViewViewController: UIViewController {
+class VisitorsViewController: UIViewController {
     //MARK: ...
     @IBOutlet weak var tableView: UITableView!
+    
+    var checkedInView = CheckedInView()
     
     //MARK: Var.
     var isCheckedIn: Bool = false
@@ -50,6 +52,12 @@ class ChecksTableViewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         sortData()
+        
+        // Define checked in view.
+        checkedInView = CheckedInView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
+        self.view.addSubview(checkedInView)
+        checkedInView.doneImageButton.addTarget(self, action: #selector(onClickDoneImage(sender:)))
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,9 +79,14 @@ class ChecksTableViewViewController: UIViewController {
         tableView.reloadData()
     }
     
+    @objc func onClickDoneImage(sender: UITapGestureRecognizer!) {
+        checkedInView.animateHideToBottom(completion: nil)
+    }
+    
+    
 }
 
-extension ChecksTableViewViewController: UITableViewDataSource, UITableViewDelegate {
+extension VisitorsViewController: UITableViewDataSource, UITableViewDelegate {
     
     // As long as `total` is the last case in our TableSection enum,
     // this method will always be dynamically correct no mater how many table sections we add or remove.
@@ -160,6 +173,15 @@ extension ChecksTableViewViewController: UITableViewDataSource, UITableViewDeleg
             }
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCell = tableView.cellForRow(at: indexPath)
+        if let subtitle = currentCell?.viewWithTag(20) as? UILabel {
+            if subtitle.text == "CheckedIn" {
+                checkedInView.animateShowFromBottom(completion: nil)
+            }
+        }
     }
 
 }

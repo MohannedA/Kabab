@@ -25,7 +25,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate{
         scannerViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 0)
         
         // Define checks table view view controller.
-        let checksTableViewViewController = storyboard.instantiateViewController(withIdentifier: "ChecksTableViewViewController") as! ChecksTableViewViewController//ChecksTableViewViewController()
+        let checksTableViewViewController = storyboard.instantiateViewController(withIdentifier: "ChecksTableViewViewController") as! VisitorsViewController//ChecksTableViewViewController()
         // Add bar item to the checks table view view controller.
         checksTableViewViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
         

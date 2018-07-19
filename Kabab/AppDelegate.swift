@@ -18,20 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Set up the main window.
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
+        //window = UIWindow(frame: UIScreen.main.bounds)
+        //window?.makeKeyAndVisible()
         
         // Define stroyboard.
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         // Create reference for the ID view controller.
-        let IDViewController = storyboard.instantiateViewController(withIdentifier: "IDViewController") as! IDViewController
+        //let IDViewController = storyboard.instantiateViewController(withIdentifier: "IDViewController") as! IDViewController
         
         // Create navigation controller and make the ID view controller, the first view controller.
-        let navigationController = UINavigationController(rootViewController: IDViewController)
+        //let navigationController = UINavigationController(rootViewController: IDViewController)
         
         // Set up the navigation controller to be the root view controller to the window.
-        window?.rootViewController = navigationController
+        //window?.rootViewController = navigationController
         
         return true
     }
