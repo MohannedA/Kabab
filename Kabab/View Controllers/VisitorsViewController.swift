@@ -178,7 +178,7 @@ extension VisitorsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentCell = tableView.cellForRow(at: indexPath)
         if let subtitle = currentCell?.viewWithTag(20) as? UILabel {
-            if subtitle.text == "CheckedIn" {
+            if indexPath.section == 1 { // Checked In. 
                 checkedInView.animateShowFromBottom(completion: nil)
             }
         }
