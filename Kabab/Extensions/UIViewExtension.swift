@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIView{
+extension UIView {
     
     // MARK: ~ Animations
     /*To animate the displaying of view from the bottom*/

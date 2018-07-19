@@ -656,12 +656,23 @@
                                     <constraint firstAttribute="width" constant="375" id="r4x-ic-NjR"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBw-6Z-eTX">
+                                <rect key="frame" x="139" y="617" width="96" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Log out"/>
+                                <connections>
+                                    <action selector="onClickLogOut:" destination="AUA-pE-6sp" eventType="touchUpInside" id="Fh1-tx-OC8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Hi7-Wm-9h0" firstAttribute="trailing" secondItem="Gdp-2r-19L" secondAttribute="trailing" id="3VR-85-eo9"/>
                             <constraint firstItem="Hi7-Wm-9h0" firstAttribute="top" secondItem="Gdp-2r-19L" secondAttribute="top" constant="72" id="Ayz-mp-iBF"/>
+                            <constraint firstItem="Gdp-2r-19L" firstAttribute="trailing" secondItem="mBw-6Z-eTX" secondAttribute="trailing" constant="140" id="G3o-Ke-ktx"/>
                             <constraint firstItem="Hi7-Wm-9h0" firstAttribute="leading" secondItem="Gdp-2r-19L" secondAttribute="leading" id="NXT-ys-xL4"/>
+                            <constraint firstItem="Gdp-2r-19L" firstAttribute="bottom" secondItem="mBw-6Z-eTX" secondAttribute="bottom" constant="20" id="T0r-AE-Zjf"/>
+                            <constraint firstItem="mBw-6Z-eTX" firstAttribute="leading" secondItem="Gdp-2r-19L" secondAttribute="leading" constant="139" id="p4S-E8-qen"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gdp-2r-19L"/>
                     </view>
@@ -689,21 +700,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s0M-pj-hZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3980" y="-645"/>
-        </scene>
-        <!--Main Navigation Controller-->
-        <scene sceneID="xwK-jg-Vah">
-            <objects>
-                <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fXK-Pc-nl3" customClass="MainNavigationController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3Vr-Ga-CJB">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vfj-bP-xcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

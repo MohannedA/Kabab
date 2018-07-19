@@ -18,6 +18,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var resendText: UILabel!
     
     // MARK: ~ Variables
+    var SMSText = ""
     // Timer variables
     var timer = Timer()
     var isTimerFinished = false
@@ -37,6 +38,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
     }
+    
     //TODO Solve the problem of making keyboard active when view satrts.
     // Report problem with moving the view with the keyboard.
     /*override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +64,11 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
             }
             // Enter the string in the text field.
             textField.text = string
+            SMSText += string
+            if SMSText.count == 4 { // 4 is the number of SMS text fields.
+                let tabViewController = storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! TabBarController
+                present(tabViewController, animated: true, completion: nil)
+            }
             return false
         } else if ((textField.text?.count)! >= 1) && (string.count == 0) { // If the responder goes backword(delete).
             switch textField {
@@ -93,7 +100,6 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         playTimer()
     }
     
-    
     //MARK: ~ Private Methods
     /*To handle the view when the keyboard is up*/
      @objc private func keyboardUp(nofication: NSNotification) {
@@ -104,6 +110,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
             view.frame.origin.y -= value
         }
     }
+    
     /*To handle the view when the keyboard is down*/
     @objc private func keyboardDown(nofication: NSNotification) {
         // If casting is valid.
@@ -111,6 +118,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
             view.frame.origin.y = 0
         }
     }
+    
     /*To start the timer*/
     private func playTimer() {
         // Set the timer.
@@ -119,6 +127,7 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         timeRemaining = totalTime
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerRunning), userInfo: nil, repeats: true)
     }
+    
     /*To handle the timer while the time is running*/
     @objc private func timerRunning() {
         timeRemaining -= 1

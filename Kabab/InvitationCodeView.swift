@@ -83,6 +83,7 @@ class InvitationCodeView: UIView, UITextFieldDelegate {
             }
             // Empty the string in the text field.
             textField.text = ""
+            // TODO It may cause an error. 
             invitationCodeString = ""
             return false
         } else if (textField.text?.count)! >= 1 { // If more than one number are written.

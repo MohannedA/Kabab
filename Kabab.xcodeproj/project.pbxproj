@@ -30,7 +30,6 @@
 		04B4710520EB603200FAE9F6 /* Visitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4710420EB603200FAE9F6 /* Visitor.swift */; };
 		04B4710820EB660800FAE9F6 /* VisitorsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4710720EB660800FAE9F6 /* VisitorsDatabase.swift */; };
 		04B4710B20EBB7F600FAE9F6 /* PhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4710A20EBB7F600FAE9F6 /* PhoneNumberViewController.swift */; };
-		04F3585920FB4158003539C8 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F3585820FB4158003539C8 /* MainNavigationController.swift */; };
 		92E680DE72D2BE922CC14B14 /* Pods_Kabab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C954FBF8E62CAA9387425C /* Pods_Kabab.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +59,6 @@
 		04B4710420EB603200FAE9F6 /* Visitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visitor.swift; sourceTree = "<group>"; };
 		04B4710720EB660800FAE9F6 /* VisitorsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorsDatabase.swift; sourceTree = "<group>"; };
 		04B4710A20EBB7F600FAE9F6 /* PhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberViewController.swift; sourceTree = "<group>"; };
-		04F3585820FB4158003539C8 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		771E24DE2A276198A64D2849 /* Pods-Kabab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kabab.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kabab/Pods-Kabab.release.xcconfig"; sourceTree = "<group>"; };
 		85C954FBF8E62CAA9387425C /* Pods_Kabab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kabab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC60015B8A3A06C9BABE5A7A /* Pods-Kabab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kabab.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kabab/Pods-Kabab.debug.xcconfig"; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 				04B4710A20EBB7F600FAE9F6 /* PhoneNumberViewController.swift */,
 				043E825720ECE6AC00BB9021 /* SMSViewController.swift */,
 				043E827720EE4EF400BB9021 /* ChecksTableViewViewController.swift */,
-				04F3585820FB4158003539C8 /* MainNavigationController.swift */,
 				040F250C20FC6D9000A0247C /* TabBarController.swift */,
 				040F250E20FC6EFC00A0247C /* ScannerViewController.swift */,
 				040F251020FC6F1000A0247C /* AccountViewController.swift */,
@@ -336,7 +333,6 @@
 				040F251120FC6F1000A0247C /* AccountViewController.swift in Sources */,
 				04B470EA20EA593000FAE9F6 /* AppDelegate.swift in Sources */,
 				040F252120FF635800A0247C /* QRScannerView.swift in Sources */,
-				04F3585920FB4158003539C8 /* MainNavigationController.swift in Sources */,
 				040F251320FC889F00A0247C /* QRScannerViewController.swift in Sources */,
 				043E827820EE4EF400BB9021 /* ChecksTableViewViewController.swift in Sources */,
 				04B4710820EB660800FAE9F6 /* VisitorsDatabase.swift in Sources */,

@@ -15,6 +15,7 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var mobileNumberView: UIView!
     @IBOutlet weak var emailView: UIView!
     
+    
     // MARK: ~ Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,5 +30,18 @@ class AccountViewController: UIViewController {
         emailView.layoutIfNeeded()
         emailView.layer.addBorder(edge: .top, color: UIColor.darkGray, thickness: 2)
     }
+    
+    // MARK: ~ Actions
+    @IBAction func onClickLogOut(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let IDViewController = storyboard.instantiateViewController(withIdentifier: "IDViewController") as! IDViewController
+        
+        let logInNavigationController = UINavigationController(rootViewController: IDViewController)
+        present(logInNavigationController, animated: true, completion: nil)
+        //present(navigationController!, animated: true, completion: nil)
+        
+    }
+    
 
 }
