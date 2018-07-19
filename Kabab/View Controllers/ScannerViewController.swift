@@ -10,8 +10,6 @@ import UIKit
 
 class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCodeViewDelegate {
     
-    
-    
     // MARK: ~ Properties
     @IBOutlet weak var invitationCodeButton: UIButton!
     @IBOutlet weak var bottomView: UIView!
@@ -20,13 +18,20 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
     
     // MARK: ~ Variables
     var invitationCodeView = InvitationCodeView()
+    // Test variables.
     var invitationCode01 = "0000"
     var invitationCode02 = "1111"
     var i = 0
     
+    // QR scanner variaables.
+    private var videoLayer: CALayer!
+    var QRCodeScanner: QRScanner!
+    var videoPreview = UIView()
+    
     // MARK: ~ Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Insert Mock up data.
         
         
@@ -42,9 +47,11 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
         invitationCodeButton.clipsToBounds = true
         
         // Set up QR scanner.
-        let QRScannerVC = QRScannerViewController()
-        QRScannerVC.delegate = self
-        present(QRScannerVC, animated: true, completion: nil)
+        videoPreview = self.view
+        QRCodeScanner = QRScanner()
+        QRCodeScanner.delegate = self
+        videoLayer = QRCodeScanner.videoPreview
+        view.layer.addSublayer(videoLayer)
         
         // Make the top, bottom, and QRCode view on the top of preview view.
         view.bringSubview(toFront: topView)
@@ -60,8 +67,28 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
         
         // Add action when doneButton in invitation code view is pressed.
         //invitationCodeView.doneButton.addTarget(self, action: #selector(onClickDone(sender:)), for: UIControlEvents.touchUpInside)
-        print("QRCodeView >>>>>>>> \(QRCodeView.bounds.midX) \(QRCodeView.bounds.midY)")
         
+
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // Set up QR scanner size.
+        videoLayer.frame = videoPreview.bounds
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Start code scanner.
+        QRCodeScanner.startScanning { (code) in
+            print(code)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Stop code scanner.
+        QRCodeScanner.stopScanning()
     }
     
     // MARK: ~ Actions
@@ -89,7 +116,7 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
     
     // MARK: ~ QRScanner Delegate Methods
     func getCodeStringValue(_ codeStringValue: String) {
-        //print(codeStringValue)
+        print(codeStringValue)
     }
     
     func setPreviewView() -> UIView {
@@ -100,7 +127,7 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
         return nil
     }
     // TODO Make the scanner more accurate.
-    func getCodeBounds(_ codeBounds: CGRect) {
+    func getCodeBounds(_ codeBounds: CGRect, _ codeStringValue: String) {
         print("QRCodeView maxX \(codeBounds.maxX) and \(QRCodeView.bounds.maxX)")
         print("QRCodeView maxY \(codeBounds.maxY) and \(QRCodeView.bounds.maxY)")
         print("topView maxX \(codeBounds.maxX) and \(topView.bounds.maxX)")

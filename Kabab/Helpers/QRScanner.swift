@@ -1,33 +1,24 @@
-/*
-/*
- QRScannerViewController
- */
+//
+//  QRScanner .swift
+//  Kabab
+//
+//  Created by mac on 05/11/1439 AH.
+//  Copyright © 1439 mac. All rights reserved.
+//
+
 import AVFoundation
 import UIKit
-import SnapKit
 
-// MARK: ~ QRScannerDelegate
-protocol QRScannerDelegate: class {
-    /*To get the string code value*/
-    func getCodeStringValue(_ codeStringValue: String)
-    /*To set the preview view of the code scanner*/
-    func setPreviewView() -> UIView
-    /*To draw bounding squares*/
-    func drawBoundingSquares(codeStringValue: String) -> (label: String?, labelPosition: SquareLabelPositions, labelColor: UIColor?, color: CGColor?)?
-    /*To get code bounds*/
-    func getCodeBounds(_ codeBounds: CGRect, _ codeStringValue: String)
-}
 
 // MARK: ~ SquareLabelPositions Enum
 enum SquareLabelPositions: String {
     case Top, Center, Bottom
 }
 
-
-open class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-    // MARK: ~ Variables
-    var video = AVCaptureVideoPreviewLayer()
-    var previewView = UIView()
+class QRScanner: NSObject {
+    
+    fileprivate(set) var videoPreview = CALayer()
+    fileprivate var captureSession: AVCaptureSession?
     private let supportedCodeTypes = [AVMetadataObject.ObjectType.upce,
                                       AVMetadataObject.ObjectType.code39,
                                       AVMetadataObject.ObjectType.code39Mod43,
@@ -41,21 +32,20 @@ open class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                                       AVMetadataObject.ObjectType.dataMatrix,
                                       AVMetadataObject.ObjectType.interleaved2of5,
                                       AVMetadataObject.ObjectType.qr]
-    // Define square view variables.
+    
     var squareView = UIView()
-    var squareLabel: String?
-    var squareLabelPosition: SquareLabelPositions = .Top
-    var squareLabelColor: UIColor?
-    var squareColor: CGColor?
+    var video = AVCaptureVideoPreviewLayer()
+    var previewView = UIView()
     
     // Define delegate variable.
     weak var delegate: QRScannerDelegate?
     
-    // MARK: ~ Life Cycle
-    open override func viewDidLoad() {
-        super.viewDidLoad()
+    override init() {
+        super.init()
+
         // Create session.
-        let session = AVCaptureSession()
+        captureSession = AVCaptureSession()
+        
         
         // Get the back-facing camera for capturing videos.
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back)
@@ -70,7 +60,7 @@ open class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         do
         {
             let input = try AVCaptureDeviceInput(device: captureDevice)
-            session.addInput(input)
+            captureSession?.addInput(input)
         }
         catch
         {
@@ -79,45 +69,18 @@ open class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         
         // Set up the output of the QR scanner.
         let output = AVCaptureMetadataOutput()
-        session.addOutput(output)
+        captureSession?.addOutput(output)
         output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         output.metadataObjectTypes = supportedCodeTypes
         
         // Add the set session to the preview layer.
-        video = AVCaptureVideoPreviewLayer(session: session)
-        // Set the preview view.
-        previewView = (delegate?.setPreviewView())!
+        let video = AVCaptureVideoPreviewLayer(session: captureSession!)
         // Set the size of the video.
         video.videoGravity = AVLayerVideoGravity.resizeAspectFill
         // Make the video(preview view) size = the main view size.
-        video.frame = previewView.layer.bounds
-        // Add the created viedo(preview view) to the main view.
-        previewView.layer.addSublayer(video)
+        self.videoPreview = video
         
-        // Start running the camera.
-        session.startRunning()
-    }
-    
-    // MARK: ~ QR Scanner Methods
-    public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        cleanScreen(superView: self.previewView) // Clear from the old bounding squares.
-        // If there is a code.
-        if metadataObjects.count != 0
-        {
-            if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
-            {
-                // If the detected code is QR code.
-                if supportedCodeTypes.contains(object.type)
-                {
-                    // Use code stringValue.
-                    delegate?.getCodeStringValue(object.stringValue!)
-                    let barCodeObject = self.video.transformedMetadataObject(for: object)
-                    // Use code bounds.
-                    delegate?.getCodeBounds((barCodeObject?.bounds)!, object.stringValue!)
-                    setSquareView(code: object, barCodeObject: barCodeObject!) // The code bounding square.
-                }
-            }
-        }
+        
     }
     
     // MARK: ~ Private Methods
@@ -179,4 +142,55 @@ open class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         previewView.bringSubview(toFront: squareView)
     }
 }
-*/
+
+extension QRScanner: CodeScanner {
+    func startScanning(completion: @escaping (String) -> Void) {
+        captureSession?.startRunning()
+    }
+    func stopScanning() {
+        captureSession?.stopRunning()
+    }
+}
+
+
+extension QRScanner: AVCaptureMetadataOutputObjectsDelegate {
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        cleanScreen(superView: self.previewView) // Clear from the old bounding squares.
+        // If there is a code.
+        if metadataObjects.count != 0
+        {
+            if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
+            {
+                // If the detected code is QR code.
+                if supportedCodeTypes.contains(object.type)
+                {
+                    // Use code stringValue.
+                    delegate?.getCodeStringValue(object.stringValue!)
+                    let barCodeObject = (self.videoPreview as! AVCaptureVideoPreviewLayer).transformedMetadataObject(for: object)
+                    // Use code bounds.
+                    delegate?.getCodeBounds((barCodeObject?.bounds)!, object.stringValue!)
+                    setSquareView(code: object, barCodeObject: barCodeObject!) // The code bounding square.
+                }
+            }
+        }
+    }
+}
+
+protocol CodeScanner {
+    func startScanning(completion: @escaping (String) -> Void)
+    func stopScanning()
+    var videoPreview: CALayer {get}
+}
+
+// MARK: ~ QRScannerDelegate
+protocol QRScannerDelegate: class {
+    /*To get the string code value*/
+    func getCodeStringValue(_ codeStringValue: String)
+    /*To set the preview view of the code scanner*/
+    func setPreviewView() -> UIView
+    /*To draw bounding squares*/
+    func drawBoundingSquares(codeStringValue: String) -> (label: String?, labelPosition: SquareLabelPositions, labelColor: UIColor?, color: CGColor?)?
+    /*To get code bounds*/
+    func getCodeBounds(_ codeBounds: CGRect, _ codeStringValue: String)
+}
+

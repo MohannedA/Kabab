@@ -1,7 +1,7 @@
 /*
-/*
  QRScannerViewController
  */
+/*
 import AVFoundation
 import UIKit
 import SnapKit
@@ -24,7 +24,7 @@ enum SquareLabelPositions: String {
 }
 
 
-open class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+open class QRScannerView: UIView, AVCaptureMetadataOutputObjectsDelegate {
     // MARK: ~ Variables
     var video = AVCaptureVideoPreviewLayer()
     var previewView = UIView()
@@ -41,6 +41,7 @@ open class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                                       AVMetadataObject.ObjectType.dataMatrix,
                                       AVMetadataObject.ObjectType.interleaved2of5,
                                       AVMetadataObject.ObjectType.qr]
+
     // Define square view variables.
     var squareView = UIView()
     var squareLabel: String?
@@ -52,8 +53,10 @@ open class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     weak var delegate: QRScannerDelegate?
     
     // MARK: ~ Life Cycle
-    open override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    // MARK: ~ Inits
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
         // Create session.
         let session = AVCaptureSession()
         
@@ -96,6 +99,11 @@ open class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         
         // Start running the camera.
         session.startRunning()
+        
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     // MARK: ~ QR Scanner Methods

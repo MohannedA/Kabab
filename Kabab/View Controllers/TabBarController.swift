@@ -8,20 +8,21 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+class TabBarController: UITabBarController, UITabBarControllerDelegate{
 
     // MARK: ~ Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.delegate = self
         
         // Define storyboard.
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         // TODO Fix TabBar and Scanner Problem.
         // Define scanner view controller.
-        //let scannerViewController = storyboard.instantiateViewController(withIdentifier: "ScannerViewController") as! ScannerViewController
-        // Add bar item to the scanner view controller.
-        //scannerViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 0)
+        let scannerViewController = storyboard.instantiateViewController(withIdentifier: "ScannerViewController") as! ScannerViewController
+        scannerViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 0)
         
         // Define checks table view view controller.
         let checksTableViewViewController = storyboard.instantiateViewController(withIdentifier: "ChecksTableViewViewController") as! ChecksTableViewViewController//ChecksTableViewViewController()
@@ -34,11 +35,12 @@ class TabBarController: UITabBarController {
         accountViewControllers.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
         
         // Define tab bar view controllers list.
-        //let viewControllerList = [ scannerViewController, checksTableViewViewController, accountViewControllers ]
-        let viewControllerList = [
-            checksTableViewViewController, accountViewControllers ]
+        let viewControllerList = [ scannerViewController, checksTableViewViewController, accountViewControllers ]
+        //let viewControllerList = [ checksTableViewViewController, accountViewControllers ]
         // Create navigation controller. 
         viewControllers = viewControllerList.map { UINavigationController(rootViewController: $0) }
     }
+    
+    
 
 }
