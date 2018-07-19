@@ -116,7 +116,7 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
     
     // MARK: ~ QRScanner Delegate Methods
     func getCodeStringValue(_ codeStringValue: String) {
-        print(codeStringValue)
+        //print(codeStringValue)
     }
     
     func setPreviewView() -> UIView {

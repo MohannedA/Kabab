@@ -19,6 +19,8 @@ class QRScanner: NSObject {
     
     fileprivate(set) var videoPreview = CALayer()
     fileprivate var captureSession: AVCaptureSession?
+    fileprivate var didRead: ((String) -> Void)?
+    
     private let supportedCodeTypes = [AVMetadataObject.ObjectType.upce,
                                       AVMetadataObject.ObjectType.code39,
                                       AVMetadataObject.ObjectType.code39Mod43,
@@ -145,6 +147,7 @@ class QRScanner: NSObject {
 
 extension QRScanner: CodeScanner {
     func startScanning(completion: @escaping (String) -> Void) {
+        self.didRead = completion
         captureSession?.startRunning()
     }
     func stopScanning() {
@@ -170,6 +173,7 @@ extension QRScanner: AVCaptureMetadataOutputObjectsDelegate {
                     // Use code bounds.
                     delegate?.getCodeBounds((barCodeObject?.bounds)!, object.stringValue!)
                     setSquareView(code: object, barCodeObject: barCodeObject!) // The code bounding square.
+                    didRead?(object.stringValue!)
                 }
             }
         }
