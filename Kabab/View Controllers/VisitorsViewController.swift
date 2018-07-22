@@ -27,13 +27,13 @@ let MovieData = [
 ]
 
 class VisitorsViewController: UIViewController {
-    //MARK: ...
+    //MARK: ~ Properties
     @IBOutlet weak var tableView: UITableView!
     
     var checkedInView = CheckedInView()
     var checkedOutView = CheckedOutView()
     
-    //MARK: Var.
+    //MARK: ~ Variables
     var isCheckedIn: Bool = false
     
     // The magic enum to end our pain and suffering!
@@ -86,12 +86,16 @@ class VisitorsViewController: UIViewController {
     }
     
     @objc func onClickCheckedInDoneImage(sender: UITapGestureRecognizer!) {
-        checkedInView.animateHideToBottom(completion: nil)
+        checkedInView.animateHideToBottom { (true) in
+            self.view.viewWithTag(30)?.removeFromSuperview()
+        }
     }
     
     
     @objc func onClickCheckedOutDoneImage(sender: UITapGestureRecognizer!) {
-        checkedOutView.animateHideToBottom(completion: nil)
+        checkedOutView.animateHideToBottom{ (true) in
+            self.view.viewWithTag(40)?.removeFromSuperview()
+        }
     }
     
     
@@ -193,9 +197,15 @@ extension VisitorsViewController: UITableViewDataSource, UITableViewDelegate {
             case 0: // Expected.
                 break
             case 1: // Checked In.
+                view.addBlurEffect(30)
+                // // To make the checked out view over the blur effect.
+                view.bringSubview(toFront: checkedInView)
                 checkedInView.animateShowFromBottom(completion: nil)
                 break
             case 2: // Checked Out.
+                view.addBlurEffect(40)
+                // To make the checked out view over the blur effect.
+                view.bringSubview(toFront: checkedOutView)
                 checkedOutView.animateShowFromBottom(completion: nil)
                 break
             default:

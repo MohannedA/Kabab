@@ -24,6 +24,23 @@ extension UIView {
             self.frame.origin.y += self.bounds.height
         }, completion: completion)
     }
+    // MARK: ~ Visual Effects
+    /*To add blur effect to view*/
+    func addBlurEffect(_ tag: Int) {
+        // If the user hasn't disabled transparency effects, applay.
+        if !UIAccessibilityIsReduceTransparencyEnabled() {
+            let blurEffect = UIBlurEffect(style: .light)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            // Add the blur effect to all the view parts.
+            blurEffectView.frame = self.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            // Give tag to the created view.
+            blurEffectView.tag = tag
+            self.addSubview(blurEffectView) // Dev Note: If you have more UIViews, use an insertSubview API to place it where needed.
+        } else { // It is disabled.
+            self.backgroundColor = .black
+        }
+    }
 }
 
 extension CALayer {
