@@ -17,7 +17,7 @@ class VisitorsViewController: UIViewController {
     var checkedOutView = CheckedOutView()
     
     // Define mock up data.
-    var visitorsDataItems: [[[String: String]]] = [[["Name": "Ghostbusters",  "Section": "Expected"],
+    var visitorsData: [[[String: String]]] = [[["Name": "Ghostbusters",  "Section": "Expected"],
                                                     ["Name": "Keanu",  "Section": "Expected"]],[["Name": "Jason Bourne",  "Section": "CheckedIn"], ["Name": "Suicide Squad",  "Section": "CheckedIn"]], [["Name": "Star Trek Beyond",  "Section": "CheckedOut"], ["Name": "London Has Fallen",  "Section": "CheckedOut"]]]
     // Define table sections.
     var tableSections = [0, 1, 2]
@@ -39,6 +39,7 @@ class VisitorsViewController: UIViewController {
         self.view.addSubview(checkedOutView)
         checkedOutView.doneImageButton.addTarget(self, action: #selector(onClickCheckedOutDoneImage(sender:)))
         
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,12 +50,19 @@ class VisitorsViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func checkIn(_ sender: UIButton) {
-        isCheckedIn = true
+        //isCheckedIn = true
         // For testing.
-        let section = 1
-        visitorsDataItems[section].append(["Name": "Test",  "Section": "CheckedIn"])
+        //let section = 1
+        //visitorsData[section].append(["Name": "Test",  "Section": "CheckedIn"])
         // Load visitors table data.
-        tableView.reloadData()
+        //tableView.reloadData()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        //navigationController?.pushViewController(vc, animated: true)
+        //show(vc, sender: self)
+        //present(vc, animated: true, completion: nil)
+        performSegue(withIdentifier: "segue", sender: self)
+        //show(vc, sender: self)
     }
     
     @objc func onClickCheckedInDoneImage(sender: UITapGestureRecognizer!) {
@@ -72,6 +80,12 @@ class VisitorsViewController: UIViewController {
         }
     }
     
+    // MARK: ~ Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let searchViewController = segue.destination as! SearchViewController
+        searchViewController.visitorsData = visitorsData
+    }
+    
     
 }
 
@@ -84,18 +98,18 @@ extension VisitorsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isCheckedIn { // If checked in button is clicked.
             if section == 1 {
-                return visitorsDataItems[section].count
+                return visitorsData[section].count
             }
             else {
                 return 0
             }
         } else {
-            return visitorsDataItems[section].count
+            return visitorsData[section].count
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if visitorsDataItems[section].count > 0 {
+        if visitorsData[section].count > 0 {
             if isCheckedIn { // If checked in button is clicked.
                 if section == 1 {
                     return SectionHeaderHeight
@@ -137,10 +151,10 @@ extension VisitorsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         if let titleLabel = cell.viewWithTag(10) as? UILabel {
-            titleLabel.text = visitorsDataItems[indexPath.section][indexPath.row]["Name"]
+            titleLabel.text = visitorsData[indexPath.section][indexPath.row]["Name"]
         }
         if let subtitleLabel = cell.viewWithTag(20) as? UILabel {
-            subtitleLabel.text = visitorsDataItems[indexPath.section][indexPath.row]["Section"]
+            subtitleLabel.text = visitorsData[indexPath.section][indexPath.row]["Section"]
         }
         return cell
     }
