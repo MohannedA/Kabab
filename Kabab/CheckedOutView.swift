@@ -8,10 +8,10 @@
 
 import UIKit
 
-protocol CheckedInViewDelegate: class {
+protocol CheckedOutViewDelegate: class {
 }
 
-class CheckedInView: UIView {
+class CheckedOutView: UIView {
     // MARK: ~ Properties
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var fullNameNameLabel: UILabel!
@@ -34,11 +34,12 @@ class CheckedInView: UIView {
         commonInit()
     }
     
+    
     // MARK: ~ Private Methods
     /*To define xib*/
     private func commonInit() {
         // Load xib.
-        Bundle.main.loadNibNamed("CheckedInView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("CheckedOutView", owner: self, options: nil)
         // Add the xib view to this view as subview.
         addSubview(contentView)
         // Make the xib view size the same as this view size.

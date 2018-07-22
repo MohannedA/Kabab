@@ -16,9 +16,7 @@
                 <outlet property="contentView" destination="iN0-l3-epB" id="uuO-Hb-Ur4"/>
                 <outlet property="doneImage" destination="SWE-My-tyz" id="2r0-0k-J07"/>
                 <outlet property="doneImageButton" destination="2dP-iB-Uza" id="p6b-bE-tg0"/>
-                <outlet property="fullNameLabel" destination="x3I-MS-rsr" id="6W1-AP-hXG"/>
                 <outlet property="fullNameNameLabel" destination="oed-pL-g87" id="QWF-3B-E58"/>
-                <outlet property="hostedByLabel" destination="csZ-rn-wQo" id="M6b-DP-4kb"/>
                 <outlet property="hostedByNameLabel" destination="sj2-gc-1VW" id="NrF-b9-qvL"/>
             </connections>
         </placeholder>

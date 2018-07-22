@@ -31,6 +31,7 @@ class VisitorsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var checkedInView = CheckedInView()
+    var checkedOutView = CheckedOutView()
     
     //MARK: Var.
     var isCheckedIn: Bool = false
@@ -56,7 +57,12 @@ class VisitorsViewController: UIViewController {
         // Define checked in view.
         checkedInView = CheckedInView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
         self.view.addSubview(checkedInView)
-        checkedInView.doneImageButton.addTarget(self, action: #selector(onClickDoneImage(sender:)))
+        checkedInView.doneImageButton.addTarget(self, action: #selector(onClickCheckedInDoneImage(sender:)))
+        
+        // Define checked out view.
+        checkedOutView = CheckedOutView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
+        self.view.addSubview(checkedOutView)
+        checkedOutView.doneImageButton.addTarget(self, action: #selector(onClickCheckedOutDoneImage(sender:)))
         
     }
     
@@ -79,8 +85,13 @@ class VisitorsViewController: UIViewController {
         tableView.reloadData()
     }
     
-    @objc func onClickDoneImage(sender: UITapGestureRecognizer!) {
+    @objc func onClickCheckedInDoneImage(sender: UITapGestureRecognizer!) {
         checkedInView.animateHideToBottom(completion: nil)
+    }
+    
+    
+    @objc func onClickCheckedOutDoneImage(sender: UITapGestureRecognizer!) {
+        checkedOutView.animateHideToBottom(completion: nil)
     }
     
     
@@ -178,8 +189,17 @@ extension VisitorsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentCell = tableView.cellForRow(at: indexPath)
         if let subtitle = currentCell?.viewWithTag(20) as? UILabel {
-            if indexPath.section == 1 { // Checked In. 
+            switch indexPath.section {
+            case 0: // Expected.
+                break
+            case 1: // Checked In.
                 checkedInView.animateShowFromBottom(completion: nil)
+                break
+            case 2: // Checked Out.
+                checkedOutView.animateShowFromBottom(completion: nil)
+                break
+            default:
+                break
             }
         }
     }
