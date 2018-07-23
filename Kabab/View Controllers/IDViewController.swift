@@ -22,11 +22,7 @@ class IDViewController: UIViewController {
         VisitorLocalCRUD.shered.insert(item: Visitor(phoneNumber: LogInMockData.phoneNumber03.rawValue, IDNumber: LogInMockData.IDNumber03.rawValue))
         
         // Make the navigation view controller translucent.
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
-        
+        self.navigationController?.addTranslucentEffect()
     }
     
     //MARK: Actions

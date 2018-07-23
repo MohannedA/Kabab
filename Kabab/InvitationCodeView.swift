@@ -20,6 +20,9 @@ class InvitationCodeView: UIView, UITextFieldDelegate {
     @IBOutlet weak var invitationCodeTextField02: UITextField!
     @IBOutlet weak var invitationCodeTextField03: UITextField!
     @IBOutlet weak var invitationCodeTextField04: UITextField!
+    @IBOutlet var doneImageButton: UITapGestureRecognizer!
+    @IBOutlet weak var doneImage: UIImageView!
+    
     
     // MARK: ~ Variables
     weak var delegate: InvitationCodeViewDelegate?

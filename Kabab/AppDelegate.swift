@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Set up the main window.
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
+        //window = UIWindow(frame: UIScreen.main.bounds)
+        //window?.makeKeyAndVisible()
         
         // Define stroyboard.
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController(rootViewController: IDViewController)
         
         // Set up the navigation controller to be the root view controller to the window.
-        window?.rootViewController = navigationController
+        //window?.rootViewController = navigationController
         
         return true
     }

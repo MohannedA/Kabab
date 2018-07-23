@@ -25,7 +25,7 @@ class PhoneNumberViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationItem.backBarButtonItem?.title = "1111"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Phone Number", style: .plain, target: self, action: nil)
     }
     
     // MARK: ~ Actions

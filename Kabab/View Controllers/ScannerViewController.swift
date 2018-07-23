@@ -65,8 +65,13 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
         // Set invitation code delegate.
         invitationCodeView.delegate = self
         
+        // Add tab gesture recognizer to resign the first responder. 
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(view.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+        
         // Add action when doneButton in invitation code view is pressed.
-        //invitationCodeView.doneButton.addTarget(self, action: #selector(onClickDone(sender:)), for: UIControlEvents.touchUpInside)
+        invitationCodeView.doneImageButton.addTarget(self, action: #selector(onClickDone(sender:)))
         
         // Make the navigation view controller translucent.
         self.navigationController?.addTranslucentEffect()
@@ -100,7 +105,8 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
         // Reset invitation code view color to default.
         invitationCodeView.contentView.backgroundColor = .white
         emptyInvitationCodeText()
-        
+        view.addBlurEffect(20)
+        view.bringSubview(toFront: invitationCodeView)
         // Show invitation code view.
         invitationCodeView.animateShowFromBottom(completion: { (isCompleted) in
             // Make the invitation code first text field, first responder.
@@ -108,8 +114,12 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
             })
     }
     
-    @objc func onClickDone(sender: UIButton) {
-        invitationCodeView.animateHideToBottom(completion: nil)
+    @objc func onClickDone(sender: UITapGestureRecognizer) {
+        invitationCodeView.animateHideToBottom{ (true) in
+            // Remove blur effect.
+            self.view.viewWithTag(20)?.removeFromSuperview()
+        }
+        view.endEditing(true)
         // Resign the invitation code text fields responders.
         invitationCodeView.invitationCodeTextField01.resignFirstResponder()
         invitationCodeView.invitationCodeTextField02.resignFirstResponder()
@@ -154,6 +164,7 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
             print("Good \(i)")
         }
     }
+    
     
     // MARK: ~ Invitation Code View Delegate Methods
     func checkInvitationCode() {

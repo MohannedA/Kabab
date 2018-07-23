@@ -79,14 +79,11 @@ class VisitorsViewController: UIViewController {
     }
     
     @objc func onClickSearchButton(_ sender: UIBarButtonItem) {
+        // Go to search view controller. 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let searchViewController = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        //navigationController?.pushViewController(vc, animated: true)
-        //show(vc, sender: self)
         searchViewController.visitorsData = visitorsData
         navigationController?.pushViewController(searchViewController, animated: true)
-        //present(vc, animated: true, completion: nil)
-        //performSegue(withIdentifier: "segue", sender: self)
     }
     
     // MARK: ~ Navigation
