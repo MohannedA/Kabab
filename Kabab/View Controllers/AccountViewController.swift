@@ -42,6 +42,10 @@ class AccountViewController: UIViewController {
         IDNumberLabel.text = employee?.IDNumber
         phoneNumberLabel.text = employee?.phoneNumber
         emailLabel.text = employee?.email
+        
+        
+        // Make the navigation view controller translucent.
+        self.navigationController?.addTranslucentEffect()
     }
     
     // MARK: ~ Actions

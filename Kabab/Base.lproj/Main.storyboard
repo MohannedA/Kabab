@@ -276,8 +276,8 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7b-TW-XGA">
-                                        <rect key="frame" x="249" y="12" width="55" height="28"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7b-TW-XGA">
+                                        <rect key="frame" x="249" y="12" width="118" height="28"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Resend">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -348,7 +348,6 @@
                                 <state key="normal" title="Checked In"/>
                                 <connections>
                                     <action selector="checkIn:" destination="a8y-7p-gIJ" eventType="touchUpInside" id="fJX-Ny-z9Y"/>
-                                    <segue destination="nPi-a7-8BS" kind="show" identifier="segue" id="Kg6-3T-wHu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbf-50-Y70">
@@ -717,14 +716,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faP-v8-f7X">
-                                                    <rect key="frame" x="311" y="12" width="49" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faP-v8-f7X">
+                                                    <rect key="frame" x="251" y="12" width="109" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="faP-v8-f7X" secondAttribute="height" multiplier="109:21" id="14d-Ia-Orv"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Af-wB-0Rj">
-                                                    <rect key="frame" x="15" y="12" width="45" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Af-wB-0Rj">
+                                                    <rect key="frame" x="15" y="12" width="218" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -736,7 +738,6 @@
                                                 <constraint firstItem="9Af-wB-0Rj" firstAttribute="top" secondItem="eTb-Oq-hui" secondAttribute="top" constant="12" id="9Ui-Ql-gcO"/>
                                                 <constraint firstAttribute="bottom" secondItem="9Af-wB-0Rj" secondAttribute="bottom" constant="11.5" id="A4f-wK-q0c"/>
                                                 <constraint firstItem="faP-v8-f7X" firstAttribute="top" secondItem="eTb-Oq-hui" secondAttribute="top" constant="12" id="R23-42-YCp"/>
-                                                <constraint firstItem="faP-v8-f7X" firstAttribute="leading" secondItem="9Af-wB-0Rj" secondAttribute="trailing" constant="251" id="b1n-gZ-PmI"/>
                                                 <constraint firstItem="9Af-wB-0Rj" firstAttribute="leading" secondItem="eTb-Oq-hui" secondAttribute="leading" constant="15" id="dJO-Ab-Bk9"/>
                                             </constraints>
                                         </tableViewCellContentView>

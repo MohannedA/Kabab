@@ -39,7 +39,12 @@ class VisitorsViewController: UIViewController {
         self.view.addSubview(checkedOutView)
         checkedOutView.doneImageButton.addTarget(self, action: #selector(onClickCheckedOutDoneImage(sender:)))
         
-        
+        // Make the navigation view controller translucent.
+        self.navigationController?.addTranslucentEffect()
+
+        // Add search bar item. 
+        let searchItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(onClickSearchButton(_:)))
+        self.navigationItem.rightBarButtonItem = searchItem
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,19 +55,12 @@ class VisitorsViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func checkIn(_ sender: UIButton) {
-        //isCheckedIn = true
+        isCheckedIn = true
         // For testing.
-        //let section = 1
-        //visitorsData[section].append(["Name": "Test",  "Section": "CheckedIn"])
+        let section = 1
+        visitorsData[section].append(["Name": "Test",  "Section": "CheckedIn"])
         // Load visitors table data.
-        //tableView.reloadData()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        //navigationController?.pushViewController(vc, animated: true)
-        //show(vc, sender: self)
-        //present(vc, animated: true, completion: nil)
-        performSegue(withIdentifier: "segue", sender: self)
-        //show(vc, sender: self)
+        tableView.reloadData()
     }
     
     @objc func onClickCheckedInDoneImage(sender: UITapGestureRecognizer!) {
@@ -78,6 +76,17 @@ class VisitorsViewController: UIViewController {
             // Remove blur effect.
             self.view.viewWithTag(40)?.removeFromSuperview()
         }
+    }
+    
+    @objc func onClickSearchButton(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let searchViewController = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        //navigationController?.pushViewController(vc, animated: true)
+        //show(vc, sender: self)
+        searchViewController.visitorsData = visitorsData
+        navigationController?.pushViewController(searchViewController, animated: true)
+        //present(vc, animated: true, completion: nil)
+        //performSegue(withIdentifier: "segue", sender: self)
     }
     
     // MARK: ~ Navigation

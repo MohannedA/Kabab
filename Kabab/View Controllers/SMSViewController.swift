@@ -69,9 +69,9 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
             SMSText += string
             if SMSText.count == 4 { // 4 is the number of SMS text fields.
                 let tabViewController = storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! TabBarController
-                // Delete all object (Employee) data.
+                // Delete all object(Employee) data.
                 EmployeeLocalCRUD.shered.deleteAll()
-                // Insert Employee account data. 
+                // Insert Employee account data.
                 EmployeeLocalCRUD.shered.insert(item: Employee(fullName: "Anything", IDNumber: IDNumebr, phoneNumber: phoneNumber, email: "anything@dopravo.com"))
                 present(tabViewController, animated: true, completion: nil)
             }

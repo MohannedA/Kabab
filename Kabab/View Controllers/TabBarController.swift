@@ -22,7 +22,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate{
         
         // Define scanner view controller.
         let scannerViewController = storyboard.instantiateViewController(withIdentifier: "ScannerViewController") as! ScannerViewController
-        scannerViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 0)
+        scannerViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)//UITabBarItem(title: "Scanner", image: nil, tag: 0)
         
         // Define checks table view view controller.
         let checksTableViewViewController = storyboard.instantiateViewController(withIdentifier: "ChecksTableViewViewController") as! VisitorsViewController//ChecksTableViewViewController()

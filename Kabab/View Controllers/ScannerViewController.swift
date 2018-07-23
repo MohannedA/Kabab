@@ -68,6 +68,9 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
         // Add action when doneButton in invitation code view is pressed.
         //invitationCodeView.doneButton.addTarget(self, action: #selector(onClickDone(sender:)), for: UIControlEvents.touchUpInside)
         
+        // Make the navigation view controller translucent.
+        self.navigationController?.addTranslucentEffect()
+        
 
     }
     
