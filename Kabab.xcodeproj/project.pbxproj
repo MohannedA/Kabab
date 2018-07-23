@@ -40,6 +40,9 @@
 		04CFCEFE2104BCFA004CF860 /* EmployeeLocalCRUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CFCEFD2104BCFA004CF860 /* EmployeeLocalCRUD.swift */; };
 		04CFCF002104BD7A004CF860 /* EmployeeDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CFCEFF2104BD7A004CF860 /* EmployeeDataObject.swift */; };
 		04CFCF022105A9A8004CF860 /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CFCF012105A9A8004CF860 /* UINavigationControllerExtension.swift */; };
+		04CFCF042105B949004CF860 /* VerificationSuccessfulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CFCF032105B949004CF860 /* VerificationSuccessfulViewController.swift */; };
+		04CFCF072105C01F004CF860 /* ExpectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CFCF062105C01F004CF860 /* ExpectedView.xib */; };
+		04CFCF092105C0BC004CF860 /* ExpectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CFCF082105C0BC004CF860 /* ExpectedView.swift */; };
 		92E680DE72D2BE922CC14B14 /* Pods_Kabab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C954FBF8E62CAA9387425C /* Pods_Kabab.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +82,9 @@
 		04CFCEFD2104BCFA004CF860 /* EmployeeLocalCRUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeLocalCRUD.swift; sourceTree = "<group>"; };
 		04CFCEFF2104BD7A004CF860 /* EmployeeDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDataObject.swift; sourceTree = "<group>"; };
 		04CFCF012105A9A8004CF860 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
+		04CFCF032105B949004CF860 /* VerificationSuccessfulViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationSuccessfulViewController.swift; sourceTree = "<group>"; };
+		04CFCF062105C01F004CF860 /* ExpectedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpectedView.xib; sourceTree = "<group>"; };
+		04CFCF082105C0BC004CF860 /* ExpectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectedView.swift; sourceTree = "<group>"; };
 		771E24DE2A276198A64D2849 /* Pods-Kabab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kabab.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kabab/Pods-Kabab.release.xcconfig"; sourceTree = "<group>"; };
 		85C954FBF8E62CAA9387425C /* Pods_Kabab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kabab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC60015B8A3A06C9BABE5A7A /* Pods-Kabab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kabab.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kabab/Pods-Kabab.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +143,7 @@
 		04B470E820EA593000FAE9F6 /* Kabab */ = {
 			isa = PBXGroup;
 			children = (
+				04CFCF052105BFB3004CF860 /* Views */,
 				040F251D20FDF52300A0247C /* Extensions */,
 				043E825620ECD67500BB9021 /* Helpers */,
 				04B4710920EBB7A100FAE9F6 /* View Controllers */,
@@ -148,12 +155,6 @@
 				04B470F020EA593100FAE9F6 /* Assets.xcassets */,
 				04B470F220EA593100FAE9F6 /* LaunchScreen.storyboard */,
 				04B470F520EA593100FAE9F6 /* Info.plist */,
-				040F251620FDC13900A0247C /* InvitationCodeView.xib */,
-				040F251B20FDC6F400A0247C /* InvitationCodeView.swift */,
-				040F25242100B0D900A0247C /* CheckedInView.xib */,
-				040F25262100B3CE00A0247C /* CheckedInView.swift */,
-				04CFCEF521044B0B004CF860 /* CheckedOutView.xib */,
-				04CFCEF721044D04004CF860 /* CheckedOutView.swift */,
 			);
 			path = Kabab;
 			sourceTree = "<group>";
@@ -215,8 +216,24 @@
 				040F251020FC6F1000A0247C /* AccountViewController.swift */,
 				040F252A2100B88900A0247C /* TestViewController.swift */,
 				04CFCEF921047EC0004CF860 /* SearchViewController.swift */,
+				04CFCF032105B949004CF860 /* VerificationSuccessfulViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		04CFCF052105BFB3004CF860 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				040F251620FDC13900A0247C /* InvitationCodeView.xib */,
+				040F251B20FDC6F400A0247C /* InvitationCodeView.swift */,
+				040F25242100B0D900A0247C /* CheckedInView.xib */,
+				040F25262100B3CE00A0247C /* CheckedInView.swift */,
+				04CFCEF521044B0B004CF860 /* CheckedOutView.xib */,
+				04CFCEF721044D04004CF860 /* CheckedOutView.swift */,
+				04CFCF062105C01F004CF860 /* ExpectedView.xib */,
+				04CFCF082105C0BC004CF860 /* ExpectedView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8D468CAC7A2D15A4B3F64008 /* Frameworks */ = {
@@ -302,6 +319,7 @@
 				04B470F120EA593100FAE9F6 /* Assets.xcassets in Resources */,
 				040F251720FDC13900A0247C /* InvitationCodeView.xib in Resources */,
 				04B470EF20EA593000FAE9F6 /* Main.storyboard in Resources */,
+				04CFCF072105C01F004CF860 /* ExpectedView.xib in Resources */,
 				040F25252100B0D900A0247C /* CheckedInView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +384,7 @@
 				04CFCEFE2104BCFA004CF860 /* EmployeeLocalCRUD.swift in Sources */,
 				04B470EA20EA593000FAE9F6 /* AppDelegate.swift in Sources */,
 				04CFCF002104BD7A004CF860 /* EmployeeDataObject.swift in Sources */,
+				04CFCF092105C0BC004CF860 /* ExpectedView.swift in Sources */,
 				040F252120FF635800A0247C /* QRScannerView.swift in Sources */,
 				040F251320FC889F00A0247C /* QRScannerViewController.swift in Sources */,
 				043E827820EE4EF400BB9021 /* VisitorsViewController.swift in Sources */,
@@ -379,6 +398,7 @@
 				04CFCEFA21047EC0004CF860 /* SearchViewController.swift in Sources */,
 				04B4710B20EBB7F600FAE9F6 /* PhoneNumberViewController.swift in Sources */,
 				043E825820ECE6AC00BB9021 /* SMSViewController.swift in Sources */,
+				04CFCF042105B949004CF860 /* VerificationSuccessfulViewController.swift in Sources */,
 				04B4710220EB5C3400FAE9F6 /* VisitorLocalCRUD.swift in Sources */,
 				040F250D20FC6D9000A0247C /* TabBarController.swift in Sources */,
 				040F250F20FC6EFC00A0247C /* ScannerViewController.swift in Sources */,

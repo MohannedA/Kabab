@@ -15,6 +15,16 @@ class VisitorsViewController: UIViewController {
     var isCheckedIn: Bool = false
     var checkedInView = CheckedInView()
     var checkedOutView = CheckedOutView()
+    var expectedView = ExpectedView()
+    
+    // Checked status
+    var checkedSectionIndex = 0
+    var checkedRowIndex = 0
+    var checkedStatus: CheckedStatus = .expected
+    
+    enum CheckedStatus: String {
+        case expected, checkedIn, checkedOut
+    }
     
     // Define mock up data.
     var visitorsData: [[[String: String]]] = [[["Name": "Ghostbusters",  "Section": "Expected"],
@@ -33,11 +43,17 @@ class VisitorsViewController: UIViewController {
         checkedInView = CheckedInView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
         self.view.addSubview(checkedInView)
         checkedInView.doneImageButton.addTarget(self, action: #selector(onClickCheckedInDoneImage(sender:)))
+        checkedInView.checkOutButton.addTarget(self, action: #selector(onClickCheckedInCheckOutButton(sender:)), for: .touchUpInside)
         
         // Define checked out view.
         checkedOutView = CheckedOutView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
         self.view.addSubview(checkedOutView)
         checkedOutView.doneImageButton.addTarget(self, action: #selector(onClickCheckedOutDoneImage(sender:)))
+        
+        // Define expected view.
+        expectedView = ExpectedView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
+        self.view.addSubview(expectedView)
+        expectedView.doneImageButton.addTarget(self, action: #selector(onClickExpectedDoneImage(sender:)))
         
         // Make the navigation view controller translucent.
         self.navigationController?.addTranslucentEffect()
@@ -69,6 +85,13 @@ class VisitorsViewController: UIViewController {
             self.view.viewWithTag(30)?.removeFromSuperview()
         }
     }
+
+    @objc func onClickCheckedInCheckOutButton(sender: UITapGestureRecognizer!) {
+        visitorsData[2].append(["Name": visitorsData[checkedSectionIndex][checkedRowIndex]["Name"]!,  "Section": "CheckedOut"])
+        visitorsData[checkedSectionIndex].remove(at: checkedRowIndex)
+        tableView.reloadData()
+    }
+    
     
     
     @objc func onClickCheckedOutDoneImage(sender: UITapGestureRecognizer!) {
@@ -78,8 +101,15 @@ class VisitorsViewController: UIViewController {
         }
     }
     
+    @objc func onClickExpectedDoneImage(sender: UITapGestureRecognizer!) {
+        expectedView.animateHideToBottom{ (true) in
+            // Remove blur effect.
+            self.view.viewWithTag(30)?.removeFromSuperview()
+        }
+    }
+    
     @objc func onClickSearchButton(_ sender: UIBarButtonItem) {
-        // Go to search view controller. 
+        // Go to search view controller.
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let searchViewController = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
         searchViewController.visitorsData = visitorsData
@@ -168,11 +198,21 @@ extension VisitorsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0: // Item is clicked in expected section.
+            view.addBlurEffect(30)
+            // To make the checked out view over the blur effect.
+            view.bringSubview(toFront: expectedView)
+            expectedView.animateShowFromBottom(completion: nil)
             break
         case 1: // Item is clicked in checked in section.
             view.addBlurEffect(30)
-            // // To make the checked out view over the blur effect.
+            // To make the checked out view over the blur effect.
             view.bringSubview(toFront: checkedInView)
+            // Assign name to full name label.
+            checkedInView.fullNameNameLabel.text = visitorsData[indexPath.section][indexPath.row]["Name"]
+            // Save the index of the selected checked.
+            checkedStatus = .checkedIn
+            checkedSectionIndex = indexPath.section
+            checkedRowIndex = indexPath.row
             checkedInView.animateShowFromBottom(completion: nil)
             break
         case 2: // Item is clicked in checked out section.

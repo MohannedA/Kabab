@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cxs-er-hty">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a8y-7p-gIJ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -330,6 +330,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aW3-Fh-k7o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2520.8000000000002" y="133.5832083958021"/>
+        </scene>
+        <!--Verification Successful View Controller-->
+        <scene sceneID="xCT-O1-ACM">
+            <objects>
+                <viewController storyboardIdentifier="VerificationSuccessfulViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="inH-SM-5ie" customClass="VerificationSuccessfulViewController" customModule="Kabab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7vj-Uy-OwW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SjR-NQ-gCv">
+                                <rect key="frame" x="16" y="146" width="343" height="30"/>
+                                <state key="normal" title="Complete"/>
+                                <connections>
+                                    <action selector="onClickCompleteButton:" destination="inH-SM-5ie" eventType="touchUpInside" id="if7-BP-DGT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SjR-NQ-gCv" firstAttribute="top" secondItem="q2k-iC-8gL" secondAttribute="top" constant="126" id="5NK-lX-smz"/>
+                            <constraint firstItem="SjR-NQ-gCv" firstAttribute="leading" secondItem="q2k-iC-8gL" secondAttribute="leading" constant="16" id="S0s-Rh-uh4"/>
+                            <constraint firstItem="q2k-iC-8gL" firstAttribute="trailing" secondItem="SjR-NQ-gCv" secondAttribute="trailing" constant="16" id="voc-zu-6Yx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="q2k-iC-8gL"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CpU-Zd-IV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2016.8" y="853.22338830584715"/>
         </scene>
         <!--Today's Visitors-->
         <scene sceneID="pz7-vn-Esy">
@@ -788,7 +817,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zde-TE-vRX" customClass="CheckedInView" customModule="Kabab" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zde-TE-vRX" customClass="ExpectedView" customModule="Kabab" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="170" width="375" height="497"/>
                                 <color key="backgroundColor" red="0.47056605810000002" green="0.87371628540000001" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>

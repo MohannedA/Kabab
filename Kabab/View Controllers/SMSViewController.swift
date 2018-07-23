@@ -68,12 +68,12 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
             textField.text = string
             SMSText += string
             if SMSText.count == 4 { // 4 is the number of SMS text fields.
-                let tabViewController = storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! TabBarController
+                let verificationSuccessfulViewController = storyboard?.instantiateViewController(withIdentifier: "VerificationSuccessfulViewController") as! VerificationSuccessfulViewController
                 // Delete all object(Employee) data.
                 EmployeeLocalCRUD.shered.deleteAll()
                 // Insert Employee account data.
                 EmployeeLocalCRUD.shered.insert(item: Employee(fullName: "Anything", IDNumber: IDNumebr, phoneNumber: phoneNumber, email: "anything@dopravo.com"))
-                present(tabViewController, animated: true, completion: nil)
+                present(verificationSuccessfulViewController, animated: true, completion: nil)
             }
             return false
         } else if ((textField.text?.count)! >= 1) && (string.count == 0) { // If the responder goes backword(delete).

@@ -8,10 +8,10 @@
 
 import UIKit
 
-protocol CheckedInViewDelegate: class {
+protocol ExpectedViewDelegate: class {
 }
 
-class CheckedInView: UIView {
+class ExpectedView: UIView {
     // MARK: ~ Properties
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var fullNameNameLabel: UILabel!
@@ -20,7 +20,7 @@ class CheckedInView: UIView {
     @IBOutlet weak var doneImage: UIImageView!
     
     // MARK: ~ Variables
-    weak var delegate: CheckedInViewDelegate?
+    weak var delegate: ExpectedViewDelegate?
     
     // MARK: ~ Inits
     override init(frame: CGRect) {
@@ -38,7 +38,7 @@ class CheckedInView: UIView {
     /*To define xib*/
     private func commonInit() {
         // Load xib.
-        Bundle.main.loadNibNamed("CheckedInView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("ExpectedView", owner: self, options: nil)
         // Add the xib view to this view as subview.
         addSubview(contentView)
         // Make the xib view size the same as this view size.

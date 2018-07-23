@@ -13,11 +13,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckedInView" customModule="Kabab" customModuleProvider="target">
             <connections>
+                <outlet property="checkOutButton" destination="Jeh-Ov-0IA" id="d80-5i-6Ug"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="uuO-Hb-Ur4"/>
                 <outlet property="doneImage" destination="SWE-My-tyz" id="2r0-0k-J07"/>
                 <outlet property="doneImageButton" destination="2dP-iB-Uza" id="p6b-bE-tg0"/>
                 <outlet property="fullNameNameLabel" destination="oed-pL-g87" id="QWF-3B-E58"/>
                 <outlet property="hostedByNameLabel" destination="sj2-gc-1VW" id="NrF-b9-qvL"/>
+                <outlet property="printBadgeButton" destination="hNs-rn-3vd" id="jg6-hk-2UJ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

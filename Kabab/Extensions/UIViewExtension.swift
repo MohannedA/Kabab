@@ -37,6 +37,7 @@ extension UIView {
             // Give tag to the created view.
             blurEffectView.tag = tag
             self.addSubview(blurEffectView) // Dev Note: If you have more UIViews, use an insertSubview API to place it where needed.
+            self.bringSubview(toFront: blurEffectView)
         } else { // It is disabled.
             self.backgroundColor = .black
         }
