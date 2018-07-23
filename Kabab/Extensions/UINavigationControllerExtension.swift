@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 extension UINavigationController {
+    
+    /*To add translucent effect on navigation controller*/
     func addTranslucentEffect() {
         self.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationBar.shadowImage = UIImage()

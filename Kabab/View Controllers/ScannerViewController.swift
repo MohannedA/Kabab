@@ -18,6 +18,8 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
     
     // MARK: ~ Variables
     var invitationCodeView = InvitationCodeView()
+    var validInvitationCodeView = InvitationCodeValidAndInvalidView()
+    var invalidInvitationCodeView = InvitationCodeValidAndInvalidView()
     // Test variables.
     var invitationCode01 = "0000"
     var invitationCode02 = "1111"
@@ -65,13 +67,36 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
         // Set invitation code delegate.
         invitationCodeView.delegate = self
         
+        // Set valid invitation code view.
+        validInvitationCodeView = InvitationCodeValidAndInvalidView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 436))
+        // Assign empty string to validity status label.
+        validInvitationCodeView.validityStatus.text = ""
+        view.addSubview(validInvitationCodeView)
+        view.bringSubview(toFront: validInvitationCodeView)
+        
+        // Set invalid invitation code view.
+        invalidInvitationCodeView = InvitationCodeValidAndInvalidView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 436))
+        view.addSubview(invalidInvitationCodeView)
+        // Assign error string to validity status label.
+        invalidInvitationCodeView.validityStatus.text = "Invitation code is not valid."
+        invalidInvitationCodeView.validityStatus.textColor = .red
+        
+        
+        
         // Add tab gesture recognizer to resign the first responder. 
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(view.endEditing(_:)))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
         
         // Add action when doneButton in invitation code view is pressed.
-        invitationCodeView.doneImageButton.addTarget(self, action: #selector(onClickDone(sender:)))
+        invitationCodeView.doneImageButton.addTarget(self, action: #selector(onClickDoneInvitationCodeView(sender:)))
+        
+        // Add action when doneButton in valid invitation code view is pressed.
+        validInvitationCodeView.doneImageButton.addTarget(self, action: #selector(onClickDoneValidInvitationCodeView(sender:)))
+        
+        // Add action when doneButton in invalid invitation code view is pressed.
+        invalidInvitationCodeView.doneImageButton.addTarget(self, action: #selector(onClickDoneInvalidInvitationCodeView(sender:)))
+        
         
         // Make the navigation view controller translucent.
         self.navigationController?.addTranslucentEffect()
@@ -114,7 +139,7 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
             })
     }
     
-    @objc func onClickDone(sender: UITapGestureRecognizer) {
+    @objc func onClickDoneInvitationCodeView(sender: UITapGestureRecognizer) {
         invitationCodeView.animateHideToBottom{ (true) in
             // Remove blur effect.
             self.view.viewWithTag(20)?.removeFromSuperview()
@@ -125,6 +150,22 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
         invitationCodeView.invitationCodeTextField02.resignFirstResponder()
         invitationCodeView.invitationCodeTextField03.resignFirstResponder()
         invitationCodeView.invitationCodeTextField04.resignFirstResponder()
+    }
+    
+    @objc func onClickDoneValidInvitationCodeView(sender: UITapGestureRecognizer) {
+        print("Got here 1")
+        validInvitationCodeView.animateHideToBottom{ (true) in
+            // Remove blur effect.
+            self.view.viewWithTag(20)?.removeFromSuperview()
+        }
+    }
+    
+    @objc func onClickDoneInvalidInvitationCodeView(sender: UITapGestureRecognizer) {
+        print("Got here 2")
+        invalidInvitationCodeView.animateHideToBottom{ (true) in
+            // Remove blur effect.
+            self.view.viewWithTag(20)?.removeFromSuperview()
+        }
     }
     
     // MARK: ~ QRScanner Delegate Methods
@@ -169,13 +210,25 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
     // MARK: ~ Invitation Code View Delegate Methods
     func checkInvitationCode() {
         if invitationCodeView.invitationCodeString == invitationCode01 {
-            invitationCodeView.contentView.backgroundColor = .cyan
+            // Hide invitation code view.
             invitationCodeView.animateHideToBottom(completion: nil)
+            // Bring the invalid invitation code view to the front of the blur effect.
+            view.bringSubview(toFront: validInvitationCodeView)
+            // Animate valid invitation code view.
+            validInvitationCodeView.animateShowFromBottom(completion: nil)
         } else {
-            invitationCodeView.contentView.backgroundColor = .red
+            // Hide invitation code view.
+            invitationCodeView.animateHideToBottom(completion: nil)
+            // Bring the invalid invitation code view to the front of the blur effect.
+            view.bringSubview(toFront: invalidInvitationCodeView)
+            // Animate invalid invitation code view.
+            invalidInvitationCodeView.animateShowFromBottom(completion: nil)
+            
+            //invitationCodeView.contentView.backgroundColor = .red
+            
             // Make the first invitation code text field, the first responder.
-            invitationCodeView.invitationCodeTextField01.becomeFirstResponder()
-            emptyInvitationCodeText()
+            //invitationCodeView.invitationCodeTextField01.becomeFirstResponder()
+            //emptyInvitationCodeText()
             
         }
     }
