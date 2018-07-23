@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-class VisitorsDatabase: Object {
+class VisitorDataObject: Object {
     @objc dynamic var phoneNumber: String = ""
     @objc dynamic var IDNumber: String = ""
     

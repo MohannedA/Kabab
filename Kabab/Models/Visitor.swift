@@ -9,7 +9,7 @@
 import Foundation
 
 class Visitor: NSObject {
-    //MARK: Var.
+    //MARK: ~ Variables
     var phoneNumber: String
     var IDNumber: String
     

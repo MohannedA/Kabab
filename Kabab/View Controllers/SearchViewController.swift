@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
     // MARK: ~ Variables
     var visitorsData = [[[String: String]]]() // Contains all the visitors data.
     var joinedVisitorsData = [[String: String]]()
-    var filteredData = [[String: String]]() // Contains only filtered data.
+    var filteredVisitorsData = [[String: String]]() // Contains only filtered data.
     var isSearching = false
     var searchText = ""
     
@@ -55,7 +55,7 @@ extension SearchViewController: UISearchBarDelegate {
             isSearching = true
             
             // Filter visitors data.
-            filteredData = joinedVisitorsData.filter({$0["Name"] == searchBar.text})
+            filteredVisitorsData = joinedVisitorsData.filter({$0["Name"] == searchBar.text})
             
             // Update with new filtered visitors data.
             tableView.reloadData()
@@ -67,12 +67,12 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearching {
-            return filteredData.count
+            return filteredVisitorsData.count
         }
         return joinedVisitorsData.count
     }
@@ -81,7 +81,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         if let titleLabel = cell.viewWithTag(10) as? UILabel {
             if isSearching {
-                searchText = filteredData[indexPath.row]["Name"]!
+                searchText = filteredVisitorsData[indexPath.row]["Name"]!
                 titleLabel.text = searchText
             } else {
                 searchText = joinedVisitorsData[indexPath.row]["Name"]!
@@ -90,7 +90,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         if let subtitleLabel = cell.viewWithTag(20) as? UILabel {
             if isSearching {
-                subtitleLabel.text = filteredData[indexPath.row]["Section"]
+                subtitleLabel.text = filteredVisitorsData[indexPath.row]["Section"]
             } else {
                 subtitleLabel.text = joinedVisitorsData[indexPath.row]["Section"]
             }

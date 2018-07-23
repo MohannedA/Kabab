@@ -11,15 +11,15 @@ import NotificationBannerSwift
 
 class IDViewController: UIViewController {
     
-    //MARK: Properties
+    // MARK: ~ Properties
     @IBOutlet weak var IDTextField: UITextField!
     
-
+    // MARK: ~ Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Insert Mock Ip data.
-        LocalCRUD.shered.insert(item: Visitor(phoneNumber: LogInMockData.phoneNumber01.rawValue, IDNumber: LogInMockData.IDNumber01.rawValue))
-        LocalCRUD.shered.insert(item: Visitor(phoneNumber: LogInMockData.phoneNumber03.rawValue, IDNumber: LogInMockData.IDNumber03.rawValue))
+        VisitorLocalCRUD.shered.insert(item: Visitor(phoneNumber: LogInMockData.phoneNumber01.rawValue, IDNumber: LogInMockData.IDNumber01.rawValue))
+        VisitorLocalCRUD.shered.insert(item: Visitor(phoneNumber: LogInMockData.phoneNumber03.rawValue, IDNumber: LogInMockData.IDNumber03.rawValue))
         
         // Make the navigation view controller translucent.
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -41,6 +41,7 @@ class IDViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             // Define phone number view controller.
             let phoneNumberViewController = storyboard.instantiateViewController(withIdentifier: "PhoneNumberViewControllerID") as! PhoneNumberViewController
+            phoneNumberViewController.IDNumber = IDTextField.text ?? ""
             navigationController?.pushViewController(phoneNumberViewController, animated: true)
         } else { // Nofify the user that invalid ID was entered.
             let errorTitle = "Error"
@@ -55,7 +56,7 @@ class IDViewController: UIViewController {
     
     //MARK: Private Methods
     private func checkIsIDValid(IDNumber: String) -> Bool {
-        if let _ = LocalCRUD.shered.getByIDNumber(IDNumber: IDNumber) {
+        if let _ = VisitorLocalCRUD.shered.getByIDNumber(IDNumber: IDNumber) {
             return true
         } else {
             return false

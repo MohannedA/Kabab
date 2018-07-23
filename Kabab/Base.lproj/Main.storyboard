@@ -684,10 +684,14 @@
                         <viewLayoutGuide key="safeArea" id="Gdp-2r-19L"/>
                     </view>
                     <connections>
+                        <outlet property="IDNumberLabel" destination="NXa-pR-B2q" id="Ekn-Xq-tgS"/>
                         <outlet property="IDNumberView" destination="U04-Je-Bp5" id="d3S-bh-6sT"/>
+                        <outlet property="emailLabel" destination="vcP-cK-vnC" id="3UM-Oi-qf4"/>
                         <outlet property="emailView" destination="1Eb-pB-o4A" id="lrn-uT-vUy"/>
+                        <outlet property="fullNameLabel" destination="ejb-eH-8pD" id="ARZ-6d-sve"/>
                         <outlet property="fullNameView" destination="PJd-9j-dqj" id="y6d-0o-ECL"/>
                         <outlet property="mobileNumberView" destination="Zh9-Py-z0r" id="A2s-8M-7oL"/>
+                        <outlet property="phoneNumberLabel" destination="4Da-4q-OfI" id="fzl-YG-WYj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jt8-H1-Tch" userLabel="First Responder" sceneMemberID="firstResponder"/>

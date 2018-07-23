@@ -18,4 +18,6 @@ protocol Repository {
     func getByIDNumber(IDNumber: String) -> T?
     
     func insert(item: T)
+    
+    func deleteAll() 
 }

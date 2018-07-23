@@ -11,12 +11,14 @@ import NotificationBannerSwift
 
 class PhoneNumberViewController: UIViewController {
     
-    //MARK: Properties    
+    // MARK: ~ Properties
     @IBOutlet weak var phoneNumberTextField: UITextField!
-    
+
+    // MARK: ~ Variables
     let backItem = UIBarButtonItem()
+    var IDNumber = ""
     
-    
+    // MARK: ~ Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,7 +28,7 @@ class PhoneNumberViewController: UIViewController {
         navigationItem.backBarButtonItem?.title = "1111"
     }
     
-    
+    // MARK: ~ Actions
     @IBAction func logIn(_ sender: UIButton) {
         // Constants
         let textFormPhoneNumberTextField: String = phoneNumberTextField.text!
@@ -37,6 +39,8 @@ class PhoneNumberViewController: UIViewController {
             // Define stroyboard.
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let SMSViewController = storyboard.instantiateViewController(withIdentifier: "SMSViewControllerID") as! SMSViewController
+            SMSViewController.IDNumebr = IDNumber
+            SMSViewController.phoneNumber = phoneNumberTextField.text ?? ""
             navigationController?.pushViewController(SMSViewController, animated: true)
         } else { // Nofify the user that invalid phone number was entered.
             let errorTitle = "Error"
@@ -49,12 +53,14 @@ class PhoneNumberViewController: UIViewController {
         }
     }
     
-    //MARK: Private Methods
+    // MARK: ~ Private Methods
     private func checkIsPhoneNumberValid(phoneNumber: String) -> Bool {
-        if let _ = LocalCRUD.shered.getByPhoneNumber(phoneNumber: phoneNumber) {
+        if let _ = VisitorLocalCRUD.shered.getByPhoneNumber(phoneNumber: phoneNumber) {
             return true
         } else {
             return false
         }
     }
+    
+    // MARK: ~ Navigation
 }

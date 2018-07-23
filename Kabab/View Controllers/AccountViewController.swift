@@ -9,11 +9,16 @@
 import UIKit
 
 class AccountViewController: UIViewController {
-
+    // MARK: ~ Properties
     @IBOutlet weak var fullNameView: UIView!
     @IBOutlet weak var IDNumberView: UIView!
     @IBOutlet weak var mobileNumberView: UIView!
     @IBOutlet weak var emailView: UIView!
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var IDNumberLabel: UILabel!
+    @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    
     
     
     // MARK: ~ Life Cycle
@@ -29,6 +34,14 @@ class AccountViewController: UIViewController {
         mobileNumberView.layer.addBorder(edge: .top, color: UIColor.darkGray, thickness: 2)
         emailView.layoutIfNeeded()
         emailView.layer.addBorder(edge: .top, color: UIColor.darkGray, thickness: 2)
+        
+        
+        // Assign account data.
+        let employee = EmployeeLocalCRUD.shered.getAll().first
+        fullNameLabel.text = employee?.fullName
+        IDNumberLabel.text = employee?.IDNumber
+        phoneNumberLabel.text = employee?.phoneNumber
+        emailLabel.text = employee?.email
     }
     
     // MARK: ~ Actions
