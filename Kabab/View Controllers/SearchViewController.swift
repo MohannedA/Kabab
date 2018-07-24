@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class SearchViewController: UIViewController {
     // MARK: ~ Properties
@@ -49,6 +50,8 @@ extension SearchViewController: UISearchBarDelegate {
             // Resign the first responder.
             view.endEditing(true)
             
+            tableView.backgroundView = nil
+            
             // Update the table view.
             tableView.reloadData()
         } else {
@@ -56,6 +59,41 @@ extension SearchViewController: UISearchBarDelegate {
             
             // Filter visitors data.
             filteredVisitorsData = joinedVisitorsData.filter({$0["Name"] == searchBar.text})
+            
+            if filteredVisitorsData.count == 0 {
+                // Set the empty view.
+                let emptyView = UIView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height)))
+                emptyView.sizeToFit()
+                // Set image view.
+                let imageView = UIView(frame: CGRect(origin: CGPoint(x: view.center.x - 250/2,y : view.center.y - 250/2 - 200 ), size: CGSize(width: 250, height: 250)))
+                imageView.backgroundColor = .blue
+                imageView.sizeToFit()
+                emptyView.addSubview(imageView)
+                emptyView.bringSubview(toFront: imageView)
+                
+                // Set message label view.
+                let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 250  , height: 178))
+                let messageLabel = UILabel(frame: rect)
+                emptyView.addSubview(messageLabel)
+                emptyView.bringSubview(toFront: messageLabel)
+                messageLabel.snp.makeConstraints { (make) in
+                    make.center.equalTo(emptyView.snp.center)
+                    make.top.equalTo(imageView.snp.bottom).offset(-200)
+                }
+                messageLabel.text = "Result is not found"
+                messageLabel.textColor = UIColor.black
+                messageLabel.numberOfLines = 0;
+                messageLabel.textAlignment = .center;
+                messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
+                messageLabel.sizeToFit()
+                // Assign the created empry view to the table background view.
+                tableView.backgroundView = emptyView
+                // Delete the lines.
+                tableView.separatorStyle = .none
+                
+            } else {
+                tableView.backgroundView = nil
+            }
             
             // Update with new filtered visitors data.
             tableView.reloadData()
