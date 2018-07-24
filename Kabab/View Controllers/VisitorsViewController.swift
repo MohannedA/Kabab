@@ -83,6 +83,7 @@ class VisitorsViewController: UIViewController {
         checkedInView.animateHideToBottom { (true) in
             // Remove blur effect.
             self.view.viewWithTag(30)?.removeFromSuperview()
+            self.navigationController?.navigationBar.viewWithTag(30)?.removeFromSuperview()
         }
     }
 
@@ -97,7 +98,8 @@ class VisitorsViewController: UIViewController {
     @objc func onClickCheckedOutDoneImage(sender: UITapGestureRecognizer!) {
         checkedOutView.animateHideToBottom{ (true) in
             // Remove blur effect.
-            self.view.viewWithTag(40)?.removeFromSuperview()
+            self.view.viewWithTag(30)?.removeFromSuperview()
+            self.navigationController?.navigationBar.viewWithTag(30)?.removeFromSuperview()
         }
     }
     
@@ -105,6 +107,7 @@ class VisitorsViewController: UIViewController {
         expectedView.animateHideToBottom{ (true) in
             // Remove blur effect.
             self.view.viewWithTag(30)?.removeFromSuperview()
+            self.navigationController?.navigationBar.viewWithTag(30)?.removeFromSuperview()
         }
     }
     
@@ -199,12 +202,14 @@ extension VisitorsViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.section {
         case 0: // Item is clicked in expected section.
             view.addBlurEffect(30)
+            navigationController?.navigationBar.addBlurEffect(30)
             // To make the checked out view over the blur effect.
             view.bringSubview(toFront: expectedView)
             expectedView.animateShowFromBottom(completion: nil)
             break
         case 1: // Item is clicked in checked in section.
             view.addBlurEffect(30)
+            navigationController?.navigationBar.addBlurEffect(30)
             // To make the checked out view over the blur effect.
             view.bringSubview(toFront: checkedInView)
             // Assign name to full name label.
@@ -216,7 +221,8 @@ extension VisitorsViewController: UITableViewDataSource, UITableViewDelegate {
             checkedInView.animateShowFromBottom(completion: nil)
             break
         case 2: // Item is clicked in checked out section.
-            view.addBlurEffect(40)
+            view.addBlurEffect(30)
+            navigationController?.navigationBar.addBlurEffect(30)
             // To make the checked out view over the blur effect.
             view.bringSubview(toFront: checkedOutView)
             checkedOutView.animateShowFromBottom(completion: nil)

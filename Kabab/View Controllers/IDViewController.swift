@@ -14,6 +14,10 @@ class IDViewController: UIViewController {
     // MARK: ~ Properties
     @IBOutlet weak var IDTextField: UITextField!
     
+    @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
+    
+    var isKeyboardAppear = false
+    
     // MARK: ~ Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +27,12 @@ class IDViewController: UIViewController {
         
         // Make the navigation view controller translucent.
         self.navigationController?.addTranslucentEffect()
+        
+        // Notify if the keyboard changes its status.
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        IDTextField.delegate = self
     }
     
     //MARK: Actions
@@ -38,6 +48,7 @@ class IDViewController: UIViewController {
             // Define phone number view controller.
             let phoneNumberViewController = storyboard.instantiateViewController(withIdentifier: "PhoneNumberViewControllerID") as! PhoneNumberViewController
             phoneNumberViewController.IDNumber = IDTextField.text ?? ""
+            view.endEditing(true)
             navigationController?.pushViewController(phoneNumberViewController, animated: true)
         } else { // Nofify the user that invalid ID was entered.
             let errorTitle = "Error"
@@ -58,7 +69,48 @@ class IDViewController: UIViewController {
             return false
         }
     }
+    
+    /*To handle the view when the keyboard is up*/
+    @objc private func keyboardUp(nofication: NSNotification) {
+        if !isKeyboardAppear {
+            // If casting is valid.
+            if let keyboardSize = (nofication.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if keyboardSize.minY < IDTextField.frame.maxY {
+                   if self.view.frame.origin.y ==  0 {
+                        self.view.frame.origin.y -= (IDTextField.frame.maxY - keyboardSize.origin.y) + 10
+                    }
+                }
+            }
+        }
+        isKeyboardAppear = true
+    }
+    
+    /*To handle the view when the keyboard is down*/
+    @objc private func keyboardDown(nofication: NSNotification) {
+        if isKeyboardAppear {
+            // If casting is valid.
+            if let keyboardSize = (nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                if keyboardSize.minY < IDTextField.frame.maxY {
+                    if self.view.frame.origin.y !=  0{
+                        self.view.frame.origin.y += (IDTextField.frame.maxY - keyboardSize.origin.y) + 10
+                    }
+                }
+            }
+            isKeyboardAppear = false
+        }
+    }
 
+}
 
+// MARK: ~ Text Field Delegate Methods
+extension IDViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        view.endEditing(true)
+    }
 }
 

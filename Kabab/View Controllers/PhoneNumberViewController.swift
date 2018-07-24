@@ -17,10 +17,15 @@ class PhoneNumberViewController: UIViewController {
     // MARK: ~ Variables
     let backItem = UIBarButtonItem()
     var IDNumber = ""
+    var isKeyboardAppear = false
     
     // MARK: ~ Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Notify if the keyboard changes its status.
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,5 +67,35 @@ class PhoneNumberViewController: UIViewController {
         }
     }
     
+    
+    /*To handle the view when the keyboard is up*/
+    @objc private func keyboardUp(nofication: NSNotification) {
+        if !isKeyboardAppear {
+            // If casting is valid.
+            if let keyboardSize = (nofication.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if keyboardSize.minY < phoneNumberTextField.frame.maxY {
+                    if self.view.frame.origin.y ==  0 {
+                        self.view.frame.origin.y -= (phoneNumberTextField.frame.maxY - keyboardSize.origin.y) + 10
+                    }
+                }
+            }
+        }
+        isKeyboardAppear = true
+    }
+    
+    /*To handle the view when the keyboard is down*/
+    @objc private func keyboardDown(nofication: NSNotification) {
+        if isKeyboardAppear {
+            // If casting is valid.
+            if let keyboardSize = (nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                if keyboardSize.minY < phoneNumberTextField.frame.maxY {
+                    if self.view.frame.origin.y !=  0{
+                        self.view.frame.origin.y += (phoneNumberTextField.frame.maxY - keyboardSize.origin.y) + 10
+                    }
+                }
+            }
+            isKeyboardAppear = false
+        }
+    }
     // MARK: ~ Navigation
 }

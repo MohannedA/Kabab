@@ -16,11 +16,14 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var SMSTextField04: UITextField!
     @IBOutlet weak var resendButton: UIButton!
     @IBOutlet weak var resendText: UILabel!
+    @IBOutlet weak var resendView: UIView!
     
     // MARK: ~ Variables
     var SMSText = ""
     var IDNumebr = ""
     var phoneNumber = ""
+    var isKeyboardAppear = false
+    var isResendViewMoveUp = false
     // Timer variables
     var timer = Timer()
     var isTimerFinished = false
@@ -36,8 +39,8 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         SMSTextField04.delegate = self
         
         // Notify if the keyboard changes its status.
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
     }
     
@@ -109,19 +112,35 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
     //MARK: ~ Private Methods
     /*To handle the view when the keyboard is up*/
      @objc private func keyboardUp(nofication: NSNotification) {
-        // If casting is valid.
-        if let _ = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
-            let value: CGFloat = (225.0 * view.bounds.height)/736.0 // Note: Linear method is followed.
-            view.frame.origin.y = 0
-            view.frame.origin.y -= value
+        if !isKeyboardAppear {
+            // If casting is valid.
+            if let keyboardSize = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
+      
+                let value = (225.0 * view.bounds.height)/736.0 // Note: Linear method is followed.
+                view.frame.origin.y = 0
+                //view.frame.origin.y -= (resendView.frame.maxY - keyboardSize.origin.y) + 10
+                print("... W")
+                if !isResendViewMoveUp {
+                    print("... M")
+                    view.frame.origin.y -= value//(resendView.frame.maxY - keyboardSize.origin.y) + 10
+                    isResendViewMoveUp = true
+                }
+            }
+            isKeyboardAppear = true
         }
     }
     
     /*To handle the view when the keyboard is down*/
     @objc private func keyboardDown(nofication: NSNotification) {
-        // If casting is valid.
-        if let _ = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
-            view.frame.origin.y = 0
+        if isKeyboardAppear {
+            // If casting is valid.
+            if let _ = ((nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) {
+                if isResendViewMoveUp {
+                    resendView.frame.origin.y = 0
+                    isResendViewMoveUp = false
+                }
+            }
+            isKeyboardAppear = false
         }
     }
     
