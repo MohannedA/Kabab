@@ -54,6 +54,9 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: ~ TextField Delegate Methods 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let  char = string.cString(using: String.Encoding.utf8)!
+        let isBackSpace = strcmp(char, "\\b")
+        
         if ((textField.text?.count)! < 1) && (string.count > 0) { // If the responder goes forward.
             switch textField {
             case SMSTextField01:
@@ -95,13 +98,30 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
             // Empty the string in the text field.
             textField.text = ""
             return false
+        
         } else if (textField.text?.count)! >= 1 { // If more than one number are written.
+            switch textField {
+            case SMSTextField01:
+                SMSTextField02.becomeFirstResponder()
+            case SMSTextField02:
+                SMSTextField03.becomeFirstResponder()
+            case SMSTextField03:
+                SMSTextField04.becomeFirstResponder()
+            case SMSTextField04:
+                SMSTextField04.resignFirstResponder()
+            default:
+                break
+            }
             // Make the text field contains only one number.
             textField.text = string
             return false
+        } else if (isBackSpace == -92) {
+                print("Backspace was pressed")
+            return true
         }
         return true
     }
+    
     
     // MARK: ~ Actions
     @IBAction func onClickResend(_ sender: UIButton) {
