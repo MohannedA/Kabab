@@ -113,7 +113,7 @@ class VisitorsViewController: UIViewController {
     
     @objc func onClickSearchButton(_ sender: UIBarButtonItem) {
         // Go to search view controller.
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "TabBarController", bundle: nil)
         let searchViewController = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
         searchViewController.visitorsData = visitorsData
         navigationController?.pushViewController(searchViewController, animated: true)

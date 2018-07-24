@@ -92,6 +92,7 @@ extension SearchViewController: UISearchBarDelegate {
                 tableView.separatorStyle = .none
                 
             } else {
+                // Set background view to nil in case there is result. 
                 tableView.backgroundView = nil
             }
             

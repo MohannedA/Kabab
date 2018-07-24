@@ -18,7 +18,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate{
         self.delegate = self
         
         // Define storyboard.
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "TabBarController", bundle: nil)
         
         // Define scanner view controller.
         let scannerViewController = storyboard.instantiateViewController(withIdentifier: "ScannerViewController") as! ScannerViewController

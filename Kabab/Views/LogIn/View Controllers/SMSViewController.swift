@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SMSViewController: UIViewController, UITextFieldDelegate {
+class SMSViewController: UIViewController {
     //MARK: ~ Properties
     @IBOutlet weak var SMSTextField01: UITextField!
     @IBOutlet weak var SMSTextField02: UITextField!
@@ -51,76 +51,6 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
         // Start the view by making the first text field, first responder.
         //SMSTextField01.becomeFirstResponder()
     }*/
-    
-    // MARK: ~ TextField Delegate Methods 
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let  char = string.cString(using: String.Encoding.utf8)!
-        let isBackSpace = strcmp(char, "\\b")
-        
-        if ((textField.text?.count)! < 1) && (string.count > 0) { // If the responder goes forward.
-            switch textField {
-            case SMSTextField01:
-                SMSTextField02.becomeFirstResponder()
-            case SMSTextField02:
-                SMSTextField03.becomeFirstResponder()
-            case SMSTextField03:
-                SMSTextField04.becomeFirstResponder()
-            case SMSTextField04:
-                SMSTextField04.resignFirstResponder()
-            default:
-                break
-            }
-            // Enter the string in the text field.
-            textField.text = string
-            SMSText += string
-            if SMSText.count == 4 { // 4 is the number of SMS text fields.
-                let verificationSuccessfulViewController = storyboard?.instantiateViewController(withIdentifier: "VerificationSuccessfulViewController") as! VerificationSuccessfulViewController
-                // Delete all object(Employee) data.
-                EmployeeLocalCRUD.shered.deleteAll()
-                // Insert Employee account data.
-                EmployeeLocalCRUD.shered.insert(item: Employee(fullName: "Anything", IDNumber: IDNumebr, phoneNumber: phoneNumber, email: "anything@dopravo.com"))
-                present(verificationSuccessfulViewController, animated: true, completion: nil)
-            }
-            return false
-        } else if ((textField.text?.count)! >= 1) && (string.count == 0) { // If the responder goes backword(delete).
-            switch textField {
-            case SMSTextField02:
-                SMSTextField01.becomeFirstResponder()
-            case SMSTextField03:
-                SMSTextField02.becomeFirstResponder()
-            case SMSTextField04:
-                SMSTextField03.becomeFirstResponder()
-            case SMSTextField01:
-                SMSTextField01.resignFirstResponder()
-            default:
-                break
-            }
-            // Empty the string in the text field.
-            textField.text = ""
-            return false
-        
-        } else if (textField.text?.count)! >= 1 { // If more than one number are written.
-            switch textField {
-            case SMSTextField01:
-                SMSTextField02.becomeFirstResponder()
-            case SMSTextField02:
-                SMSTextField03.becomeFirstResponder()
-            case SMSTextField03:
-                SMSTextField04.becomeFirstResponder()
-            case SMSTextField04:
-                SMSTextField04.resignFirstResponder()
-            default:
-                break
-            }
-            // Make the text field contains only one number.
-            textField.text = string
-            return false
-        } else if (isBackSpace == -92) {
-                print("Backspace was pressed")
-            return true
-        }
-        return true
-    }
     
     
     // MARK: ~ Actions
@@ -187,5 +117,76 @@ class SMSViewController: UIViewController, UITextFieldDelegate {
             resendButton.isEnabled = true
         }
     }
+}
 
+// MARK: ~ TextField Delegate Methods
+extension SMSViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let  char = string.cString(using: String.Encoding.utf8)!
+        let isBackSpace = strcmp(char, "\\b")
+        
+        if ((textField.text?.count)! < 1) && (string.count > 0) { // If the responder goes forward.
+            switch textField {
+            case SMSTextField01:
+                SMSTextField02.becomeFirstResponder()
+            case SMSTextField02:
+                SMSTextField03.becomeFirstResponder()
+            case SMSTextField03:
+                SMSTextField04.becomeFirstResponder()
+            case SMSTextField04:
+                SMSTextField04.resignFirstResponder()
+            default:
+                break
+            }
+            // Enter the string in the text field.
+            textField.text = string
+            SMSText += string
+            if SMSText.count == 4 { // 4 is the number of SMS text fields.
+                let verificationSuccessfulViewController = storyboard?.instantiateViewController(withIdentifier: "VerificationSuccessfulViewController") as! VerificationSuccessfulViewController
+                // Delete all object(Employee) data.
+                EmployeeLocalCRUD.shered.deleteAll()
+                // Insert Employee account data.
+                EmployeeLocalCRUD.shered.insert(item: Employee(fullName: "Anything", IDNumber: IDNumebr, phoneNumber: phoneNumber, email: "anything@dopravo.com"))
+                present(verificationSuccessfulViewController, animated: true, completion: nil)
+            }
+            return false
+        } else if ((textField.text?.count)! >= 1) && (string.count == 0) { // If the responder goes backword(delete).
+            switch textField {
+            case SMSTextField02:
+                SMSTextField01.becomeFirstResponder()
+            case SMSTextField03:
+                SMSTextField02.becomeFirstResponder()
+            case SMSTextField04:
+                SMSTextField03.becomeFirstResponder()
+            case SMSTextField01:
+                SMSTextField01.resignFirstResponder()
+            default:
+                break
+            }
+            // Empty the string in the text field.
+            textField.text = ""
+            return false
+            
+        } else if (textField.text?.count)! >= 1 { // If more than one number are written.
+            switch textField {
+            case SMSTextField01:
+                SMSTextField02.becomeFirstResponder()
+            case SMSTextField02:
+                SMSTextField03.becomeFirstResponder()
+            case SMSTextField03:
+                SMSTextField04.becomeFirstResponder()
+            case SMSTextField04:
+                SMSTextField04.resignFirstResponder()
+            default:
+                break
+            }
+            // Make the text field contains only one number.
+            textField.text = string
+            return false
+        } else if (isBackSpace == -92) {
+            print("Backspace was pressed")
+            return true
+        }
+        return true
+    }
 }

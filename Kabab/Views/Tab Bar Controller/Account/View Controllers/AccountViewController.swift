@@ -56,7 +56,6 @@ class AccountViewController: UIViewController {
         
         let logInNavigationController = UINavigationController(rootViewController: IDViewController)
         present(logInNavigationController, animated: true, completion: nil)
-        //present(navigationController!, animated: true, completion: nil)
         
     }
     

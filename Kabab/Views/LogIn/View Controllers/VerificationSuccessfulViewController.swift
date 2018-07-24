@@ -48,7 +48,7 @@ class VerificationSuccessfulViewController: UIViewController {
             // Stop activity indicator.
             activityIndicator.stopAnimating()
             
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "TabBarController", bundle: nil)
             let tabViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! TabBarController
             present(tabViewController, animated: true, completion: nil)
         }

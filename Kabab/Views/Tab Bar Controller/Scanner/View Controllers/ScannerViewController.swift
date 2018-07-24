@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCodeViewDelegate {
+class ScannerViewController: UIViewController {
     
     // MARK: ~ Properties
     @IBOutlet weak var invitationCodeButton: UIButton!
@@ -168,7 +168,21 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
         }
     }
     
-    // MARK: ~ QRScanner Delegate Methods
+    // MARK: ~ Private Methods
+    /*To empty all the invitation code text*/
+    private func emptyInvitationCodeText() {
+        // Empty all invitation code text fields.
+        invitationCodeView.invitationCodeTextField01.text = ""
+        invitationCodeView.invitationCodeTextField02.text = ""
+        invitationCodeView.invitationCodeTextField03.text = ""
+        invitationCodeView.invitationCodeTextField04.text = ""
+        // Empty the invitation code string
+        invitationCodeView.invitationCodeString = ""
+    }
+    
+}
+// MARK: ~ QRScanner Delegate Methods
+extension ScannerViewController: QRScannerDelegate {
     func getCodeStringValue(_ codeStringValue: String) {
         //print(codeStringValue)
     }
@@ -189,24 +203,25 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
         print("bottomView maxX \(codeBounds.maxX) and \(bottomView.bounds.maxX)")
         print("bottomView maxY \(codeBounds.maxY) and \(bottomView.bounds.maxY)")
         /*if codeBounds.maxY >= QRCodeView.bounds.maxY &&
-            codeBounds.maxX <= QRCodeView.bounds.maxX &&
-            codeBounds.height <= QRCodeView.bounds.height &&
-            codeBounds.width <= QRCodeView.bounds.width &&
-            codeBounds.maxY >= topView.bounds.maxY &&
-            codeBounds.maxX  <= topView.bounds.maxX &&
-            codeBounds.maxY >= bottomView.bounds.maxY &&
-            codeBounds.maxX <= bottomView.bounds.maxX {
-            i += 1
-            print("Good \(i)")
-        }*/
-        // Between 350 and 200 is the the range where the QRcode view exist. 
+         codeBounds.maxX <= QRCodeView.bounds.maxX &&
+         codeBounds.height <= QRCodeView.bounds.height &&
+         codeBounds.width <= QRCodeView.bounds.width &&
+         codeBounds.maxY >= topView.bounds.maxY &&
+         codeBounds.maxX  <= topView.bounds.maxX &&
+         codeBounds.maxY >= bottomView.bounds.maxY &&
+         codeBounds.maxX <= bottomView.bounds.maxX {
+         i += 1
+         print("Good \(i)")
+         }*/
+        // Between 350 and 200 is the the range where the QRcode view exist.
         if codeBounds.maxY >= 350 && codeBounds.maxX >= 200 {
             i += 1
             print("Good \(i)")
         }
     }
-    
-    
+}
+
+extension ScannerViewController: InvitationCodeViewDelegate {
     // MARK: ~ Invitation Code View Delegate Methods
     func checkInvitationCode() {
         if invitationCodeView.invitationCodeString == invitationCode01 {
@@ -232,17 +247,4 @@ class ScannerViewController: UIViewController, QRScannerDelegate, InvitationCode
             
         }
     }
-    
-    // MARK: ~ Private Methods
-    /*To empty all the invitation code text*/
-    private func emptyInvitationCodeText() {
-        // Empty all invitation code text fields.
-        invitationCodeView.invitationCodeTextField01.text = ""
-        invitationCodeView.invitationCodeTextField02.text = ""
-        invitationCodeView.invitationCodeTextField03.text = ""
-        invitationCodeView.invitationCodeTextField04.text = ""
-        // Empty the invitation code string
-        invitationCodeView.invitationCodeString = ""
-    }
-    
 }
