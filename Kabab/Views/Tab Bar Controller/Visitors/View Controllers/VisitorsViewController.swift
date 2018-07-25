@@ -12,23 +12,25 @@ class VisitorsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: ~ Variables
-    var isCheckedIn: Bool = false
+    var isCheckedIn = false
     var checkedInView = CheckedInView()
     var checkedOutView = CheckedOutView()
     var expectedView = ExpectedView()
     
+    // Define view model.
+    private let viewModel = VisitorsViewModel()
+    
     // Checked status
     var checkedSectionIndex = 0
     var checkedRowIndex = 0
-    var checkedStatus: CheckedStatus = .expected
+    var checkedStatus = CheckedStatus.expected
     
     enum CheckedStatus: String {
         case expected, checkedIn, checkedOut
     }
     
     // Define mock up data.
-    var visitorsData: [[[String: String]]] = [[["Name": "Ghostbusters",  "Section": "Expected"],
-                                                    ["Name": "Keanu",  "Section": "Expected"]],[["Name": "Jason Bourne",  "Section": "CheckedIn"], ["Name": "Suicide Squad",  "Section": "CheckedIn"]], [["Name": "Star Trek Beyond",  "Section": "CheckedOut"], ["Name": "London Has Fallen",  "Section": "CheckedOut"]]]
+    var visitorsData = [[[String: String]]]() 
     // Define table sections.
     var tableSections = [0, 1, 2]
     
@@ -61,6 +63,9 @@ class VisitorsViewController: UIViewController {
         // Add search bar item. 
         let searchItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(onClickSearchButton(_:)))
         self.navigationItem.rightBarButtonItem = searchItem
+        
+        // Load visitors data.
+        visitorsData = self.viewModel.loadVisitorsData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,6 +95,7 @@ class VisitorsViewController: UIViewController {
     @objc func onClickCheckedInCheckOutButton(sender: UITapGestureRecognizer!) {
         visitorsData[2].append(["Name": visitorsData[checkedSectionIndex][checkedRowIndex]["Name"]!,  "Section": "CheckedOut"])
         visitorsData[checkedSectionIndex].remove(at: checkedRowIndex)
+        self.viewModel.refreshVisitorsData(visitorsData: visitorsData)
         tableView.reloadData()
     }
     
@@ -167,7 +173,7 @@ extension VisitorsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // Add section properties.
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: SectionHeaderHeight))
+        /*let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: SectionHeaderHeight))
         view.backgroundColor = UIColor.lightGray//UIColor(red: 253.0/255.0, green: 240.0/255.0, blue: 196.0/255.0, alpha: 1)
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: SectionHeaderHeight))
         label.font = UIFont.boldSystemFont(ofSize: 15)
@@ -184,7 +190,19 @@ extension VisitorsViewController: UITableViewDataSource, UITableViewDelegate {
             label.text = ""
         }
         view.addSubview(label)
-        return view
+         */
+        let checkSectionView = CheckSectionView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: SectionHeaderHeight))
+        switch tableSections[section] {
+        case 0:
+            checkSectionView.sectionLabel.text = "Expected"
+        case 1:
+            checkSectionView.sectionLabel.text = "Checked In"
+        case 2:
+            checkSectionView.sectionLabel.text = "Checked Out"
+        default:
+            checkSectionView.sectionLabel.text = ""
+        }
+        return checkSectionView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -24,11 +24,14 @@ class SMSViewController: UIViewController {
     var phoneNumber = ""
     var isKeyboardAppear = false
     var isResendViewMoveUp = false
-    // Timer variables
+    // Timer variables.
     var timer = Timer()
     var isTimerFinished = false
     var totalTime = 15.0 // In seconds.
     var timeRemaining = 0.0 // In seconds.
+    
+    // Define view model.
+    private let viewModel = SMSViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,13 +120,26 @@ class SMSViewController: UIViewController {
             resendButton.isEnabled = true
         }
     }
+    
+    /*To show an error message*/
+    private func showErrorMessage() {}
+    
+    /*To move the verification successful view controller*/
+    private func moveToVerificationSuccessfulViewController() {
+        // Move to verification successful view controller.
+        let verificationSuccessfulViewController = storyboard?.instantiateViewController(withIdentifier: "VerificationSuccessfulViewController") as! VerificationSuccessfulViewController
+        // Delete all object(Employee) data.
+        EmployeeLocalCRUD.shered.deleteAll()
+        // Insert Employee account data.
+        EmployeeLocalCRUD.shered.insert(item: Employee(fullName: "Anything", IDNumber: IDNumebr, phoneNumber: phoneNumber, email: "anything@dopravo.com"))
+        present(verificationSuccessfulViewController, animated: true, completion: nil)
+    }
+    
 }
 
 // MARK: ~ TextField Delegate Methods
 extension SMSViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let  char = string.cString(using: String.Encoding.utf8)!
-        let isBackSpace = strcmp(char, "\\b")
         
         if ((textField.text?.count)! < 1) && (string.count > 0) { // If the responder goes forward.
             switch textField {
@@ -142,12 +158,12 @@ extension SMSViewController: UITextFieldDelegate {
             textField.text = string
             SMSText += string
             if SMSText.count == 4 { // 4 is the number of SMS text fields.
-                let verificationSuccessfulViewController = storyboard?.instantiateViewController(withIdentifier: "VerificationSuccessfulViewController") as! VerificationSuccessfulViewController
-                // Delete all object(Employee) data.
-                EmployeeLocalCRUD.shered.deleteAll()
-                // Insert Employee account data.
-                EmployeeLocalCRUD.shered.insert(item: Employee(fullName: "Anything", IDNumber: IDNumebr, phoneNumber: phoneNumber, email: "anything@dopravo.com"))
-                present(verificationSuccessfulViewController, animated: true, completion: nil)
+                let isSMSValid = self.viewModel.checkISSMSNumberValid(SMSText: SMSText)
+                if isSMSValid {
+                    moveToVerificationSuccessfulViewController()
+                } else { // Show error message.
+                    showErrorMessage()
+                }
             }
             return false
         } else if ((textField.text?.count)! >= 1) && (string.count == 0) { // If the responder goes backword(delete).
@@ -183,9 +199,6 @@ extension SMSViewController: UITextFieldDelegate {
             // Make the text field contains only one number.
             textField.text = string
             return false
-        } else if (isBackSpace == -92) {
-            print("Backspace was pressed")
-            return true
         }
         return true
     }

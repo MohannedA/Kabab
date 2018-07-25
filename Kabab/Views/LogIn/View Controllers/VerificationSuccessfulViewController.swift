@@ -16,6 +16,9 @@ class VerificationSuccessfulViewController: UIViewController {
     // To indicate if the operation is completed or not.
     var isCompleted = false
     var activityIndicator = UIActivityIndicatorView()
+    
+    // Define view model.
+    private let viewModel = VerificationSuccessfulViewModel()
 
     // MARK: ~ Life Cycle
     override func viewDidLoad() {
@@ -43,7 +46,7 @@ class VerificationSuccessfulViewController: UIViewController {
     // MARK: ~ Actions
     @IBAction func onClickCompleteButton(_ sender: UIButton) {
         // For testing.
-        isCompleted = true
+        isCompleted = self.viewModel.checkIsVerificationCompleted() 
         if isCompleted {
             // Stop activity indicator.
             activityIndicator.stopAnimating()

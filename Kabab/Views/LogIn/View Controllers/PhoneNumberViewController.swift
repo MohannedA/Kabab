@@ -19,6 +19,9 @@ class PhoneNumberViewController: UIViewController {
     var IDNumber = ""
     var isKeyboardAppear = false
     
+    // Define view model
+    private let viewModel = PhoneNumebrViewModel()
+    
     // MARK: ~ Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,28 +33,21 @@ class PhoneNumberViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        // Change back button to have "Phone Number" title.
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Phone Number", style: .plain, target: self, action: nil)
     }
     
     // MARK: ~ Actions
     @IBAction func logIn(_ sender: UIButton) {
         // Constants
-        let textFormPhoneNumberTextField: String = phoneNumberTextField.text!
-        let isValidPhoneNumber: Bool = checkIsPhoneNumberValid(phoneNumber: textFormPhoneNumberTextField)
+        let textFormPhoneNumberTextField = phoneNumberTextField.text!
+        let isValidPhoneNumber = self.viewModel.checkIsPhoneNumberValid(phoneNumber: textFormPhoneNumberTextField)
         
         // Check if phone number is valid or not.
         if isValidPhoneNumber { // Go to phone number view controller.
-            // Define stroyboard.
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let SMSViewController = storyboard.instantiateViewController(withIdentifier: "SMSViewControllerID") as! SMSViewController
-            SMSViewController.IDNumebr = IDNumber
-            SMSViewController.phoneNumber = phoneNumberTextField.text ?? ""
-            navigationController?.pushViewController(SMSViewController, animated: true)
+            moveToSMSViewController()
         } else { // Nofify the user that invalid phone number was entered.
-            let errorTitle = "Error"
-            let errorSubtitle = "Invalid ID numebr"
-            let banner = NotificationBanner(title: errorTitle, subtitle: errorSubtitle, style: .warning)
-            banner.show()
+            showErrorMessage()
             
             // Debugging
             print("Invalid phone numebr")
@@ -59,13 +55,6 @@ class PhoneNumberViewController: UIViewController {
     }
     
     // MARK: ~ Private Methods
-    private func checkIsPhoneNumberValid(phoneNumber: String) -> Bool {
-        if let _ = VisitorLocalCRUD.shered.getByPhoneNumber(phoneNumber: phoneNumber) {
-            return true
-        } else {
-            return false
-        }
-    }
     
     
     /*To handle the view when the keyboard is up*/
@@ -97,5 +86,24 @@ class PhoneNumberViewController: UIViewController {
             isKeyboardAppear = false
         }
     }
+    
+    /*To move the SMS view controller*/
+    private func moveToSMSViewController() {
+        // Define stroyboard.
+        let storyboard = UIStoryboard(name: "LogIn", bundle: nil)
+        let SMSViewController = storyboard.instantiateViewController(withIdentifier: "SMSViewControllerID") as! SMSViewController
+        SMSViewController.IDNumebr = IDNumber
+        SMSViewController.phoneNumber = phoneNumberTextField.text ?? ""
+        navigationController?.pushViewController(SMSViewController, animated: true)
+    }
+    
+    /*To show an error message*/
+    private func showErrorMessage() {
+        let errorTitle = "Error"
+        let errorSubtitle = "Invalid phone numebr"
+        let banner = NotificationBanner(title: errorTitle, subtitle: errorSubtitle, style: .warning)
+        banner.show()
+    }
+    
     // MARK: ~ Navigation
 }

@@ -1,5 +1,5 @@
 //
-//  IDViewModel.swift
+//  SMSViewModel.swift
 //  Kabab
 //
 //  Created by mac on 12/11/1439 AH.
@@ -8,22 +8,17 @@
 
 import Foundation
 
-class IDViewModel {
+class SMSViewModel {
     
     // MARK: ~ Inits
     init() {}
     
     // MARK: ~ Public Methods
-    
-    /// To check the ID number if valid or not.
-    ///
-    /// - Returns: Bool
-    func checkIsIDValid(IDNumber: String) -> Bool {
-        if let _ = VisitorLocalCRUD.shered.getByIDNumber(IDNumber: IDNumber) {
+    func checkISSMSNumberValid(SMSText: String) -> Bool {
+        if SMSText ==  "0000" {
             return true
         } else {
             return false
         }
     }
-    
 }

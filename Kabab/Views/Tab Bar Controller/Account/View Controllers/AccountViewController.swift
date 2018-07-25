@@ -19,7 +19,8 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     
-    
+    // MARK: ~  Variables
+    private let viewModel = AccountViewModel()
     
     // MARK: ~ Life Cycle
     override func viewDidLoad() {
@@ -37,11 +38,7 @@ class AccountViewController: UIViewController {
         
         
         // Assign account data.
-        let employee = EmployeeLocalCRUD.shered.getAll().first
-        fullNameLabel.text = employee?.fullName
-        IDNumberLabel.text = employee?.IDNumber
-        phoneNumberLabel.text = employee?.phoneNumber
-        emailLabel.text = employee?.email
+        (fullNameLabel.text, IDNumberLabel.text, phoneNumberLabel.text, emailLabel.text) = self.viewModel.getEmployeeInfo()
         
         
         // Make the navigation view controller translucent.

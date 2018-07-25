@@ -13,9 +13,12 @@ class IDViewController: UIViewController {
     
     // MARK: ~ Properties
     @IBOutlet weak var IDTextField: UITextField!
-    
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
+    // Define view model.
+    private let viewModel = IDViewModel()
+    
+    // Flags. 
     var isKeyboardAppear = false
     
     // MARK: ~ Life Cycle
@@ -32,42 +35,43 @@ class IDViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        // Set ID text field delegate.
         IDTextField.delegate = self
     }
     
-    //MARK: Actions
+    //MARK: ~ Actions
     @IBAction func moveToPhoneNumberVC(_ sender: UIButton) {
         // Constants
-        let textFormIDTextField: String = IDTextField.text!
-        let isValidIDNumber: Bool = checkIsIDValid(IDNumber: textFormIDTextField)
+        let textFormIDTextField = IDTextField.text!
+        let isValidIDNumber = self.viewModel.checkIsIDValid(IDNumber: textFormIDTextField)
         
         // Check if ID is valid or not.
         if isValidIDNumber { // Go to phone number view controller.
-            // Define stroyboard.
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            // Define phone number view controller.
-            let phoneNumberViewController = storyboard.instantiateViewController(withIdentifier: "PhoneNumberViewControllerID") as! PhoneNumberViewController
-            phoneNumberViewController.IDNumber = IDTextField.text ?? ""
-            view.endEditing(true)
-            navigationController?.pushViewController(phoneNumberViewController, animated: true)
+            moveToPhoneNumebrViewController()
         } else { // Nofify the user that invalid ID was entered.
-            let errorTitle = "Error"
-            let errorSubtitle = "Invalid ID numebr"
-            let banner = NotificationBanner(title: errorTitle, subtitle: errorSubtitle, style: .warning)
-            banner.show()
-            
-            // Debugging
-            print("Invalid ID numebr")
+            showErrorMessage()
         }
     }
     
-    //MARK: Private Methods
-    private func checkIsIDValid(IDNumber: String) -> Bool {
-        if let _ = VisitorLocalCRUD.shered.getByIDNumber(IDNumber: IDNumber) {
-            return true
-        } else {
-            return false
-        }
+    //MARK: ~ Private Methods
+    
+    /*To move the phone number view controller*/
+    private func moveToPhoneNumebrViewController() {
+        // Define stroyboard.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        // Define phone number view controller.
+        let phoneNumberViewController = storyboard.instantiateViewController(withIdentifier: "PhoneNumberViewControllerID") as! PhoneNumberViewController
+        phoneNumberViewController.IDNumber = IDTextField.text ?? ""
+        view.endEditing(true)
+        navigationController?.pushViewController(phoneNumberViewController, animated: true)
+    }
+    
+    /*To show wn error message*/
+    private func showErrorMessage() {
+        let errorTitle = "Error"
+        let errorSubtitle = "Invalid ID numebr"
+        let banner = NotificationBanner(title: errorTitle, subtitle: errorSubtitle, style: .warning)
+        banner.show()
     }
     
     /*To handle the view when the keyboard is up*/

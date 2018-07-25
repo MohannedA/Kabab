@@ -20,6 +20,11 @@ class ScannerViewController: UIViewController {
     var invitationCodeView = InvitationCodeView()
     var validInvitationCodeView = InvitationCodeValidAndInvalidView()
     var invalidInvitationCodeView = InvitationCodeValidAndInvalidView()
+    var checkedInView = CheckedInView()
+    
+    // Define view model.
+    private let viewModel = ScannerViewModel()
+    
     // Test variables.
     var invitationCode01 = "0000"
     var invitationCode02 = "1111"
@@ -80,6 +85,11 @@ class ScannerViewController: UIViewController {
         // Assign error string to validity status label.
         invalidInvitationCodeView.validityStatus.text = "Invitation code is not valid."
         invalidInvitationCodeView.validityStatus.textColor = .red
+        
+        // Set checked in view.
+        checkedInView = CheckedInView(frame: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 497))
+        view.addSubview(checkedInView)
+        view.bringSubview(toFront: checkedInView)
         
         
         
@@ -180,11 +190,27 @@ class ScannerViewController: UIViewController {
         invitationCodeView.invitationCodeString = ""
     }
     
+    /*To show check in view*/
+    private func showCheckedInView() {
+        checkedInView.animateShowFromBottom(completion: nil)
+    }
+    
+    /*To show an error message*/
+    private func showErrorMessage() {
+        
+    }
+    
 }
 // MARK: ~ QRScanner Delegate Methods
 extension ScannerViewController: QRScannerDelegate {
     func getCodeStringValue(_ codeStringValue: String) {
-        //print(codeStringValue)
+        let isQRCodeValid = self.viewModel.checkIsQRCodeValid(code: codeStringValue)
+        if isQRCodeValid {
+            showCheckedInView()
+            // TODO: Applay visitors data refresh. 
+        } else {
+            showErrorMessage()
+        }
     }
     
     func setPreviewView() -> UIView {
@@ -220,11 +246,11 @@ extension ScannerViewController: QRScannerDelegate {
         }
     }
 }
-
+// MARK: ~ Invitation Code View Delegate Methods
 extension ScannerViewController: InvitationCodeViewDelegate {
-    // MARK: ~ Invitation Code View Delegate Methods
     func checkInvitationCode() {
-        if invitationCodeView.invitationCodeString == invitationCode01 {
+        let isInvitationCodeValid = self.viewModel.checkIsInvitationCodeValid(code: invitationCodeView.invitationCodeString)
+        if isInvitationCodeValid {
             // Hide invitation code view.
             invitationCodeView.animateHideToBottom(completion: nil)
             // Bring the invalid invitation code view to the front of the blur effect.

@@ -38,7 +38,7 @@ class EmptySearchView: UIView {
     }
     
     // MARK: ~ Private Methods
-    func setImageView() {
+    private func setImageView() {
         let imageView = UIView(frame: CGRect(origin: CGPoint(x: (self.center.x) - 250/2,y : (self.center.y) - 250/2 - 200 ), size: CGSize(width: 250, height: 250)))
         imageView.backgroundColor = .blue
         imageView.sizeToFit()
@@ -46,7 +46,7 @@ class EmptySearchView: UIView {
         emptyView.bringSubview(toFront: imageView)
     }
     
-    func setMessageLabel() {
+    private func setMessageLabel() {
         let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 250  , height: 178))
         messageLabel = UILabel(frame: rect)
         emptyView.addSubview(messageLabel)
