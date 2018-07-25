@@ -14,6 +14,10 @@ class SMSViewModel {
     init() {}
     
     // MARK: ~ Public Methods
+    
+    /// To check if SMS number is valid or not. 
+    ///
+    /// - Returns: Bool
     func checkISSMSNumberValid(SMSText: String) -> Bool {
         if SMSText ==  "0000" {
             return true

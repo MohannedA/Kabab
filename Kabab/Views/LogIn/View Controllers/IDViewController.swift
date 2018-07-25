@@ -15,6 +15,12 @@ class IDViewController: UIViewController {
     @IBOutlet weak var IDTextField: UITextField!
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
+    @IBOutlet weak var contactUsButton: UIButton!
+    @IBOutlet weak var poweredByLabel: UILabel!
+    @IBOutlet weak var dopravoLabel: UILabel!
+    @IBOutlet weak var needHelpLabel: UILabel!
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var nextButton: UIButton!
     // Define view model.
     private let viewModel = IDViewModel()
     
@@ -37,6 +43,18 @@ class IDViewController: UIViewController {
         
         // Set ID text field delegate.
         IDTextField.delegate = self
+        
+        //contactUsButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        //contactUsButton.sizeToFit()
+        poweredByLabel.adjustsFontSizeToFitWidth = true
+        needHelpLabel.adjustsFontSizeToFitWidth = true
+        mainView.layer.cornerRadius = 10
+        
+        nextButton.clipsToBounds = true
+        nextButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        nextButton.backgroundColor = UIColor.orange
+        nextButton.layer.cornerRadius = 10
+        
     }
     
     //MARK: ~ Actions
@@ -80,6 +98,7 @@ class IDViewController: UIViewController {
             // If casting is valid.
             if let keyboardSize = (nofication.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 if keyboardSize.minY < IDTextField.frame.maxY {
+                    print("...M")
                    if self.view.frame.origin.y ==  0 {
                         self.view.frame.origin.y -= (IDTextField.frame.maxY - keyboardSize.origin.y) + 10
                     }

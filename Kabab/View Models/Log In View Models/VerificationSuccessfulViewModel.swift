@@ -14,7 +14,10 @@ class VerificationSuccessfulViewModel {
     init() {}
     
     // MARK: ~ Public Methods
-    /*To check is verification completed or not*/
+    
+    /// To check is verification completed or not.
+    ///
+    /// - Returns: Bool
     func checkIsVerificationCompleted() -> Bool {
         return true
     }

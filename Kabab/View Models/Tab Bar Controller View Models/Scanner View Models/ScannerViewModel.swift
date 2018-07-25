@@ -14,10 +14,17 @@ class ScannerViewModel {
     init() {}
     
     // MARK: ~ Public Methods
+    
+    /// To check if QR code is valid or not.
+    ///
+    /// - Returns: Bool
     func checkIsQRCodeValid(code: String) -> Bool {
         return true
     }
     
+    /// To check if invitation code is valid or not.
+    ///
+    /// - Returns: Bool
     func checkIsInvitationCodeValid(code: String) -> Bool {
         if code == "0000" {
             return true
