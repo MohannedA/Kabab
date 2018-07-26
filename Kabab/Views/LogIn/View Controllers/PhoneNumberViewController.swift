@@ -32,17 +32,43 @@ class PhoneNumberViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set phone number text field delegate.
+        phoneNumberTextField.delegate = self
+        
+        // Set background color.
         view.backgroundColor = #colorLiteral(red: 0.4709999859, green: 0.8740000129, blue: 0.9570000172, alpha: 1)
         
         // Notify if the keyboard changes its status.
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        // Set labels font size.
         if UIScreen.current == .iPhone4_0 {
-            print("Got Here")
             poweredByLabel.font = poweredByLabel.font.withSize(10)
             needHelpLabel.font = needHelpLabel.font.withSize(10)
         }
+        
+        // Add radius to the main view.
+        mainView.layer.cornerRadius = 10
+        
+        // Set background color.
+        view.backgroundColor = #colorLiteral(red: 0.4709999859, green: 0.8740000129, blue: 0.9570000172, alpha: 1)
+        
+        // Add text field bottom border.
+        //IDTextField.layer.addBorder(edge: .bottom, color: .black, thickness: 2)
+        phoneNumberTextField.layer.addShadowBottomBorder(color: #colorLiteral(red: 0.8550000191, green: 0.8550000191, blue: 0.8550000191, alpha: 1))
+        //IDTextField.layoutIfNeeded()
+        
+        // Assign text field clear button image.
+        let clearImage = UIImage(named: "delete-sign.png")
+        phoneNumberTextField.clearButtonWithImage(clearImage!)
+        
+        // Set next button.
+        nextButton.addBottomCornerRadius(10)
+        nextButton.setBackgroundColor(#colorLiteral(red: 1, green: 0.5839999914, blue: 0, alpha: 1), for: .normal)
+        nextButton.setBackgroundColor(#colorLiteral(red: 0.8000000119, green: 0.8000000119, blue: 0.8000000119, alpha: 1), for: .disabled)
+        // By default, set it to disabled since text field is empty.
+        nextButton.isEnabled = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,9 +102,10 @@ class PhoneNumberViewController: UIViewController {
         if !isKeyboardAppear {
             // If casting is valid.
             if let keyboardSize = (nofication.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                if keyboardSize.minY < phoneNumberTextField.frame.maxY {
+                let textFieldFrame = view.convert(phoneNumberTextField.frame, from: mainView)
+                if keyboardSize.minY < (textFieldFrame.maxY) {
                     if self.view.frame.origin.y ==  0 {
-                        self.view.frame.origin.y -= (phoneNumberTextField.frame.maxY - keyboardSize.origin.y) + 10
+                        self.view.frame.origin.y -= ((textFieldFrame.maxY) - keyboardSize.origin.y) + 10
                     }
                 }
             }
@@ -91,9 +118,10 @@ class PhoneNumberViewController: UIViewController {
         if isKeyboardAppear {
             // If casting is valid.
             if let keyboardSize = (nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                if keyboardSize.minY < phoneNumberTextField.frame.maxY {
+                let textFieldFrame = view.convert(phoneNumberTextField.frame, from: mainView)
+                if keyboardSize.minY < textFieldFrame.maxY {
                     if self.view.frame.origin.y !=  0{
-                        self.view.frame.origin.y += (phoneNumberTextField.frame.maxY - keyboardSize.origin.y) + 10
+                        self.view.frame.origin.y += (textFieldFrame.maxY - keyboardSize.origin.y) + 10
                     }
                 }
             }
@@ -103,6 +131,10 @@ class PhoneNumberViewController: UIViewController {
     
     /*To move the SMS view controller*/
     private func moveToSMSViewController() {
+        // Set valid status.
+        phoneNumberTextField.textColor = .black
+        phoneNumberTextField.layer.shadowColor = #colorLiteral(red: 0.8550000191, green: 0.8550000191, blue: 0.8550000191, alpha: 1)
+        errorMessageLabel.textColor = .white
         // Define stroyboard.
         let storyboard = UIStoryboard(name: "LogIn", bundle: nil)
         let SMSViewController = storyboard.instantiateViewController(withIdentifier: "SMSViewControllerID") as! SMSViewController
@@ -113,11 +145,33 @@ class PhoneNumberViewController: UIViewController {
     
     /*To show an error message*/
     private func showErrorMessage() {
-        let errorTitle = "Error"
-        let errorSubtitle = "Invalid phone numebr"
-        let banner = NotificationBanner(title: errorTitle, subtitle: errorSubtitle, style: .warning)
-        banner.show()
+        phoneNumberTextField.textColor = .red
+        phoneNumberTextField.layer.shadowColor = UIColor.red.cgColor
+        errorMessageLabel.textColor = .red
+        
+        /*
+         let errorTitle = "Error"
+         let errorSubtitle = "Invalid phone numebr"
+         let banner = NotificationBanner(title: errorTitle, subtitle: errorSubtitle, style: .warning)
+         banner.show()
+         */
     }
     
     // MARK: ~ Navigation
 }
+
+// MARK: ~ Text Field Delegate Methods
+extension PhoneNumberViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        view.endEditing(true)
+        if textField.text != "" {
+            nextButton.isEnabled = true
+        }
+    }
+}
+

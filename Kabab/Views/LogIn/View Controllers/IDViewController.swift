@@ -52,7 +52,6 @@ class IDViewController: UIViewController {
         //needHelpLabel.adjustsFontSizeToFitWidth = true
         
         if UIScreen.current == .iPhone4_0 {
-            print("Got Here")
             poweredByLabel.font = poweredByLabel.font.withSize(10)
             needHelpLabel.font = needHelpLabel.font.withSize(10)
         }
@@ -70,7 +69,7 @@ class IDViewController: UIViewController {
         
         // Assign text field clear button image.
         let clearImage = UIImage(named: "delete-sign.png")
-        self.IDTextField.clearButtonWithImage(clearImage!)
+        IDTextField.clearButtonWithImage(clearImage!)
         
         // Set next button.
         nextButton.addBottomCornerRadius(10)
