@@ -13,6 +13,12 @@ class PhoneNumberViewController: UIViewController {
     
     // MARK: ~ Properties
     @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var contactUsButton: UIButton!
+    @IBOutlet weak var poweredByLabel: UILabel!
+    @IBOutlet weak var needHelpLabel: UILabel!
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var errorMessageLabel: UILabel!
 
     // MARK: ~ Variables
     let backItem = UIBarButtonItem()
@@ -26,9 +32,17 @@ class PhoneNumberViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = #colorLiteral(red: 0.4709999859, green: 0.8740000129, blue: 0.9570000172, alpha: 1)
+        
         // Notify if the keyboard changes its status.
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        if UIScreen.current == .iPhone4_0 {
+            print("Got Here")
+            poweredByLabel.font = poweredByLabel.font.withSize(10)
+            needHelpLabel.font = needHelpLabel.font.withSize(10)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -116,9 +116,9 @@ class IDViewController: UIViewController {
         IDTextField.layer.shadowColor = #colorLiteral(red: 0.8550000191, green: 0.8550000191, blue: 0.8550000191, alpha: 1)
         errorMessageLabel.textColor = .white
         // Define stroyboard.
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "LogIn", bundle: nil)
         // Define phone number view controller.
-        let phoneNumberViewController = storyboard.instantiateViewController(withIdentifier: "PhoneNumberViewControllerID") as! PhoneNumberViewController
+        let phoneNumberViewController = storyboard.instantiateViewController(withIdentifier: "PhoneNumberViewController3") as! PhoneNumberViewController
         phoneNumberViewController.IDNumber = IDTextField.text ?? ""
         view.endEditing(true)
         navigationController?.pushViewController(phoneNumberViewController, animated: true)
