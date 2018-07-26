@@ -8,6 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
+import ScreenType
 
 class IDViewController: UIViewController {
     
@@ -17,7 +18,6 @@ class IDViewController: UIViewController {
     
     @IBOutlet weak var contactUsButton: UIButton!
     @IBOutlet weak var poweredByLabel: UILabel!
-    @IBOutlet weak var dopravoLabel: UILabel!
     @IBOutlet weak var needHelpLabel: UILabel!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var nextButton: UIButton!
@@ -44,16 +44,26 @@ class IDViewController: UIViewController {
         // Set ID text field delegate.
         IDTextField.delegate = self
         
+        // Set labels font size.
         //contactUsButton.titleLabel?.adjustsFontSizeToFitWidth = true
         //contactUsButton.sizeToFit()
-        poweredByLabel.adjustsFontSizeToFitWidth = true
-        needHelpLabel.adjustsFontSizeToFitWidth = true
+        //poweredByLabel.adjustsFontSizeToFitWidth = true
+        //needHelpLabel.adjustsFontSizeToFitWidth = true
+        
+        if UIScreen.current == .iPhone4_0 {
+            print("Got Here")
+            poweredByLabel.font = poweredByLabel.font.withSize(10)
+            needHelpLabel.font = needHelpLabel.font.withSize(10)
+        }
+        
+        // Add radius to the main view.
         mainView.layer.cornerRadius = 10
         
-        nextButton.clipsToBounds = true
-        nextButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
+        
+        // Set next button text.
+        nextButton.addBottomCornerRadius(10)
         nextButton.backgroundColor = UIColor.orange
-        nextButton.layer.cornerRadius = 10
         
     }
     
