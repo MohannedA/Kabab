@@ -59,11 +59,22 @@ class IDViewController: UIViewController {
         // Add radius to the main view.
         mainView.layer.cornerRadius = 10
         
+        // Set background color.
+        view.backgroundColor = #colorLiteral(red: 0.4709999859, green: 0.8740000129, blue: 0.9570000172, alpha: 1)
         
+        // Add text field bottom border.
+        IDTextField.layer.addShadowBottomBorder(color: #colorLiteral(red: 0.8550000191, green: 0.8550000191, blue: 0.8550000191, alpha: 1))
         
-        // Set next button text.
+        // Assign text field clear button image.
+        let clearImage = UIImage(named: "delete-sign.png")
+        self.IDTextField.clearButtonWithImage(clearImage!)
+        
+        // Set next button.
         nextButton.addBottomCornerRadius(10)
-        nextButton.backgroundColor = UIColor.orange
+        nextButton.setBackgroundColor(#colorLiteral(red: 1, green: 0.5839999914, blue: 0, alpha: 1), for: .normal)
+        nextButton.setBackgroundColor(#colorLiteral(red: 0.8000000119, green: 0.8000000119, blue: 0.8000000119, alpha: 1), for: .disabled)
+        // By default, set it to disabled since text field is empty.
+        nextButton.isEnabled = false
         
     }
     
@@ -107,10 +118,10 @@ class IDViewController: UIViewController {
         if !isKeyboardAppear {
             // If casting is valid.
             if let keyboardSize = (nofication.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                if keyboardSize.minY < IDTextField.frame.maxY {
-                    print("...M")
+                let textFieldFrame = view.convert(IDTextField.frame, from: mainView)
+                if keyboardSize.minY < (textFieldFrame.maxY) {
                    if self.view.frame.origin.y ==  0 {
-                        self.view.frame.origin.y -= (IDTextField.frame.maxY - keyboardSize.origin.y) + 10
+                    self.view.frame.origin.y -= ((textFieldFrame.maxY) - keyboardSize.origin.y) + 10
                     }
                 }
             }
@@ -123,9 +134,10 @@ class IDViewController: UIViewController {
         if isKeyboardAppear {
             // If casting is valid.
             if let keyboardSize = (nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                if keyboardSize.minY < IDTextField.frame.maxY {
+                let textFieldFrame = view.convert(IDTextField.frame, from: mainView)
+                if keyboardSize.minY < textFieldFrame.maxY {
                     if self.view.frame.origin.y !=  0{
-                        self.view.frame.origin.y += (IDTextField.frame.maxY - keyboardSize.origin.y) + 10
+                        self.view.frame.origin.y += (textFieldFrame.maxY - keyboardSize.origin.y) + 10
                     }
                 }
             }
@@ -144,6 +156,9 @@ extension IDViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         view.endEditing(true)
+        if textField.text != "" {
+            nextButton.isEnabled = true
+        }
     }
 }
 
