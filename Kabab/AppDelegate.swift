@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "LogIn", bundle: nil)
         
         // Create reference for the ID view controller.
-        let IDViewController = storyboard.instantiateViewController(withIdentifier: "IDViewController2") as! IDViewController
+        let IDViewController = storyboard.instantiateViewController(withIdentifier: "IDViewController3") as! IDViewController
         
         // Create navigation controller and make the ID view controller, the first view controller.
         let navigationController = UINavigationController(rootViewController: IDViewController)
