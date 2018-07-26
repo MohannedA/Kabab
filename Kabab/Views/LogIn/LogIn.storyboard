@@ -589,6 +589,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your ID number does not match" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sdf-dR-EUh">
+                                        <rect key="frame" x="30" y="186" width="250" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -596,11 +602,14 @@
                                     <constraint firstItem="Pps-iz-vpO" firstAttribute="leading" secondItem="aZ0-fd-tjq" secondAttribute="leading" id="4CU-VI-cGT"/>
                                     <constraint firstAttribute="trailing" secondItem="QUh-1v-K2k" secondAttribute="trailing" constant="30" id="6Fj-Mh-7VZ"/>
                                     <constraint firstAttribute="bottom" secondItem="Pps-iz-vpO" secondAttribute="bottom" id="AgT-zq-OKK"/>
+                                    <constraint firstItem="Sdf-dR-EUh" firstAttribute="leading" secondItem="aZ0-fd-tjq" secondAttribute="leading" constant="30" id="IQj-aa-W28"/>
                                     <constraint firstItem="QUh-1v-K2k" firstAttribute="top" secondItem="Lsw-Ue-dMg" secondAttribute="bottom" constant="7.5" id="Iju-gK-ZFD"/>
+                                    <constraint firstAttribute="trailing" secondItem="Sdf-dR-EUh" secondAttribute="trailing" constant="30" id="KKx-kN-b1t"/>
                                     <constraint firstAttribute="bottom" secondItem="Pps-iz-vpO" secondAttribute="bottom" id="PdS-q3-jfQ"/>
                                     <constraint firstItem="Lsw-Ue-dMg" firstAttribute="top" secondItem="BNH-w2-QmX" secondAttribute="bottom" constant="24" id="SYC-TN-MpQ"/>
                                     <constraint firstItem="Lsw-Ue-dMg" firstAttribute="leading" secondItem="aZ0-fd-tjq" secondAttribute="leading" constant="13" id="af1-kP-Zdc"/>
                                     <constraint firstItem="Pps-iz-vpO" firstAttribute="leading" secondItem="aZ0-fd-tjq" secondAttribute="leading" id="eB6-Ur-QLu"/>
+                                    <constraint firstItem="Sdf-dR-EUh" firstAttribute="top" secondItem="QUh-1v-K2k" secondAttribute="bottom" constant="7.5" id="exp-sP-olY"/>
                                     <constraint firstItem="QUh-1v-K2k" firstAttribute="leading" secondItem="aZ0-fd-tjq" secondAttribute="leading" constant="30" id="gTU-xD-EJB"/>
                                     <constraint firstAttribute="width" secondItem="aZ0-fd-tjq" secondAttribute="height" multiplier="155:156" id="pa5-cv-gHj"/>
                                     <constraint firstItem="BNH-w2-QmX" firstAttribute="top" secondItem="aZ0-fd-tjq" secondAttribute="top" constant="29" id="pnI-r1-i2t"/>
@@ -684,6 +693,7 @@
                     <connections>
                         <outlet property="IDTextField" destination="QUh-1v-K2k" id="fvA-SB-2r7"/>
                         <outlet property="contactUsButton" destination="K26-pM-DTw" id="WE6-1l-CJL"/>
+                        <outlet property="errorMessageLabel" destination="Sdf-dR-EUh" id="901-j7-AiO"/>
                         <outlet property="keyboardHeightLayoutConstraint" destination="pzv-vD-t4b" id="Ezj-J2-GRU"/>
                         <outlet property="mainView" destination="aZ0-fd-tjq" id="7uZ-Ss-lgO"/>
                         <outlet property="needHelpLabel" destination="i5f-eo-IJd" id="7iG-KQ-7IB"/>

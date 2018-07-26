@@ -21,6 +21,7 @@ class IDViewController: UIViewController {
     @IBOutlet weak var needHelpLabel: UILabel!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var errorMessageLabel: UILabel!
     // Define view model.
     private let viewModel = IDViewModel()
     
@@ -63,7 +64,9 @@ class IDViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.4709999859, green: 0.8740000129, blue: 0.9570000172, alpha: 1)
         
         // Add text field bottom border.
+        //IDTextField.layer.addBorder(edge: .bottom, color: .black, thickness: 2)
         IDTextField.layer.addShadowBottomBorder(color: #colorLiteral(red: 0.8550000191, green: 0.8550000191, blue: 0.8550000191, alpha: 1))
+        //IDTextField.layoutIfNeeded()
         
         // Assign text field clear button image.
         let clearImage = UIImage(named: "delete-sign.png")
@@ -76,6 +79,18 @@ class IDViewController: UIViewController {
         // By default, set it to disabled since text field is empty.
         nextButton.isEnabled = false
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        /*
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGray.cgColor
+        border.frame = CGRect(x: 0, y: IDTextField.frame.size.height - 1, width: IDTextField.frame.size.width, height: 2)
+        border.borderWidth = width
+        IDTextField.layer.addSublayer(border)
+        IDTextField.layer.masksToBounds = true
+        */
     }
     
     //MARK: ~ Actions
@@ -96,6 +111,10 @@ class IDViewController: UIViewController {
     
     /*To move the phone number view controller*/
     private func moveToPhoneNumebrViewController() {
+        // Set valid status.
+        IDTextField.textColor = .black
+        IDTextField.layer.shadowColor = #colorLiteral(red: 0.8550000191, green: 0.8550000191, blue: 0.8550000191, alpha: 1)
+        errorMessageLabel.textColor = .white
         // Define stroyboard.
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         // Define phone number view controller.
@@ -107,10 +126,16 @@ class IDViewController: UIViewController {
     
     /*To show wn error message*/
     private func showErrorMessage() {
+        IDTextField.textColor = .red
+        IDTextField.layer.shadowColor = UIColor.red.cgColor
+        errorMessageLabel.textColor = .red
+        
+        /*
         let errorTitle = "Error"
         let errorSubtitle = "Invalid ID numebr"
         let banner = NotificationBanner(title: errorTitle, subtitle: errorSubtitle, style: .warning)
         banner.show()
+         */
     }
     
     /*To handle the view when the keyboard is up*/
