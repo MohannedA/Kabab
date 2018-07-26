@@ -80,16 +80,10 @@ class IDViewController: UIViewController {
         
     }
     
-    override func viewDidLayoutSubviews() {
-        /*
-        let border = CALayer()
-        let width = CGFloat(2.0)
-        border.borderColor = UIColor.darkGray.cgColor
-        border.frame = CGRect(x: 0, y: IDTextField.frame.size.height - 1, width: IDTextField.frame.size.width, height: 2)
-        border.borderWidth = width
-        IDTextField.layer.addSublayer(border)
-        IDTextField.layer.masksToBounds = true
-        */
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Change back button to have "Phone Number" title.
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
     
     //MARK: ~ Actions
