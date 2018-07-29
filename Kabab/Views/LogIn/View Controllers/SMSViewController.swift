@@ -14,6 +14,11 @@ class SMSViewController: UIViewController {
     @IBOutlet weak var SMSTextField02: UITextField!
     @IBOutlet weak var SMSTextField03: UITextField!
     @IBOutlet weak var SMSTextField04: UITextField!
+    @IBOutlet weak var SMSTextFieldView01: UIView!
+    @IBOutlet weak var SMSTextFieldView02: UIView!
+    @IBOutlet weak var SMSTextFieldView03: UIView!
+    @IBOutlet weak var SMSTextFieldView04: UIView!
+    
     @IBOutlet weak var resendButton: UIButton!
     @IBOutlet weak var resendText: UILabel!
     @IBOutlet weak var resendView: UIView!
@@ -24,6 +29,11 @@ class SMSViewController: UIViewController {
     var phoneNumber = ""
     var isKeyboardAppear = false
     var isResendViewMoveUp = false
+    
+    var circleTextFieldView01 = CircleTextFieldView()
+    var circleTextFieldView02 = CircleTextFieldView()
+    var circleTextFieldView03 = CircleTextFieldView()
+    var circleTextFieldView04 = CircleTextFieldView()
     // Timer variables.
     var timer = Timer()
     var isTimerFinished = false
@@ -35,15 +45,42 @@ class SMSViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        circleTextFieldView01 = CircleTextFieldView(frame: CGRect(x: SMSTextFieldView01.frame.minX+1.5, y: SMSTextFieldView01.frame.minY+0, width: SMSTextFieldView01.frame.width, height: SMSTextFieldView01.frame.height))
+        circleTextFieldView02 = CircleTextFieldView(frame: CGRect(x: SMSTextFieldView01.frame.minX+1.5, y: SMSTextFieldView02.frame.minY+0, width: SMSTextFieldView02.frame.width, height: SMSTextFieldView02.frame.height))
+        circleTextFieldView03 = CircleTextFieldView(frame: CGRect(x: SMSTextFieldView02.frame.minX+1.5, y: SMSTextFieldView03.frame.minY+0, width: SMSTextFieldView03.frame.width, height: SMSTextFieldView03.frame.height))
+        circleTextFieldView04 = CircleTextFieldView(frame: CGRect(x: SMSTextFieldView03.frame.minX+1.5, y: SMSTextFieldView04.frame.minY+0, width: SMSTextFieldView04.frame.width, height: SMSTextFieldView04.frame.height))
+        
+        SMSTextFieldView01.addSubview(circleTextFieldView01)
+        SMSTextFieldView02.addSubview(circleTextFieldView02)
+        SMSTextFieldView03.addSubview(circleTextFieldView03)
+        SMSTextFieldView04.addSubview(circleTextFieldView04)
+        
+        SMSTextFieldView01.bringSubview(toFront: circleTextFieldView01)
+        SMSTextFieldView02.bringSubview(toFront: circleTextFieldView02)
+        SMSTextFieldView03.bringSubview(toFront: circleTextFieldView03)
+        SMSTextFieldView04.bringSubview(toFront: circleTextFieldView04)
+        
+        SMSTextField01 = circleTextFieldView01.textField
+        SMSTextField02 = circleTextFieldView02.textField
+        SMSTextField03 = circleTextFieldView03.textField
+        SMSTextField04 = circleTextFieldView04.textField
+        
         // Set up the SMS text fields delegates.
         SMSTextField01.delegate = self
         SMSTextField02.delegate = self
         SMSTextField03.delegate = self
         SMSTextField04.delegate = self
         
-        SMSTextField04.layer.cornerRadius = SMSTextField01.bounds.width/2
-        SMSTextField04.isHidden = true
+        circleTextFieldView01.textField.becomeFirstResponder()
         
+        
+        /*
+        var testView = CircleTextFieldView(frame: CGRect(x: SMSTextFieldView01.frame.minX+1.5, y: SMSTextField02.frame.minY+0, width: SMSTextFieldView01.frame.width, height: SMSTextFieldView02.frame.height))
+        
+        SMSTextFieldView02.addSubview(testView)
+        SMSTextFieldView02.bringSubview(toFront: testView)
+        testView.textField.becomeFirstResponder()
+        */
         
         // Notify if the keyboard changes its status.
         //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -58,6 +95,16 @@ class SMSViewController: UIViewController {
         // Start the view by making the first text field, first responder.
         //SMSTextField01.becomeFirstResponder()
     }*/
+    
+    override func viewDidLayoutSubviews() {
+        
+        circleTextFieldView02.center = SMSTextFieldView02.center
+        circleTextFieldView02.frame = SMSTextFieldView02.bounds
+        circleTextFieldView02.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        circleTextFieldView02.autoresizesSubviews = true
+        circleTextFieldView02.frame = SMSTextFieldView02.frame
+        
+    }
     
     
     // MARK: ~ Actions
