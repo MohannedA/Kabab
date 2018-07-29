@@ -8,6 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
+import ScreenType
 
 class PhoneNumberViewController: UIViewController {
     
@@ -19,7 +20,8 @@ class PhoneNumberViewController: UIViewController {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var errorMessageLabel: UILabel!
-
+    @IBOutlet weak var appLogoImageView: UIImageView!
+    
     // MARK: ~ Variables
     let backItem = UIBarButtonItem()
     var IDNumber = ""
@@ -34,9 +36,6 @@ class PhoneNumberViewController: UIViewController {
         
         // Set phone number text field delegate.
         phoneNumberTextField.delegate = self
-        
-        // Set background color.
-        view.backgroundColor = #colorLiteral(red: 0.4709999859, green: 0.8740000129, blue: 0.9570000172, alpha: 1)
         
         // Notify if the keyboard changes its status.
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -69,6 +68,13 @@ class PhoneNumberViewController: UIViewController {
         nextButton.setBackgroundColor(#colorLiteral(red: 0.8000000119, green: 0.8000000119, blue: 0.8000000119, alpha: 1), for: .disabled)
         // By default, set it to disabled since text field is empty.
         nextButton.isEnabled = false
+        
+        if UIScreen.current == .iPhone5_5 {
+            print("Got Here123")
+            //appLogoImageView.frame.size.height = 65
+        }
+        // Add action when phone number text field changes.
+        phoneNumberTextField.addTarget(self, action: #selector(editingChanged(_:)), for: .editingChanged)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -105,7 +111,13 @@ class PhoneNumberViewController: UIViewController {
                 let textFieldFrame = view.convert(phoneNumberTextField.frame, from: mainView)
                 if keyboardSize.minY < (textFieldFrame.maxY) {
                     if self.view.frame.origin.y ==  0 {
-                        self.view.frame.origin.y -= ((textFieldFrame.maxY) - keyboardSize.origin.y) + 10
+                        var margenSize: CGFloat = 0.0
+                        if UIScreen.current == .iPhone4_0 {
+                            margenSize = 95.0
+                        } else {
+                            margenSize = 125.0
+                        }
+                        self.view.frame.origin.y -= ((textFieldFrame.maxY) - keyboardSize.origin.y) + margenSize
                     }
                 }
             }
@@ -121,7 +133,7 @@ class PhoneNumberViewController: UIViewController {
                 let textFieldFrame = view.convert(phoneNumberTextField.frame, from: mainView)
                 if keyboardSize.minY < textFieldFrame.maxY {
                     if self.view.frame.origin.y !=  0{
-                        self.view.frame.origin.y += (textFieldFrame.maxY - keyboardSize.origin.y) + 10
+                        self.view.frame.origin.y += (textFieldFrame.maxY - keyboardSize.origin.y) + 125
                     }
                 }
             }
@@ -137,7 +149,7 @@ class PhoneNumberViewController: UIViewController {
         errorMessageLabel.textColor = .white
         // Define stroyboard.
         let storyboard = UIStoryboard(name: "LogIn", bundle: nil)
-        let SMSViewController = storyboard.instantiateViewController(withIdentifier: "SMSViewControllerID") as! SMSViewController
+        let SMSViewController = storyboard.instantiateViewController(withIdentifier: "SMSViewController2") as! SMSViewController
         SMSViewController.IDNumebr = IDNumber
         SMSViewController.phoneNumber = phoneNumberTextField.text ?? ""
         navigationController?.pushViewController(SMSViewController, animated: true)
@@ -156,6 +168,14 @@ class PhoneNumberViewController: UIViewController {
          banner.show()
          */
     }
+    /*To enable text field when it is not empty*/
+    @objc func editingChanged(_ textField: UITextField) {
+        if textField.text != "" {
+            nextButton.isEnabled = true
+        } else {
+            nextButton.isEnabled = false
+        }
+    }
     
     // MARK: ~ Navigation
 }
@@ -166,6 +186,12 @@ extension PhoneNumberViewController: UITextFieldDelegate {
         view.endEditing(true)
         return true
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        phoneNumberTextField.layer.addShadowBottomBorder(color: .black)
+    }
+    
+    
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         view.endEditing(true)

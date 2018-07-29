@@ -78,6 +78,9 @@ class IDViewController: UIViewController {
         // By default, set it to disabled since text field is empty.
         nextButton.isEnabled = false
         
+        // Add action when phone number text field changes.
+        IDTextField.addTarget(self, action: #selector(editingChanged(_:)), for: .editingChanged)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -137,11 +140,16 @@ class IDViewController: UIViewController {
             // If casting is valid.
             if let keyboardSize = (nofication.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 let textFieldFrame = view.convert(IDTextField.frame, from: mainView)
+                if self.view.frame.origin.y ==  0 {
+                    self.view.frame.origin.y -= ((textFieldFrame.maxY) - keyboardSize.origin.y) + 125
+                }
+                /*
                 if keyboardSize.minY < (textFieldFrame.maxY) {
                    if self.view.frame.origin.y ==  0 {
                     self.view.frame.origin.y -= ((textFieldFrame.maxY) - keyboardSize.origin.y) + 10
                     }
                 }
+                */
             }
         }
         isKeyboardAppear = true
@@ -153,13 +161,27 @@ class IDViewController: UIViewController {
             // If casting is valid.
             if let keyboardSize = (nofication.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 let textFieldFrame = view.convert(IDTextField.frame, from: mainView)
+                if self.view.frame.origin.y !=  0{
+                    self.view.frame.origin.y += (textFieldFrame.maxY - keyboardSize.origin.y) + 125
+                }
+                /*
                 if keyboardSize.minY < textFieldFrame.maxY {
                     if self.view.frame.origin.y !=  0{
                         self.view.frame.origin.y += (textFieldFrame.maxY - keyboardSize.origin.y) + 10
                     }
                 }
+                 */
             }
             isKeyboardAppear = false
+        }
+    }
+    
+    /*To enable text field when it is not empty*/
+    @objc func editingChanged(_ textField: UITextField) {
+        if textField.text != "" {
+            nextButton.isEnabled = true
+        } else {
+            nextButton.isEnabled = false
         }
     }
 
@@ -171,6 +193,11 @@ extension IDViewController: UITextFieldDelegate {
         view.endEditing(true)
         return true
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        IDTextField.layer.addShadowBottomBorder(color: .black)
+    }
+    
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         view.endEditing(true)

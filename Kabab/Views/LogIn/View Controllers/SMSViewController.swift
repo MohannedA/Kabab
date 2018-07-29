@@ -41,6 +41,10 @@ class SMSViewController: UIViewController {
         SMSTextField03.delegate = self
         SMSTextField04.delegate = self
         
+        SMSTextField04.layer.cornerRadius = SMSTextField01.bounds.width/2
+        SMSTextField04.isHidden = true
+        
+        
         // Notify if the keyboard changes its status.
         //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -157,6 +161,7 @@ extension SMSViewController: UITextFieldDelegate {
             // Enter the string in the text field.
             textField.text = string
             SMSText += string
+            print("----> \(SMSTextField04.text)")
             if SMSText.count == 4 { // 4 is the number of SMS text fields.
                 let isSMSValid = self.viewModel.checkISSMSNumberValid(SMSText: SMSText)
                 if isSMSValid {
@@ -179,6 +184,7 @@ extension SMSViewController: UITextFieldDelegate {
             default:
                 break
             }
+            print("----> \(SMSTextField04.text)")
             // Empty the string in the text field.
             textField.text = ""
             return false
@@ -196,6 +202,7 @@ extension SMSViewController: UITextFieldDelegate {
             default:
                 break
             }
+            print("----> \(SMSTextField04.text)")
             // Make the text field contains only one number.
             textField.text = string
             return false
