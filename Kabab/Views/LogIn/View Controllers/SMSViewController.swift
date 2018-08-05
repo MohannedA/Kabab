@@ -22,6 +22,7 @@ class SMSViewController: UIViewController {
     @IBOutlet weak var resendButton: UIButton!
     @IBOutlet weak var resendText: UILabel!
     @IBOutlet weak var resendView: UIView!
+    @IBOutlet weak var testView: UIView!
     
     // MARK: ~ Variables
     var SMSText = ""
@@ -45,42 +46,61 @@ class SMSViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        circleTextFieldView01 = CircleTextFieldView(frame: CGRect(x: SMSTextFieldView01.frame.minX+1.5, y: SMSTextFieldView01.frame.minY+0, width: SMSTextFieldView01.frame.width, height: SMSTextFieldView01.frame.height))
-        circleTextFieldView02 = CircleTextFieldView(frame: CGRect(x: SMSTextFieldView01.frame.minX+1.5, y: SMSTextFieldView02.frame.minY+0, width: SMSTextFieldView02.frame.width, height: SMSTextFieldView02.frame.height))
-        circleTextFieldView03 = CircleTextFieldView(frame: CGRect(x: SMSTextFieldView02.frame.minX+1.5, y: SMSTextFieldView03.frame.minY+0, width: SMSTextFieldView03.frame.width, height: SMSTextFieldView03.frame.height))
-        circleTextFieldView04 = CircleTextFieldView(frame: CGRect(x: SMSTextFieldView03.frame.minX+1.5, y: SMSTextFieldView04.frame.minY+0, width: SMSTextFieldView04.frame.width, height: SMSTextFieldView04.frame.height))
+        circleTextFieldView01 = CircleTextFieldView(frame: SMSTextFieldView01.frame)
+        circleTextFieldView02 = CircleTextFieldView()
+        circleTextFieldView03 = CircleTextFieldView()
+        circleTextFieldView04 = CircleTextFieldView()
+        
         
         SMSTextFieldView01.addSubview(circleTextFieldView01)
+        //view.addSubview(circleTextFieldView01)
         SMSTextFieldView02.addSubview(circleTextFieldView02)
         SMSTextFieldView03.addSubview(circleTextFieldView03)
         SMSTextFieldView04.addSubview(circleTextFieldView04)
         
         SMSTextFieldView01.bringSubview(toFront: circleTextFieldView01)
+        //view.bringSubview(toFront: circleTextFieldView01)
         SMSTextFieldView02.bringSubview(toFront: circleTextFieldView02)
         SMSTextFieldView03.bringSubview(toFront: circleTextFieldView03)
         SMSTextFieldView04.bringSubview(toFront: circleTextFieldView04)
+        
+        //circleTextFieldView01.translatesAutoresizingMaskIntoConstraints = false
+        
+        circleTextFieldView01.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview().offset(4)
+            
+        }
+        
+        testView.translatesAutoresizingMaskIntoConstraints = false
+        
+        testView.snp.makeConstraints { (make) in
+            make.bottom.top.right.left.equalToSuperview()
+            make.height.width.equalToSuperview()
+        }
+        
+        circleTextFieldView01.textField.becomeFirstResponder()
         
         SMSTextField01 = circleTextFieldView01.textField
         SMSTextField02 = circleTextFieldView02.textField
         SMSTextField03 = circleTextFieldView03.textField
         SMSTextField04 = circleTextFieldView04.textField
         
+        //SMSTextField01.becomeFirstResponder()
+        
         // Set up the SMS text fields delegates.
-        SMSTextField01.delegate = self
+        //SMSTextField01.delegate = self // You cannot use view delegate if you uncomment it.
         SMSTextField02.delegate = self
         SMSTextField03.delegate = self
         SMSTextField04.delegate = self
         
-        circleTextFieldView01.textField.becomeFirstResponder()
-        
-        
+        // For testing
         /*
-        var testView = CircleTextFieldView(frame: CGRect(x: SMSTextFieldView01.frame.minX+1.5, y: SMSTextField02.frame.minY+0, width: SMSTextFieldView01.frame.width, height: SMSTextFieldView02.frame.height))
-        
+        let testView = CircleTextFieldView(frame: SMSTextFieldView02.frame)
         SMSTextFieldView02.addSubview(testView)
         SMSTextFieldView02.bringSubview(toFront: testView)
-        testView.textField.becomeFirstResponder()
-        */
+        //testView.textField.becomeFirstResponder()
+         */
         
         // Notify if the keyboard changes its status.
         //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -96,15 +116,6 @@ class SMSViewController: UIViewController {
         //SMSTextField01.becomeFirstResponder()
     }*/
     
-    override func viewDidLayoutSubviews() {
-        
-        circleTextFieldView02.center = SMSTextFieldView02.center
-        circleTextFieldView02.frame = SMSTextFieldView02.bounds
-        circleTextFieldView02.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        circleTextFieldView02.autoresizesSubviews = true
-        circleTextFieldView02.frame = SMSTextFieldView02.frame
-        
-    }
     
     
     // MARK: ~ Actions

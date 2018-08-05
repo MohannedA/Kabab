@@ -26,7 +26,7 @@ class CircleTextFieldView: UIView {
         mainView = UIView(frame: frame)
         
         // Set up circle view.
-        circleView = UIView(frame: CGRect(x: self.center.x, y: self.center.y, width: self.bounds.width, height: self.bounds.height))
+        circleView = UIView(frame: frame)
         circleView.layer.cornerRadius = circleView.bounds.width/2
         //circleView.clipsToBounds = false
         circleView.center = self.center
@@ -37,14 +37,16 @@ class CircleTextFieldView: UIView {
         
         
         // Set up label.
-        label = UILabel(frame: CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.bounds.width, height: self.bounds.height))
+        label = UILabel(frame: frame)
+        label.isHidden = true
         label.font = UIFont.boldSystemFont(ofSize: 50)
         label.center = self.center
         label.textAlignment = .center
         label.textColor = UIColor.black
+        mainView.addSubview(label)
         
         // Set up text field.
-        textField = UITextField(frame: CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.bounds.width, height: self.bounds.height))
+        textField = UITextField(frame: frame)
         textField.center = self.center
         textField.borderStyle = UITextBorderStyle.none
         textField.backgroundColor = UIColor.white
@@ -64,13 +66,18 @@ class CircleTextFieldView: UIView {
     
     /*To set up the view when text is entered*/
     @objc private func editingChanged(_ textField: UITextField) {
-        if textField.text != "" {
-            circleView.removeFromSuperview()
+        if textField.text != "" { // Text field has input.
+            // Hide circle view.
+            circleView.isHidden = true
+            // Assign the text field text to label text. 
             label.text = textField.text
-            mainView.addSubview(label)
-        } else {
-            label.removeFromSuperview()
-            mainView.addSubview(circleView)
+            // Show label view.
+            label.isHidden = false
+        } else { // Text Field has no input.
+            // Hide label view.
+            label.isHidden = true
+            // Show circle view.
+            circleView.isHidden = false
         }
     }
     
