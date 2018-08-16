@@ -9,8 +9,6 @@
 import UIKit
 
 class VerificationSuccessfulViewController: UIViewController {
-    // MARK: ~ Properties
-    
     
     // MARK: ~ Variables
     // To indicate if the operation is completed or not.

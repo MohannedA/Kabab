@@ -9,6 +9,7 @@
 import UIKit
 
 extension UITextField {
+    /*To add clear button with an image*/
     func clearButtonWithImage(_ image: UIImage) {
         let clearButton = UIButton()
         clearButton.setImage(image, for: .normal)
@@ -18,7 +19,7 @@ extension UITextField {
         self.rightView = clearButton
         self.rightViewMode = .always
     }
-    
+    /*To clear the text field*/
     @objc func clear(sender: AnyObject) {
         self.text = ""
     }

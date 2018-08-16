@@ -9,7 +9,7 @@
 import UIKit
 
 class AccountViewController: UIViewController {
-    // MARK: ~ Properties
+    // MARK: ~ IBOutlets 
     @IBOutlet weak var fullNameView: UIView!
     @IBOutlet weak var IDNumberView: UIView!
     @IBOutlet weak var mobileNumberView: UIView!

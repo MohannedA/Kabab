@@ -6,13 +6,16 @@
 //  Copyright © 1439 mac. All rights reserved.
 //
 
+// TODO: Make the app logo has the same size on all the screens.
+// TODO: If the app logo has the same size on all the screens, change the methods "keyboardUp" and "keyboardDown". 
+
 import UIKit
 import NotificationBannerSwift
 import ScreenType
 
 class PhoneNumberViewController: UIViewController {
     
-    // MARK: ~ Properties
+    // MARK: ~ IBOutlets
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var contactUsButton: UIButton!
     @IBOutlet weak var poweredByLabel: UILabel!

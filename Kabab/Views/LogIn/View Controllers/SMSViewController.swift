@@ -9,7 +9,7 @@
 import UIKit
 
 class SMSViewController: UIViewController {
-    //MARK: ~ Properties
+    //MARK: ~ IBOutlets
     @IBOutlet weak var SMSTextField01: UITextField!
     @IBOutlet weak var SMSTextField02: UITextField!
     @IBOutlet weak var SMSTextField03: UITextField!
@@ -18,11 +18,9 @@ class SMSViewController: UIViewController {
     @IBOutlet weak var SMSTextFieldView02: UIView!
     @IBOutlet weak var SMSTextFieldView03: UIView!
     @IBOutlet weak var SMSTextFieldView04: UIView!
-    
     @IBOutlet weak var resendButton: UIButton!
     @IBOutlet weak var resendText: UILabel!
     @IBOutlet weak var resendView: UIView!
-    @IBOutlet weak var testView: UIView!
     
     // MARK: ~ Variables
     var SMSText = ""
@@ -30,7 +28,6 @@ class SMSViewController: UIViewController {
     var phoneNumber = ""
     var isKeyboardAppear = false
     var isResendViewMoveUp = false
-    
     var circleTextFieldView01 = CircleTextFieldView()
     var circleTextFieldView02 = CircleTextFieldView()
     var circleTextFieldView03 = CircleTextFieldView()
@@ -46,6 +43,7 @@ class SMSViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // TODO: first text field only implemented, implement the functions for the other text fields.
         circleTextFieldView01 = CircleTextFieldView(frame: SMSTextFieldView01.frame)
         circleTextFieldView02 = CircleTextFieldView()
         circleTextFieldView03 = CircleTextFieldView()
@@ -72,14 +70,7 @@ class SMSViewController: UIViewController {
             
         }
         
-        testView.translatesAutoresizingMaskIntoConstraints = false
-        
-        testView.snp.makeConstraints { (make) in
-            make.bottom.top.right.left.equalToSuperview()
-            make.height.width.equalToSuperview()
-        }
-        
-        circleTextFieldView01.textField.becomeFirstResponder()
+        //circleTextFieldView01.textField.becomeFirstResponder()
         
         SMSTextField01 = circleTextFieldView01.textField
         SMSTextField02 = circleTextFieldView02.textField
@@ -94,21 +85,14 @@ class SMSViewController: UIViewController {
         SMSTextField03.delegate = self
         SMSTextField04.delegate = self
         
-        // For testing
-        /*
-        let testView = CircleTextFieldView(frame: SMSTextFieldView02.frame)
-        SMSTextFieldView02.addSubview(testView)
-        SMSTextFieldView02.bringSubview(toFront: testView)
-        //testView.textField.becomeFirstResponder()
-         */
-        
+        // TODO: Change the methods "keyboardUp" and "keyboardDown" to make the view moves up/down when keyboard become active/inactive.
         // Notify if the keyboard changes its status.
         //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUp(nofication:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(nofication:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
     }
     
-    //TODO Solve the problem of making keyboard active when view satrts.
+    // TODO: Solve the problem appears when making keyboard active when view controller satrts.
     // Report problem with moving the view with the keyboard.
     /*override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -122,9 +106,13 @@ class SMSViewController: UIViewController {
     @IBAction func onClickResend(_ sender: UIButton) {
         // Start SMS resend timer.
         playTimer()
+        
+        // For testing.
+        moveToVerificationSuccessfulViewController()
     }
     
     //MARK: ~ Private Methods
+    // TODO: Change the method "keyboardUp" below to make the view moves up when keyboard become active.
     /*To handle the view when the keyboard is up*/
      @objc private func keyboardUp(nofication: NSNotification) {
         if !isKeyboardAppear {
@@ -144,7 +132,7 @@ class SMSViewController: UIViewController {
             isKeyboardAppear = true
         }
     }
-    
+    // TODO: Change the method "keyboardDown" below to make the view moves down when keyboard become not active.
     /*To handle the view when the keyboard is down*/
     @objc private func keyboardDown(nofication: NSNotification) {
         if isKeyboardAppear {
@@ -198,9 +186,9 @@ class SMSViewController: UIViewController {
     }
     
 }
-
 // MARK: ~ TextField Delegate Methods
 extension SMSViewController: UITextFieldDelegate {
+    // TODO: Test the functionality of the method below "textField".
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if ((textField.text?.count)! < 1) && (string.count > 0) { // If the responder goes forward.
@@ -219,8 +207,7 @@ extension SMSViewController: UITextFieldDelegate {
             // Enter the string in the text field.
             textField.text = string
             SMSText += string
-            print("----> \(SMSTextField04.text)")
-            if SMSText.count == 4 { // 4 is the number of SMS text fields.
+            if SMSText.count == 4 { // 4 is the number of SMS text fields (means it is full).
                 let isSMSValid = self.viewModel.checkISSMSNumberValid(SMSText: SMSText)
                 if isSMSValid {
                     moveToVerificationSuccessfulViewController()
@@ -242,7 +229,6 @@ extension SMSViewController: UITextFieldDelegate {
             default:
                 break
             }
-            print("----> \(SMSTextField04.text)")
             // Empty the string in the text field.
             textField.text = ""
             return false
@@ -260,7 +246,6 @@ extension SMSViewController: UITextFieldDelegate {
             default:
                 break
             }
-            print("----> \(SMSTextField04.text)")
             // Make the text field contains only one number.
             textField.text = string
             return false

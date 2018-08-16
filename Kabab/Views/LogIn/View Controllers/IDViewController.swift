@@ -12,20 +12,21 @@ import ScreenType
 
 class IDViewController: UIViewController {
     
-    // MARK: ~ Properties
+    // MARK: ~ IBOutlets
     @IBOutlet weak var IDTextField: UITextField!
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
-    
     @IBOutlet weak var contactUsButton: UIButton!
     @IBOutlet weak var poweredByLabel: UILabel!
     @IBOutlet weak var needHelpLabel: UILabel!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var errorMessageLabel: UILabel!
+    
+    // MARK: ~ Variables
     // Define view model.
     private let viewModel = IDViewModel()
     
-    // Flags. 
+    // Define flags.
     var isKeyboardAppear = false
     
     // MARK: ~ Life Cycle
@@ -68,7 +69,7 @@ class IDViewController: UIViewController {
         //IDTextField.layoutIfNeeded()
         
         // Assign text field clear button image.
-        let clearImage = UIImage(named: "delete-sign.png")
+        let clearImage = UIImage(named: "delete-sign.png") // "delete-sign.png" is only for testing.
         IDTextField.clearButtonWithImage(clearImage!)
         
         // Set next button.
@@ -85,7 +86,7 @@ class IDViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // Change back button to have "Phone Number" title.
+        // Change back button to have "" title.
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
     
@@ -116,7 +117,7 @@ class IDViewController: UIViewController {
         // Define phone number view controller.
         let phoneNumberViewController = storyboard.instantiateViewController(withIdentifier: "PhoneNumberViewController3") as! PhoneNumberViewController
         phoneNumberViewController.IDNumber = IDTextField.text ?? ""
-        view.endEditing(true)
+        view.endEditing(true) // resign all the responders.
         navigationController?.pushViewController(phoneNumberViewController, animated: true)
     }
     

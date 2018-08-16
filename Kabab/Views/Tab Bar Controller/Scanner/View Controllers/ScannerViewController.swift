@@ -207,7 +207,7 @@ extension ScannerViewController: QRScannerDelegate {
         let isQRCodeValid = self.viewModel.checkIsQRCodeValid(code: codeStringValue)
         if isQRCodeValid {
             showCheckedInView()
-            // TODO: Applay visitors data refresh. 
+            // TODO: Refresh visitors data.
         } else {
             showErrorMessage()
         }
@@ -220,7 +220,8 @@ extension ScannerViewController: QRScannerDelegate {
     func drawBoundingSquares(codeStringValue: String) -> (label: String?, labelPosition: SquareLabelPositions, labelColor: UIColor?, color: CGColor?)? {
         return nil
     }
-    // TODO Make the scanner more accurate.
+    // TODO: Make the scanner more accurate by changing the frame that scanner scans in.
+    // Suggestion: Use ".frame" insted of ".bounds".
     func getCodeBounds(_ codeBounds: CGRect, _ codeStringValue: String) {
         print("QRCodeView maxX \(codeBounds.maxX) and \(QRCodeView.bounds.maxX)")
         print("QRCodeView maxY \(codeBounds.maxY) and \(QRCodeView.bounds.maxY)")
@@ -265,7 +266,6 @@ extension ScannerViewController: InvitationCodeViewDelegate {
             // Animate invalid invitation code view.
             invalidInvitationCodeView.animateShowFromBottom(completion: nil)
             
-            //invitationCodeView.contentView.backgroundColor = .red
             
             // Make the first invitation code text field, the first responder.
             //invitationCodeView.invitationCodeTextField01.becomeFirstResponder()

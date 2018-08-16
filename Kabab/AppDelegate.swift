@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -25,13 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "LogIn", bundle: nil)
         
         // Create reference for the ID view controller.
-        //let IDViewController = storyboard.instantiateViewController(withIdentifier: "IDViewController3") as! IDViewController
+        let IDViewController = storyboard.instantiateViewController(withIdentifier: "IDViewController3") as! IDViewController
         
-        let SMSViewController = storyboard.instantiateViewController(withIdentifier: "SMSViewController2") as! SMSViewController
+        // For testing.
+        //let SMSViewController = storyboard.instantiateViewController(withIdentifier: "SMSViewController2") as! SMSViewController
         
         // Create navigation controller and make the ID view controller, the first view controller.
-        //let navigationController = UINavigationController(rootViewController: IDViewController)
-        let navigationController = UINavigationController(rootViewController: SMSViewController)
+        let navigationController = UINavigationController(rootViewController: IDViewController)
+        
+        // For testing.
+        //let navigationController = UINavigationController(rootViewController: SMSViewController)
         
         // Set up the navigation controller to be the root view controller to the window.
         window?.rootViewController = navigationController

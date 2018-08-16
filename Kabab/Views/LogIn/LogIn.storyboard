@@ -8,7 +8,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1184,11 +1183,6 @@
                                     <constraint firstItem="UZL-pn-Gfa" firstAttribute="width" secondItem="aIa-Ee-Ds6" secondAttribute="width" id="xoc-zM-efe"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LPy-Sr-YJD">
-                                <rect key="frame" x="67" y="420" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="LogIn View Background Color"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1216,7 +1210,6 @@
                         <outlet property="resendButton" destination="3Sl-oq-7ie" id="sZv-2w-QTL"/>
                         <outlet property="resendText" destination="U5D-hb-wQT" id="ypl-aM-HB1"/>
                         <outlet property="resendView" destination="dQQ-Vs-6Ar" id="nr0-XD-anb"/>
-                        <outlet property="testView" destination="LPy-Sr-YJD" id="M6h-Cr-esG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qXu-HI-Pzr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1224,9 +1217,4 @@
             <point key="canvasLocation" x="2520.8000000000002" y="-574.36281859070471"/>
         </scene>
     </scenes>
-    <resources>
-        <namedColor name="LogIn View Background Color">
-            <color red="0.47099998593330383" green="0.87400001287460327" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>
