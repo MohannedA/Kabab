@@ -1,4 +1,6 @@
 # Kabab app 
+iOS app that implements MVVM architecture, and design patterns such as Repository pattern. The app contains an implementation of QR Scanner and usage of third-party libraries such as RealmSwift and SnapKit
+
 ## IMPORTANT  Notes
 * There are TODOs can be found written in the classes (some of them in the header comment). 
 * MVVM is not fully implemented since Repository pattren not fully implemented.
